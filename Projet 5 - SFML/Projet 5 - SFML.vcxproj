@@ -81,7 +81,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Src;$(SolutionDir)Libs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -118,12 +118,30 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Src\Common\Point2.cpp" />
     <ClCompile Include="Src\Manager\Game.cpp" />
+    <ClCompile Include="Src\Manager\States\StateCombat.cpp" />
+    <ClCompile Include="Src\Manager\States\StateLevel.cpp" />
+    <ClCompile Include="Src\Manager\States\StateMainMenu.cpp" />
+    <ClCompile Include="Src\Manager\UI\UIMainMenu.cpp" />
     <ClCompile Include="Src\State\State.cpp" />
+    <ClCompile Include="Src\UI\Panel.cpp" />
+    <ClCompile Include="Src\UI\Text.cpp" />
+    <ClCompile Include="Src\UI\UI.cpp" />
+    <ClCompile Include="Src\UI\Widget.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Common\Point2.h" />
     <ClInclude Include="Src\Manager\Game.h" />
+    <ClInclude Include="Src\Manager\States\StateCombat.h" />
+    <ClInclude Include="Src\Manager\States\StateLevel.h" />
+    <ClInclude Include="Src\Manager\States\StateMainMenu.h" />
+    <ClInclude Include="Src\Manager\UI\UIMainMenu.h" />
     <ClInclude Include="Src\State\State.h" />
+    <ClInclude Include="Src\UI\Panel.h" />
+    <ClInclude Include="Src\UI\Text.h" />
+    <ClInclude Include="Src\UI\UI.h" />
+    <ClInclude Include="Src\UI\Widget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

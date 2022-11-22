@@ -8,10 +8,10 @@ public:
 	State();
 
 		/// Called when the state manager switches to this state.
-	virtual void enter() = 0;
+	virtual void enter() { }
 
 		/// Called when the state manager exits this state.
-	virtual void leave() = 0;
+	virtual void leave() { }
 
 	virtual void update( double deltaTime ) = 0;
 	virtual void render() = 0;
@@ -22,6 +22,8 @@ public:
 	static void updateNextState();
 
 	static State* getCurrentState() { return currentState; }
+
+	static void setDefaultState(State* s);
 
 
 

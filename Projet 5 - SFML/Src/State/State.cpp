@@ -26,3 +26,13 @@ void State::updateNextState()
 		nextState = 0;
 	}
 }
+
+void State::setDefaultState(State* s)
+{
+	if (currentState) {
+		currentState->leave();
+	}
+
+	currentState = s;
+	currentState->enter();
+}
