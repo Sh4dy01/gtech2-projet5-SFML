@@ -120,6 +120,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Src\Common\Point2.cpp" />
     <ClCompile Include="Src\Manager\Game.cpp" />
+    <ClCompile Include="Src\Map\Map.cpp" />
     <ClCompile Include="Src\States\StateCombat.cpp" />
     <ClCompile Include="Src\States\StateLevel.cpp" />
     <ClCompile Include="Src\States\StateMainMenu.cpp" />
@@ -133,6 +134,7 @@
   <ItemGroup>
     <ClInclude Include="Src\Common\Point2.h" />
     <ClInclude Include="Src\Manager\Game.h" />
+    <ClInclude Include="Src\Map\Map.h" />
     <ClInclude Include="Src\States\StateCombat.h" />
     <ClInclude Include="Src\States\StateLevel.h" />
     <ClInclude Include="Src\States\StateMainMenu.h" />
@@ -142,6 +144,9 @@
     <ClInclude Include="Src\Manager\UI\Text.h" />
     <ClInclude Include="Src\Manager\UI\UI.h" />
     <ClInclude Include="Src\Manager\UI\Widget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Src\Manager\Maps.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
