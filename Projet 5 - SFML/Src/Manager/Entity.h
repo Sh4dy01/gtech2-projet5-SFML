@@ -5,22 +5,16 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/String.hpp>
 
-class Entity {
+class Entity : public sf::Sprite {
 
 public:
 
-	Entity(sf::String, sf::Vector2f);
+	Entity(sf::String);
 	void SetSprite(sf::IntRect);
-
-	sf::Sprite GetSprite() { return _sprite; };
+	void SetSpawn(sf::Vector2f spawn);
 
 protected:
 
 	sf::String name;
-
-	sf::Sprite _sprite;
 	sf::Texture _texture;
-
-	sf::Vector2f pos;
-
 };

@@ -23,7 +23,8 @@ UIMainMenu::UIMainMenu()
 	subtitle.setPosition(Game::GetWidth() / 2 - subtitle.getLocalBounds().width / 2, logo.getLocalBounds().height);
 	subtitle.setFillColor(sf::Color(0, 0, 0, 0));
 
-	//player.SetSprite(sf::IntRect(1, 1, SPRITE_SIZE, SPRITE_SIZE));
+	player.SetSpawn(sf::Vector2f(Game::GetWidth()/2, Game::GetHeight()/2));
+	player.SetSprite(sf::IntRect(1, 1, SPRITE_SIZE, SPRITE_SIZE));
 }
 
 void UIMainMenu::step(double d)
@@ -49,5 +50,5 @@ void UIMainMenu::render(sf::RenderWindow* window)
 
 	window->draw(logo);
 	window->draw(subtitle);
-	//window->draw(player.GetSprite());
+	window->draw(player);
 }

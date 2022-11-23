@@ -149,6 +149,7 @@
     <ClInclude Include="Src\Manager\UI\Widget.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\Sprites\Dave.png" />
     <Image Include="Assets\Sprites\player.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

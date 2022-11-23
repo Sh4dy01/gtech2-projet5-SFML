@@ -7,8 +7,8 @@
 class Player : public Entity {
 
 public:
-	Player(sf::Vector2f);
-	void MovePLayer(sf::Vector2f);
+	Player();
+	void MovePLayer(sf::Vector2f newPos);
 
 private:
 	

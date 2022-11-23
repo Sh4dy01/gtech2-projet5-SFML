@@ -1,13 +1,20 @@
 #include "Entity.h"
 #include "Manager/SpriteConfig.h"
 #include <SFML/Graphics/Texture.hpp>
+#include <iostream>
 
-Entity::Entity(sf::String name, sf::Vector2f spawn) : name(name), pos(spawn)
+Entity::Entity(sf::String name) : name(name)
 {
 }
 
 void Entity::SetSprite(sf::IntRect rect)
 {
+	std::cout << name.toAnsiString();
 	_texture.loadFromFile(BASE_TEXTURE_PATH + name + ".png", rect);
-	_sprite.setTexture(_texture);
+	this->setTexture(_texture);
+}
+
+void Entity::SetSpawn(sf::Vector2f spawn)
+{
+	this->setPosition(spawn);
 }

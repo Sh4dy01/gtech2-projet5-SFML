@@ -1,10 +1,5 @@
 #include "PlayerController.h"
 
-Player::Player(sf::Vector2f spawn) : Entity(PLAYER_NAME, spawn)
+Player::Player() : Entity(PLAYER_NAME)
 {
-}
-
-void Player::MovePLayer(sf::Vector2f newPos)
-{
-	pos += newPos;
 }

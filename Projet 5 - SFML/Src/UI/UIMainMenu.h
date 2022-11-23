@@ -18,8 +18,9 @@ public:
 
 private:
 
-	//Player player;
+	Player player;
 
+	sf::Vector2f playerSpawn;
 	sf::Sprite logo;
 	sf::Text   subtitle;
 	// TODO : move these to their respective resource manager.
