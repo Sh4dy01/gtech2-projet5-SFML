@@ -21,34 +21,34 @@
     <ClCompile Include="Src\Manager\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\State\State.cpp">
+    <ClCompile Include="Src\Manager\State\State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Manager\States\StateCombat.cpp">
+    <ClCompile Include="Src\States\StateCombat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Manager\States\StateLevel.cpp">
+    <ClCompile Include="Src\States\StateLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Manager\States\StateMainMenu.cpp">
+    <ClCompile Include="Src\States\StateMainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\UI\UI.cpp">
+    <ClCompile Include="Src\Manager\UI\UI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\UI\Widget.cpp">
+    <ClCompile Include="Src\Manager\UI\Widget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Src\Common\Point2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\UI\Panel.cpp">
+    <ClCompile Include="Src\Manager\UI\Panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\UI\Text.cpp">
+    <ClCompile Include="Src\Manager\UI\Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Manager\UI\UIMainMenu.cpp">
+    <ClCompile Include="Src\UI\UIMainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Src\Manager\PlayerController.cpp">
@@ -59,34 +59,34 @@
     <ClInclude Include="Src\Manager\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\State\State.h">
+    <ClInclude Include="Src\Manager\State\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Manager\States\StateMainMenu.h">
+    <ClInclude Include="Src\States\StateMainMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Manager\States\StateCombat.h">
+    <ClInclude Include="Src\States\StateCombat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Manager\States\StateLevel.h">
+    <ClInclude Include="Src\States\StateLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\UI\UI.h">
+    <ClInclude Include="Src\Manager\UI\UI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\UI\Widget.h">
+    <ClInclude Include="Src\Manager\UI\Widget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\Common\Point2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Manager\UI\UIMainMenu.h">
+    <ClInclude Include="Src\UI\UIMainMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\UI\Panel.h">
+    <ClInclude Include="Src\Manager\UI\Panel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\UI\Text.h">
+    <ClInclude Include="Src\Manager\UI\Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\Manager\PlayerController.h">
