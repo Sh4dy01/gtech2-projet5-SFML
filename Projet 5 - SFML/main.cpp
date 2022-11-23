@@ -25,6 +25,7 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				Game::getWindow()->close();
+
 		}
 
 		// TODO : implement delta time.

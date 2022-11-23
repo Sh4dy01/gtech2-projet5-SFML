@@ -23,9 +23,19 @@ UIMainMenu::UIMainMenu()
 	subtitle.setPosition(Game::GetWidth() / 2 - subtitle.getLocalBounds().width / 2, logo.getLocalBounds().height);
 	subtitle.setFillColor(sf::Color(0, 0, 0, 0));
 
-	player.SetSpawn(sf::Vector2f(Game::GetWidth()/2, Game::GetHeight()/2));
-	player.SetSprite(sf::IntRect(1, 1, SPRITE_SIZE, SPRITE_SIZE));
+	player.Initialize(
+		sf::IntRect(1, 1, SPRITE_SIZE, SPRITE_SIZE),
+		1,
+		sf::Vector2i(0, 0)
+	);
+
+	debug.setString("x:"+std::to_string(int(player.getPosition().x)) + " y:" + std::to_string(int(player.getPosition().y)));
+	debug.setFont(font);
+	debug.setCharacterSize(30);
+	debug.setPosition(0, Game::GetHeight() - debug.getLocalBounds().height);
+	debug.setFillColor(sf::Color(255, 255, 255, 255));
 }
+	
 
 void UIMainMenu::step(double d)
 {
@@ -42,6 +52,9 @@ void UIMainMenu::step(double d)
 		subtitle.setFillColor(sf::Color(255, 255, 255, s_origins_o));
 		s_origins_o += 255 * d;
 	}
+
+	player.CheckDirection();
+	debug.setString("x:" + std::to_string(int(player.getPosition().x)) + " y:" + std::to_string(int(player.getPosition().y)));
 }
 
 void UIMainMenu::render(sf::RenderWindow* window)
@@ -51,4 +64,5 @@ void UIMainMenu::render(sf::RenderWindow* window)
 	window->draw(logo);
 	window->draw(subtitle);
 	window->draw(player);
+	window->draw(debug);
 }

@@ -111,5 +111,8 @@
     <Image Include="Assets\Sprites\Dave.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\Sprites\Game Boy GBC - Pokemon Gold Silver - Characters Overworld.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

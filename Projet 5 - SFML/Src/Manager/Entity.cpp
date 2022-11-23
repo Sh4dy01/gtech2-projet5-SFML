@@ -1,10 +1,17 @@
 #include "Entity.h"
 #include "Manager/SpriteConfig.h"
-#include <SFML/Graphics/Texture.hpp>
-#include <iostream>
+#include <iostream>s
 
 Entity::Entity(sf::String name) : name(name)
 {
+}
+
+
+void Entity::Initialize(sf::IntRect region, int scale, sf::Vector2i spawn) 
+{
+	this->SetSprite(region);
+	this->setScale(sf::Vector2f(BASE_SCALE_FACTOR + scale, BASE_SCALE_FACTOR + scale));
+	this->SetSpawn(sf::Vector2f(spawn));
 }
 
 void Entity::SetSprite(sf::IntRect rect)
@@ -16,5 +23,7 @@ void Entity::SetSprite(sf::IntRect rect)
 
 void Entity::SetSpawn(sf::Vector2f spawn)
 {
+	spawn.x *= SPRITE_SIZE;
+	spawn.y *= SPRITE_SIZE;
 	this->setPosition(spawn);
 }

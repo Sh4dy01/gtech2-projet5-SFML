@@ -23,6 +23,7 @@ private:
 	sf::Vector2f playerSpawn;
 	sf::Sprite logo;
 	sf::Text   subtitle;
+	sf::Text   debug;
 	// TODO : move these to their respective resource manager.
 	sf::Texture logoTexture;
 	sf::Font font;
