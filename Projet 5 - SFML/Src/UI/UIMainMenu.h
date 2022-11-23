@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Manager/UI/UI.h"
+#include "Manager/PlayerController.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -17,9 +18,10 @@ public:
 
 private:
 
+	//Player player;
+
 	sf::Sprite logo;
 	sf::Text   subtitle;
-
 	// TODO : move these to their respective resource manager.
 	sf::Texture logoTexture;
 	sf::Font font;

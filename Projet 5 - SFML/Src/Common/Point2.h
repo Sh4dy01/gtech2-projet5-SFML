@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Common/Point2.h"
+
 class Point2
 {
 public:

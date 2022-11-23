@@ -1,6 +1,6 @@
 #include "UI.h"
 
-#include "UI/Widget.h"
+#include "Widget.h"
 
 
 UI::UI()

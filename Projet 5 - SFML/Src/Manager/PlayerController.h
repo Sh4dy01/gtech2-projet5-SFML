@@ -1,15 +1,16 @@
 #pragma once
 
+#include "Manager/SpriteConfig.h"
+#include "Entity.h"
 #include "Common/Point2.h"
 
-class Player {
+class Player : public Entity {
 
 public:
-
-	void MovePLayer(Point2 newPos);
+	Player(sf::Vector2f);
+	void MovePLayer(sf::Vector2f);
 
 private:
-
-	Point2 pos;
-
+	
+	float speed = 1.0f;
 };
