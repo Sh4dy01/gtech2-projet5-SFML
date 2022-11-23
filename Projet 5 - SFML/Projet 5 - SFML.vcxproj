@@ -120,6 +120,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Src\Common\Point2.cpp" />
     <ClCompile Include="Src\Manager\Game.cpp" />
+    <ClCompile Include="Src\Manager\PlayerController.cpp" />
     <ClCompile Include="Src\Manager\States\StateCombat.cpp" />
     <ClCompile Include="Src\Manager\States\StateLevel.cpp" />
     <ClCompile Include="Src\Manager\States\StateMainMenu.cpp" />
@@ -133,6 +134,7 @@
   <ItemGroup>
     <ClInclude Include="Src\Common\Point2.h" />
     <ClInclude Include="Src\Manager\Game.h" />
+    <ClInclude Include="Src\Manager\PlayerController.h" />
     <ClInclude Include="Src\Manager\States\StateCombat.h" />
     <ClInclude Include="Src\Manager\States\StateLevel.h" />
     <ClInclude Include="Src\Manager\States\StateMainMenu.h" />
