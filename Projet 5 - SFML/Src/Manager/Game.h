@@ -10,7 +10,7 @@ class Game {
 public:
 	
 	static void Initialization();
-
+	static void MapLoader();
 
 public:
 
@@ -18,8 +18,6 @@ public:
 
 	static int GetWidth() { return width; }
 	static int GetHeight() { return height; }
-
-
 
 public:
 
