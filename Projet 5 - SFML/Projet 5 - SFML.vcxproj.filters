@@ -54,6 +54,9 @@
     <ClCompile Include="Src\Map\Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Manager\PlayerController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Manager\Game.h">
@@ -95,5 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Src\Manager\Maps.txt" />
+    <ClInclude Include="Src\Manager\PlayerController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
