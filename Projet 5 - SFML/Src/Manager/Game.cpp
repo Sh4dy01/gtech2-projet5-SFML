@@ -23,7 +23,7 @@ void Game::Initialization()
 	height = 1080;
 
 	window = new sf::RenderWindow(sf::VideoMode(width, height), "Pokemon : Origins");
-	window->setFramerateLimit(144);
+	window->setVerticalSyncEnabled(true);
 
 	stateMainMenu = new StateMainMenu();
 	stateLevel    = new StateLevel();

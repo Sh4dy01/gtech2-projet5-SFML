@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Manager/SpriteConfig.h"
-#include "Entity.h"
+#include "AnimatedEntity.h"
 #include "Common/Point2.h"
 
 enum direction
@@ -13,7 +13,7 @@ enum direction
 	DOWN = 4
 };
 
-class Player : public Entity {
+class Player : public AnimatedEntity {
 
 public:
 	Player();
@@ -22,12 +22,10 @@ public:
 
 	void SetDirection(direction dir) { nextDirection = dir; };
 
-	bool IsChangedDir();
 	bool IsSnappedToGrid();
 
 private:
 
 	direction nextDirection;
 	direction currentDirection;
-	float speed;
 };

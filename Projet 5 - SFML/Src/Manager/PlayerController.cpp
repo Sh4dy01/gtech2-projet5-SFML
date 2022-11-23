@@ -3,22 +3,11 @@
 #include <iostream>
 #include "Manager/SpriteConfig.h"
 
-Player::Player() : Entity(PLAYER_NAME)
+Player::Player() : AnimatedEntity(PLAYER_WALK_RECT, "Dave")
 {
 	currentDirection = STILL;
 	nextDirection = STILL;
 	speed = 1.0f;
-}
-
-bool Player::IsChangedDir()
-{
-	if (this->IsSnappedToGrid() && currentDirection != nextDirection)
-	{
-		currentDirection = nextDirection;
-		return true;
-	}
-
-	return false;
 }
 
 void Player::CheckDirection() {
@@ -64,6 +53,13 @@ void Player::Move() {
 	{
 		currentDirection = nextDirection;
 	}
+
+	if (count % 20 == 0)
+	{
+		this->nextAnimation();
+		count = 0;
+	}
+	count++;
 }
 
 bool Player::IsSnappedToGrid()

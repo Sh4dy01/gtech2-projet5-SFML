@@ -119,6 +119,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Src\Common\Point2.cpp" />
+    <ClCompile Include="Src\Manager\AnimatedEntity.cpp" />
     <ClCompile Include="Src\Manager\Entity.cpp" />
     <ClCompile Include="Src\Manager\Game.cpp" />
     <ClCompile Include="Src\Manager\PlayerController.cpp" />
@@ -134,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Common\Point2.h" />
+    <ClInclude Include="Src\Manager\AnimatedEntity.h" />
     <ClInclude Include="Src\Manager\Entity.h" />
     <ClInclude Include="Src\Manager\Game.h" />
     <ClInclude Include="Src\Manager\SpriteConfig.h" />
