@@ -17,3 +17,19 @@ void Point2::operator+=(const Point2& other)
 	this->x += other.x;
 	this->y += other.y;
 }
+
+Point2 Point2::operator-(const Point2& other)
+{
+	return Point2(this->x - other.x, this->y - other.y);
+}
+
+void Point2::operator-=(const Point2& other)
+{
+	this->x -= other.x;
+	this->y -= other.y;
+}
+
+Point2 Point2::operator-()
+{
+	return Point2(-this->x, -this->y);
+}
