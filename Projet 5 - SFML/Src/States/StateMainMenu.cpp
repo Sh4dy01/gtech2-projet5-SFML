@@ -1,7 +1,7 @@
 #include "Manager/Game.h"
 #include "StateMainMenu.h"
 
-#include "Manager/UI/UIMainMenu.h"
+#include "UI/UIMainMenu.h"
 
 
 StateMainMenu::StateMainMenu()

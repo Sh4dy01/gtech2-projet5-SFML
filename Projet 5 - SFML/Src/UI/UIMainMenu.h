@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UI/UI.h"
+#include "Manager/UI/UI.h"
 
 #include <SFML/Graphics.hpp>
 

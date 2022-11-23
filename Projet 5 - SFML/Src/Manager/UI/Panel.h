@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UI/Widget.h"
+#include "Manager/UI/Widget.h"
 
 // Forward declarations.
 namespace sf { class Texture; class Sprite; }

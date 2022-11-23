@@ -1,6 +1,6 @@
 #include "Widget.h"
 
-#include "UI/UI.h"
+#include "Manager/UI/UI.h"
 
 
 Widget::Widget()

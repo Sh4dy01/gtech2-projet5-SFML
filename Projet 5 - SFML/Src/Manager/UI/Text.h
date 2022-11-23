@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UI/Widget.h"
+#include "Manager/UI/Widget.h"
 
 namespace sf { class Text; class Font; }
 

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "State/State.h"
+#include "Manager/State/State.h"
 
 
-class StateCombat : public State
+class StateLevel : public State
 {
 public:
 
-	StateCombat();
+	StateLevel();
 
 	virtual void update(double deltaTime) override;
 	virtual void render() override;
