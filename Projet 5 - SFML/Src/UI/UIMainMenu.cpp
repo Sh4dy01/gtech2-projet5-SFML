@@ -28,7 +28,6 @@ UIMainMenu::UIMainMenu()
 	subtitle.setFillColor(sf::Color(0, 0, 0, 0));
 
 	player.Initialize(
-		sf::IntRect(1, 1, SPRITE_SIZE, SPRITE_SIZE),
 		1,
 		sf::Vector2i(0, 0)
 	);

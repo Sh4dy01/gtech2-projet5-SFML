@@ -9,15 +9,16 @@ Entity::Entity(sf::String name) : name(name)
 
 void Entity::Initialize(sf::IntRect region, int scale, sf::Vector2i spawn) 
 {
-	this->SetSprite(region);
+	this->SetSprite();
 	this->setScale(sf::Vector2f(scale, scale));
 	this->SetSpawn(sf::Vector2f(spawn));
+	this->setTextureRect(region);
 }
 
-void Entity::SetSprite(sf::IntRect rect)
+void Entity::SetSprite()
 {
 	std::cout << name.toAnsiString();
-	_texture.loadFromFile(BASE_TEXTURE_PATH + name + ".png", rect);
+	_texture.loadFromFile(BASE_TEXTURE_PATH + name + ".png");
 	this->setTexture(_texture);
 }
 

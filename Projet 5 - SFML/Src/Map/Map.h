@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 class Tile;
 
@@ -9,23 +10,22 @@ public:
 
 	void         setLength(int length);
 	void         setWidth(int width);
-	void         setMap(Tile* tab);
-	void         setName(const char* name);
-	void         setValue(Tile* value, int x, int y);
+	void         setName(std::string name);
+	void         setValue(int value, int x, int y);
 		
 	int          getLength();
 	int          getWidth();
-	Tile*        getMap();
-	const char*  getName();
+	int			 getValue(int x, int y);
+	std::string  getName();
 
 private:
 
-	const char* name;
+	std::string name;
 
 	// dimensions of the map
 	int length;
 	int width;
 
 	// Tab of pointer of Tile
-	Tile* tab;
+	int tab[100][100];
 };

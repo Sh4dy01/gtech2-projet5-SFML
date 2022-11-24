@@ -13,15 +13,16 @@
 #define GAME_SIZE_X 256
 #define GAME_SIZE_Y 256
 
+class Map;
 
-class Game {
-
+class Game
+{
 public:
 
 	Game();
 
 	void Initialization();
-	void MapLoader();
+	Map* MapLoader(const std::string& name);
 
 public:
 

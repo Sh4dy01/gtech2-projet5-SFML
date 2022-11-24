@@ -57,6 +57,12 @@
     <ClCompile Include="Src\Manager\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Manager\AnimatedEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Map\Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Manager\Game.h">
@@ -92,6 +98,12 @@
     <ClInclude Include="Src\Manager\UI\Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Manager\AnimatedEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Map\Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Manager\PlayerController.h">
@@ -114,5 +126,8 @@
     <Image Include="Assets\Sprites\Game Boy GBC - Pokemon Gold Silver - Characters Overworld.png">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Src\Manager\Maps.txt" />
   </ItemGroup>
 </Project>
