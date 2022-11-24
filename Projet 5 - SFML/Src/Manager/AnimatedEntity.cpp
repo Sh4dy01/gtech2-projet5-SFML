@@ -1,23 +1,56 @@
 #include "AnimatedEntity.h"
+#include "Manager/SpriteConfig.h"
+#include <iostream>
 
-
-AnimatedEntity::AnimatedEntity(std::vector<sf::IntRect> animationPos, sf::String name) : Entity(name)
+AnimatedEntity::AnimatedEntity(std::vector<std::vector<sf::IntRect>> animations, sf::String name) : Entity(name)
 {
-    this->count = 0;
-    this->animationPos = animationPos;
+    currentAnimation = WALK_DOWN;
+    nextAnimation = WALK_DOWN;
 
-    if (animationPos.size() <= 0)
+    this->count = 0;
+    this->pos = 0;
+    this->animations = animations;
+
+    if (animations.size() <= 0)
         throw;
 
-    this->setTextureRect(this->animationPos[this->count]);
+    this->setTextureRect(this->animations[currentAnimation][this->pos]);
 }
 
-void AnimatedEntity::nextAnimation(void)
+void AnimatedEntity::Initialize(int scale, sf::Vector2i spawn)
 {
-    this->count++;
+    this->setScale(sf::Vector2f(BASE_SCALE_FACTOR + scale, BASE_SCALE_FACTOR + scale));
+    this->SetSpawn(sf::Vector2f(spawn));
+    this->SetSprite();
+}
 
-    if (this->count >= this->animationPos.size())
-        this->count = 0;
+void AnimatedEntity::NextAnimationFrame(void)
+{
+    if (isMoving)
+    {
+        this->pos++;
 
-    this->setTextureRect(animationPos[this->count]);
+        if (this->pos >= this->animations[currentAnimation].size())
+            this->pos = 0;
+
+        this->setTextureRect(animations[this->currentAnimation][this->pos]);
+    }
+}
+
+
+void AnimatedEntity::StopCurrentAnimation() {
+    this->pos = 0;
+    switch (currentAnimation)
+    {
+    case WALK_DOWN:
+        this->currentAnimation = STAND_DOWN;
+        break; 
+    case WALK_UP:
+        this->currentAnimation = STAND_UP;
+        break;
+    default:
+        break;
+    }
+
+    this->setTextureRect(animations[this->currentAnimation][this->pos]);
 }

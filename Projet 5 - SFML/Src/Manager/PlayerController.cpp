@@ -1,12 +1,14 @@
 #include "SFML/Window/Keyboard.hpp"
 #include "PlayerController.h"
-#include <iostream>
 #include "Manager/SpriteConfig.h"
+#include <iostream>
 
-Player::Player() : AnimatedEntity(PLAYER_WALK_RECT, "Dave")
+Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave")
 {
-	currentDirection = STILL;
-	nextDirection = STILL;
+	this->currentDirection = STILL;
+	this->nextDirection = STILL;
+	this->isMoving = false;
+
 	speed = 1.0f;
 }
 
@@ -34,18 +36,29 @@ void Player::Move() {
 	{
 	case STILL:
 		this->move(0.0f, 0.0f);
+		StopCurrentAnimation();
+		isMoving = false;
 		break;
 	case LEFT:
 		this->move(-speed, 0.0f);
+		nextAnimation = WALK_LEFT;
+		isMoving = true;
 		break;
 	case UP:
 		this->move(0.0f, -speed);
+		nextAnimation = WALK_UP;
+		isMoving = true;
 		break;
 	case RIGHT:
 		this->move(speed, 0.0f);
+		nextAnimation = WALK_RIGHT;
+		isMoving = true;
+
 		break;
 	case DOWN:
 		this->move(0.0f, speed);
+		nextAnimation = WALK_DOWN;
+		isMoving = true;
 		break;
 	}
 
@@ -54,9 +67,14 @@ void Player::Move() {
 		currentDirection = nextDirection;
 	}
 
-	if (count % 20 == 0)
+	if (currentAnimation != nextAnimation)
 	{
-		this->nextAnimation();
+		currentAnimation = nextAnimation;
+	}
+
+	if (count % 60 == 0)
+	{
+		NextAnimationFrame();
 		count = 0;
 	}
 	count++;
@@ -64,8 +82,8 @@ void Player::Move() {
 
 bool Player::IsSnappedToGrid()
 {
-	if (int(this->getPosition().x) % (SPRITE_SIZE * BASE_SCALE_FACTOR) == 0 &&
-		int(this->getPosition().y) % (SPRITE_SIZE * BASE_SCALE_FACTOR) == 0)
+	if (int(this->getPosition().x) % (SPRITE_SIZE * BASE_SCALE_FACTOR/2) == 0 &&
+		int(this->getPosition().y) % (SPRITE_SIZE * BASE_SCALE_FACTOR/2) == 0)
 	{
 		return true;
 	}
