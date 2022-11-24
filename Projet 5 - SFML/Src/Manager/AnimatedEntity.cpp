@@ -19,7 +19,7 @@ AnimatedEntity::AnimatedEntity(std::vector<std::vector<sf::IntRect>> animations,
 
 void AnimatedEntity::Initialize(int scale, sf::Vector2i spawn)
 {
-    this->setScale(sf::Vector2f(BASE_SCALE_FACTOR + scale, BASE_SCALE_FACTOR + scale));
+    this->setScale(sf::Vector2f(scale, scale));
     this->SetSpawn(sf::Vector2f(spawn));
     this->SetSprite();
 }
