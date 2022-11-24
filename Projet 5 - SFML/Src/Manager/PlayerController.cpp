@@ -33,7 +33,6 @@ void Player::Move() {
 	switch (currentDirection)
 	{
 	case STILL:
-		this->move(0.0f, 0.0f);
 		break;
 	case LEFT:
 		this->move(-speed, 0.0f);
@@ -64,8 +63,8 @@ void Player::Move() {
 
 bool Player::IsSnappedToGrid()
 {
-	if (int(this->getPosition().x) % (SPRITE_SIZE * BASE_SCALE_FACTOR) == 0 &&
-		int(this->getPosition().y) % (SPRITE_SIZE * BASE_SCALE_FACTOR) == 0)
+	if (int(this->getPosition().x) % (SPRITE_SIZE) == 0 &&
+		int(this->getPosition().y) % (SPRITE_SIZE) == 0)
 	{
 		return true;
 	}

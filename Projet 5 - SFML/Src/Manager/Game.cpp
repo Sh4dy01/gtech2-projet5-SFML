@@ -22,8 +22,11 @@ void Game::Initialization()
 	width = 1920;
 	height = 1080;
 
-	window = new sf::RenderWindow(sf::VideoMode(width, height), "Pokemon : Origins");
+	window = new sf::RenderWindow(sf::VideoMode(1024, 1024), "Pokemon : Origins");
 	window->setVerticalSyncEnabled(true);
+
+	sf::View view(sf::Vector2f(128, 128), sf::Vector2f(256, 256));
+	window->setView(view);
 
 	stateMainMenu = new StateMainMenu();
 	stateLevel    = new StateLevel();
