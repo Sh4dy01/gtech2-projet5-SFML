@@ -8,7 +8,7 @@ Text::Text()
 
 }
 
-void Text::render(sf::RenderWindow* w)
+void Text::render(sf::RenderWindow& w)
 {
-	w->draw(*text);
+	w.draw(*text);
 }

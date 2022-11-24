@@ -10,7 +10,8 @@
 
 int main()
 {
-	Game::Initialization();
+	Game game;
+	game.Initialization();
 
 	sf::Clock clock;
 
@@ -23,24 +24,23 @@ int main()
 
 	double deltaTime = 1.0 / 60.0;
 
-	while (Game::getWindow()->isOpen())
+	while (game.getWindow().isOpen())
 	{
 		auto start = std::chrono::high_resolution_clock::now();
 
 		sf::Event event;
-		while (Game::getWindow()->pollEvent(event))
+		while (game.getWindow().pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				Game::getWindow()->close();
-
+				game.getWindow().close();
 		}
 
 		// TODO : implement delta time.
 		State::getCurrentState()->update(deltaTime);
 
-		Game::getWindow()->clear();
+		game.getWindow().clear();
 		State::getCurrentState()->render();
-		Game::getWindow()->display();
+		game.getWindow().display();
 
 		State::updateNextState();
 

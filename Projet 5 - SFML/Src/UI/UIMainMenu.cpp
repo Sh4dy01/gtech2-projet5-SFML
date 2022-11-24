@@ -2,25 +2,29 @@
 #include "Manager/PlayerController.h"
 #include "UIMainMenu.h"
 
+#include "Manager/Resource/ResourceManager.h"
+
 #include "Manager/SpriteConfig.h"
 #include <iostream>
+
 
 UIMainMenu::UIMainMenu()
 	: s_title_o(0.0F), s_origins_o(0.0F)
 {
-	logoTexture.loadFromFile("Assets/Images/pokemon-title.png");
-	logoTexture.setSmooth(false);
+	sf::Texture& logoTexture = Game::getInstance().getResourceManager().loadImage("pokemon-title.png");
+	//logoTexture.setSmooth(false);
+	sf::Font& font = Game::getInstance().getResourceManager().loadFont("Pokemon-Classic.ttf");
+	((sf::Texture&)font.getTexture(8)).setSmooth(false);
 
+	logo.setScale(sf::Vector2f(0.2F, 0.2F));
 	logo.setTexture(logoTexture);
 	logo.setColor(sf::Color(0, 0, 0, 0));
-	logo.setPosition(Game::GetWidth() / 2 - logo.getLocalBounds().width / 2, -logo.getLocalBounds().height);
-
-	font.loadFromFile("Assets/Fonts/Pokemon-Classic.ttf");
+	logo.setPosition(GAME_SIZE_X / 2 - logo.getGlobalBounds().width / 2, -logo.getGlobalBounds().height);
 
 	subtitle.setString("Origins");
 	subtitle.setFont(font);
-	subtitle.setCharacterSize(50);
-	subtitle.setPosition(Game::GetWidth() / 2 - subtitle.getLocalBounds().width / 2, logo.getLocalBounds().height);
+	subtitle.setCharacterSize(8);
+	subtitle.setPosition((GAME_SIZE_X - subtitle.getLocalBounds().width) / 2, logo.getGlobalBounds().height);
 	subtitle.setFillColor(sf::Color(0, 0, 0, 0));
 
 	player.Initialize(
@@ -29,10 +33,9 @@ UIMainMenu::UIMainMenu()
 		sf::Vector2i(0, 0)
 	);
 
-	debug.setString("x:"+std::to_string(int(player.getPosition().x)) + " y:" + std::to_string(int(player.getPosition().y)));
 	debug.setFont(font);
-	debug.setCharacterSize(30);
-	debug.setPosition(0, Game::GetHeight() - debug.getLocalBounds().height);
+	debug.setCharacterSize(8);
+	debug.setPosition(4, GAME_SIZE_Y - 12);
 	debug.setFillColor(sf::Color(255, 255, 255, 255));
 }
 	
@@ -41,7 +44,7 @@ void UIMainMenu::step(double d)
 {
 	if (logo.getPosition().y < 0)
 	{
-		logo.move(0, 320 * d);
+		logo.move(0, 75 * d);
 	}
 	if (s_title_o < 255)
 	{
@@ -57,12 +60,11 @@ void UIMainMenu::step(double d)
 	debug.setString("x:" + std::to_string(int(player.getPosition().x)) + " y:" + std::to_string(int(player.getPosition().y)));
 }
 
-void UIMainMenu::render(sf::RenderWindow* window)
+void UIMainMenu::render(sf::RenderWindow& window)
 {
 	UI::render(window);
-
-	window->draw(logo);
-	window->draw(subtitle);
-	window->draw(player);
-	window->draw(debug);
+	window.draw(logo);
+	window.draw(subtitle);
+	window.draw(player);
+	window.draw(debug);
 }

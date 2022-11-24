@@ -31,7 +31,7 @@ sf::Font& ResourceManager::loadFont(const char* filename)
 	auto elem = fonts.find(filename);
 
 	if (elem == fonts.end()) {
-		std::string path = BASE_IMAGE_PATH;
+		std::string path = BASE_FONT_PATH;
 		path += filename;
 
 		sf::Font font;

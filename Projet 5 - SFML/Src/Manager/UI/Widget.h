@@ -17,7 +17,7 @@ public:
 
 	Widget();
 
-	virtual void render(sf::RenderWindow* w) = 0;
+	virtual void render(sf::RenderWindow& w) = 0;
 
 		/// Add a child widget to this widget. Its coordinates will become relative to its parent.
 	void addChild(Widget* w);

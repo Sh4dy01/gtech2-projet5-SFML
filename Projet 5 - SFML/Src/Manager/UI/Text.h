@@ -11,7 +11,7 @@ public:
 
 	Text();
 
-	virtual void render(sf::RenderWindow* w) override;
+	virtual void render(sf::RenderWindow& w) override;
 
 	void setFont(sf::Font* f);
 

@@ -15,7 +15,7 @@ public:
 
 	virtual void step(double d);
 
-	virtual void render(sf::RenderWindow* window );
+	virtual void render(sf::RenderWindow& window );
 
 	void addWidget(Widget* w);
 

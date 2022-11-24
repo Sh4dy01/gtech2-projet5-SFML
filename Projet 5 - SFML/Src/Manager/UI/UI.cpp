@@ -13,7 +13,7 @@ void UI::step(double d)
 
 }
 
-void UI::render(sf::RenderWindow* window)
+void UI::render(sf::RenderWindow& window)
 {
 	for (Widget* w : widgets) {
 		w->render(window);

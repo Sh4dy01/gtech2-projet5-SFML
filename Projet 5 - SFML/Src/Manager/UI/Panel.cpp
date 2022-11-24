@@ -9,9 +9,9 @@ Panel::Panel()
 	
 }
 
-void Panel::render(sf::RenderWindow* w)
+void Panel::render(sf::RenderWindow& w)
 {
-	w->draw(*sprite);
+	w.draw(*sprite);
 }
 
 void Panel::setTexture(sf::Texture* t)

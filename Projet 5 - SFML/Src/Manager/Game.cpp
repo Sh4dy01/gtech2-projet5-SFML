@@ -5,31 +5,28 @@
 #include <sstream>
 #include <algorithm>
 
+
 using namespace std;
 static const char* const SAVEMAP_FILE = "Maps.txt";
 
-sf::RenderWindow* Game::window;
-ResourceManager* Game::resourceManager;
-int Game::width;
-int Game::height;
+Game* Game::instance = 0;
 
-StateMainMenu* Game::stateMainMenu;
-StateLevel*    Game::stateLevel;
-StateCombat*   Game::stateCombat;
 
+Game::Game()
+	: stateMainMenu(0), stateLevel(0), stateCombat(0)
+{
+	if (!instance) {
+		instance = this;
+	}
+}
 
 void Game::Initialization()
 {
-	width = 1920;
-	height = 1080;
+	window.create(sf::VideoMode(1024, 1024), "Pokemon : Origins");
+	window.setVerticalSyncEnabled(true);
 
-	window = new sf::RenderWindow(sf::VideoMode(1024, 1024), "Pokemon : Origins");
-	window->setVerticalSyncEnabled(true);
-
-	sf::View view(sf::Vector2f(128, 128), sf::Vector2f(256, 256));
-	window->setView(view);
-
-	resourceManager = new ResourceManager();
+	sf::View view(sf::Vector2f(GAME_SIZE_X / 2, GAME_SIZE_Y / 2), sf::Vector2f(GAME_SIZE_X, GAME_SIZE_Y));
+	window.setView(view);
 
 	stateMainMenu = new StateMainMenu();
 	stateLevel    = new StateLevel();

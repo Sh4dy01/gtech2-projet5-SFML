@@ -123,6 +123,8 @@
     <ClCompile Include="Src\Manager\Entity.cpp" />
     <ClCompile Include="Src\Manager\Game.cpp" />
     <ClCompile Include="Src\Manager\PlayerController.cpp" />
+    <ClCompile Include="Src\Manager\Registry\TileRegistry.cpp" />
+    <ClCompile Include="Src\Manager\Resource\ResourceManager.cpp" />
     <ClCompile Include="Src\States\StateCombat.cpp" />
     <ClCompile Include="Src\States\StateLevel.cpp" />
     <ClCompile Include="Src\States\StateMainMenu.cpp" />
@@ -138,8 +140,11 @@
     <ClInclude Include="Src\Manager\AnimatedEntity.h" />
     <ClInclude Include="Src\Manager\Entity.h" />
     <ClInclude Include="Src\Manager\Game.h" />
+    <ClInclude Include="Src\Manager\Resource\ResourceManager.h" />
     <ClInclude Include="Src\Manager\SpriteConfig.h" />
     <ClInclude Include="Src\Manager\PlayerController.h" />
+    <ClInclude Include="Src\Manager\Registry\TileRegistry.h" />
+    <ClInclude Include="Src\Manager\Tile\Tile.h" />
     <ClInclude Include="Src\States\StateCombat.h" />
     <ClInclude Include="Src\States\StateLevel.h" />
     <ClInclude Include="Src\States\StateMainMenu.h" />

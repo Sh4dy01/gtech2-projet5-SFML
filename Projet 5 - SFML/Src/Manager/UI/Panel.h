@@ -12,7 +12,7 @@ public:
 
 	Panel();
 
-	virtual void render(sf::RenderWindow* w) override;
+	virtual void render(sf::RenderWindow& w) override;
 
 	void setTexture(sf::Texture* t);
 
