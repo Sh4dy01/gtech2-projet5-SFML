@@ -11,7 +11,7 @@
 int main()
 {
 	Game::Initialization();
-
+	Game::MapLoader("caca");
 	sf::Clock clock;
 
 	// Load a music to play

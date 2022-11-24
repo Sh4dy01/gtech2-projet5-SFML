@@ -5,12 +5,14 @@
 #include "States/StateLevel.h"
 #include "States/StateCombat.h"
 
+class Map;
+
 class Game {
 
 public:
 	
 	static void Initialization();
-	static void MapLoader();
+	static Map* MapLoader(std::string name);
 
 public:
 
