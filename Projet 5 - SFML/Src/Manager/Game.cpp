@@ -9,6 +9,7 @@ using namespace std;
 static const char* const SAVEMAP_FILE = "Maps.txt";
 
 sf::RenderWindow* Game::window;
+ResourceManager* Game::resourceManager;
 int Game::width;
 int Game::height;
 
@@ -27,6 +28,8 @@ void Game::Initialization()
 
 	sf::View view(sf::Vector2f(128, 128), sf::Vector2f(256, 256));
 	window->setView(view);
+
+	resourceManager = new ResourceManager();
 
 	stateMainMenu = new StateMainMenu();
 	stateLevel    = new StateLevel();
