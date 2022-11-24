@@ -82,8 +82,8 @@ void Player::Move() {
 
 bool Player::IsSnappedToGrid()
 {
-	if (int(this->getPosition().x) % (SPRITE_SIZE * BASE_SCALE_FACTOR/2) == 0 &&
-		int(this->getPosition().y) % (SPRITE_SIZE * BASE_SCALE_FACTOR/2) == 0)
+	if (int(this->getPosition().x) % (SPRITE_SIZE) == 0 &&
+		int(this->getPosition().y) % (SPRITE_SIZE) == 0)
 	{
 		return true;
 	}
