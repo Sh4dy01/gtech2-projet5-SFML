@@ -12,7 +12,7 @@ Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave")
 	speed = 0.5f;
 }
 
-void Player::CheckDirection(double d) {
+void Player::CheckAllDirections(double d) {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) //Move Up
 		SetDirection(UP);
@@ -21,6 +21,19 @@ void Player::CheckDirection(double d) {
 		SetDirection(DOWN);
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) //Move Right
+		SetDirection(RIGHT);
+
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) //Move Left
+		SetDirection(LEFT);
+	else
+		SetDirection(STILL);
+
+	Move(d);
+}
+
+void Player::CheckLateralDirections(double d) {
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) //Move Right
 		SetDirection(RIGHT);
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) //Move Left
