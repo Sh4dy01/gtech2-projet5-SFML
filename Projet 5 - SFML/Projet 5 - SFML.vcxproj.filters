@@ -72,6 +72,12 @@
     <ClCompile Include="Src\UI\UISettingsMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Manager\Resource\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Tiles\Tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Manager\Game.h">
@@ -122,6 +128,12 @@
     <ClInclude Include="Src\UI\UISettingsMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Manager\Resource\ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Tiles\Tile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Manager\PlayerController.h">
@@ -146,6 +158,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Src\Manager\Maps.txt" />
+    <Text Include="Src\Manager\Save\Maps.txt" />
+    <Text Include="Src\Manager\Save\Tiles.txt" />
   </ItemGroup>
 </Project>

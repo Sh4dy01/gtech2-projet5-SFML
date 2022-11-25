@@ -4,13 +4,17 @@
 
 #include <map>
 #include <string>
-
+#include "Map/Map.h"
+#include "Tiles/Tile.h"
 
 class ResourceManager
 {
 public:
 
 	ResourceManager();
+
+	Map* MapLoader(const std::string& name);
+	Tile TileLoader(int index);
 
 	sf::Texture& loadImage(const char* fileName);
 	sf::Texture& loadSprite(const char* fileName);

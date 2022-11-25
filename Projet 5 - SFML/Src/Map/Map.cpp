@@ -29,6 +29,11 @@ void Map::setValue(int value, int x, int y)
 	tab[x][y] = value;
 }
 
+void Map::render()
+{
+
+}
+
 int Map::getLength()
 {
 	return this->length;
