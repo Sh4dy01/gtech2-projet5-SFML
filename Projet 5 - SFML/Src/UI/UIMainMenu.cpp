@@ -11,13 +11,19 @@ sf::Color outlineColor = sf::Color(228, 172, 34, 255);
 float outlineThickness = 1.0f;
 
 UIMainMenu::UIMainMenu()
-	: opacity(0.0F), elem(TITLE), pos(2)
+	: opacity(0.0F), elem(TITLE), pos(3), isButtonsDrew(false)
 {
 	count = 1.0;
 	sf::Texture& logoTexture = Game::getInstance().getResourceManager().loadImage("pokemon-title.png");
+	sf::Texture& bgTexture = Game::getInstance().getResourceManager().loadImage("title-bg.jpg");
 	//logoTexture.setSmooth(false);
 	sf::Font& font = Game::getInstance().getResourceManager().loadFont("Pokemon-Classic.ttf");
 	((sf::Texture&)font.getTexture(8)).setSmooth(false);
+
+	sf::Sprite* bg = new sf::Sprite();
+	bg->setTexture(bgTexture);
+	bg->setScale(sf::Vector2f(1.20f, 1.20f));
+	elements.push_back(bg);
 
 	logo.setScale(sf::Vector2f(0.2F, 0.2F));
 	logo.setTexture(logoTexture);
@@ -25,24 +31,24 @@ UIMainMenu::UIMainMenu()
 	logo.setPosition(GAME_SIZE_X / 2 - logo.getGlobalBounds().width / 2, -logo.getGlobalBounds().height);
 	elements.push_back(&logo);
 
-	subtitle.setString("Origins");
+	subtitle.setString("ORIGINS");
 	subtitle.setFont(font);
-	subtitle.setCharacterSize(8);
+	subtitle.setCharacterSize(16);
 	subtitle.setPosition((GAME_SIZE_X - subtitle.getLocalBounds().width) / 2, -logo.getPosition().y);
 	subtitle.setFillColor(sf::Color(0, 0, 0, 0));
 	elements.push_back(&subtitle);
 
 	start.setFont(font);
-	start.setString("Start game");
+	start.setString("Start");
 	start.setCharacterSize(8);
-	start.setPosition((GAME_SIZE_X - start.getLocalBounds().width) / 2, GAME_SIZE_Y/2);
+	start.setPosition((GAME_SIZE_X - start.getLocalBounds().width) / 2, GAME_SIZE_Y/2 + 30);
 	start.setFillColor(sf::Color(0, 0, 0, 0));
 	start.setOutlineThickness(outlineThickness);
 	start.setOutlineColor(sf::Color(228, 172, 34, 0));
 	elements.push_back(&start);
 
 	options.setFont(font);
-	options.setString("settings");
+	options.setString("Settings");
 	options.setCharacterSize(8);
 	options.setPosition((GAME_SIZE_X - options.getLocalBounds().width) / 2, start.getPosition().y + start.getLocalBounds().height + 10);
 	options.setFillColor(sf::Color(0, 0, 0, 0));
@@ -51,7 +57,7 @@ UIMainMenu::UIMainMenu()
 	elements.push_back(&options);
 
 	quit.setFont(font);
-	quit.setString("quit");
+	quit.setString("Quit");
 	quit.setCharacterSize(8);
 	quit.setPosition((GAME_SIZE_X - quit.getLocalBounds().width) / 2, options.getPosition().y + quit.getLocalBounds().height + 10);
 	quit.setFillColor(sf::Color(0, 0, 0, 0));
@@ -59,8 +65,8 @@ UIMainMenu::UIMainMenu()
 	quit.setOutlineColor(outlineColor);
 	elements.push_back(&quit);
 
-	/*player.Initialize(1, sf::Vector2i(1, 1));
-	elements.push_back(&player);*/
+	player.Initialize(1, sf::Vector2i(0, 8));
+	elements.push_back(&player);
 }
 	
 
@@ -71,39 +77,54 @@ void UIMainMenu::step(double d)
 		logo.move(0, 75 * d * 2);
 	}
 
-	//player.CheckDirection(d);
+	player.CheckLateralDirections(d);
 
-	if (elem <= 4)
+	if (!isButtonsDrew)
 	{
-		switch (elem)
-		{
-		case TITLE:
-			logo.setColor(sf::Color(255, 255, 255, opacity));
-			break;
-		case SUBTITLE:
-			subtitle.setFillColor(sf::Color(255, 255, 255, opacity));
-			break;
-		case START:
-			start.setFillColor(sf::Color(255, 255, 255, opacity));
-			start.setOutlineColor(sf::Color(228, 172, 34, opacity));
-			break;
-		case SETTINGS:
-			options.setFillColor(sf::Color(255, 255, 255, opacity));
-			break;
-		case QUIT:
-			quit.setFillColor(sf::Color(255, 255, 255, opacity));
-			break;
-		default:
-			break;
-		}
+		DrawButtons(d);
+	}
+	else {
+		
+		CheckButtonsInput();
+		count += d;
+	}
+}
 
-		opacity += 255 * (d * 2);
-		if (opacity > 255) {
-			opacity = 0;
-			elem += 1;
-		}
+void UIMainMenu::DrawButtons(double d)
+{
+	switch (elem)
+	{
+	case TITLE:
+		logo.setColor(sf::Color(255, 255, 255, opacity));
+		break;
+	case SUBTITLE:
+		subtitle.setFillColor(sf::Color(0, 0, 0, opacity));
+		break;
+	case START:
+		start.setFillColor(sf::Color(255, 255, 255, opacity));
+		start.setOutlineColor(sf::Color(228, 172, 34, opacity));
+		break;
+	case SETTINGS:
+		options.setFillColor(sf::Color(255, 255, 255, opacity));
+		break;
+	case QUIT:
+		quit.setFillColor(sf::Color(255, 255, 255, opacity));
+		break;
+	default:
+		break;
 	}
 
+	opacity += 255 * (d * 2);
+	if (opacity > 255) {
+		opacity = 0;
+		elem += 1;
+	}
+
+	if (elem > QUIT) isButtonsDrew = true;
+}
+
+void UIMainMenu::CheckButtonsInput()
+{
 	if (count >= 0.2)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
@@ -130,17 +151,15 @@ void UIMainMenu::step(double d)
 			}
 		}
 	}
-
-	count += d;
 }
 
 void UIMainMenu::ChangeTextOutline() {
 	std::cout << pos << std::endl;
 
-	if (pos < 2)
-		pos = 4;
-	else if (pos > 4)
-		pos = 2;
+	if (pos < 3)
+		pos = 5;
+	else if (pos > 5)
+		pos = 3;
 
 	((sf::Text*)elements[pos])->setOutlineThickness(outlineThickness);
 

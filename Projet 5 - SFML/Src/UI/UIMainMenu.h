@@ -21,17 +21,21 @@ public:
 	UIMainMenu();
 
 	virtual void step(double d) override;
+	void DrawButtons(double d);
+	void CheckButtonsInput();
 	void ChangeTextOutline();
 	void GoToMainGame();
 	void GoToSettings();
 
 private:
 
+	bool isButtonsDrew;
+
 	int elem;
 	int pos;
 	float opacity;
 
-	//Player player;
+	Player player;
 	
 	sf::Sprite	logo;
 	sf::Text	subtitle;
