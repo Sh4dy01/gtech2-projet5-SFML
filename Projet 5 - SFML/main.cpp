@@ -12,7 +12,6 @@ int main()
 {
 	Game game;
 	game.Initialization();
-	game.MapLoader("caca");
 
 	sf::Clock clock;
 

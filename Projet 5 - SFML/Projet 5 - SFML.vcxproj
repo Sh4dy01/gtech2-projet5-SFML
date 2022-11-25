@@ -130,6 +130,7 @@
     <ClCompile Include="Src\States\StateCombat.cpp" />
     <ClCompile Include="Src\States\StateLevel.cpp" />
     <ClCompile Include="Src\States\StateMainMenu.cpp" />
+    <ClCompile Include="Src\Tiles\Tile.cpp" />
     <ClCompile Include="Src\UI\UIMainMenu.cpp" />
     <ClCompile Include="Src\Manager\State\State.cpp" />
     <ClCompile Include="Src\Manager\UI\Panel.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Src\States\StateCombat.h" />
     <ClInclude Include="Src\States\StateLevel.h" />
     <ClInclude Include="Src\States\StateMainMenu.h" />
+    <ClInclude Include="Src\Tiles\Tile.h" />
     <ClInclude Include="Src\UI\UIMainMenu.h" />
     <ClInclude Include="Src\Manager\State\State.h" />
     <ClInclude Include="Src\Manager\UI\Panel.h" />
@@ -164,7 +166,8 @@
     <Image Include="Assets\Sprites\player.png" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Src\Manager\Maps.txt" />
+    <Text Include="Src\Manager\Save\Maps.txt" />
+    <Text Include="Src\Manager\Save\Tiles.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
