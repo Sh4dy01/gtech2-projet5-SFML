@@ -36,7 +36,7 @@ void Game::Initialization()
 }
 
 
-Map* Game::MapLoader(std::string name)
+Map* Game::MapLoader(const std::string& name)
 {
 	ifstream f(SAVEMAP_FILE);
 	bool mapLoading = false;

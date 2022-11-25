@@ -27,5 +27,5 @@ private:
 	int width;
 
 	// Tab of pointer of Tile
-	int tab[100][100];
+	int tab[64][64];
 };
