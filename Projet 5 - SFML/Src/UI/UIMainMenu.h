@@ -3,8 +3,16 @@
 #include "Manager/UI/UI.h"
 #include "Manager/PlayerController.h"
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
 
+enum element {
+	TITLE = 0,
+	SUBTITLE = 1,
+	START = 2,
+	SETTINGS = 3,
+	QUIT = 4
+};
 
 class UIMainMenu : public UI
 {
@@ -13,18 +21,21 @@ public:
 	UIMainMenu();
 
 	virtual void step(double d) override;
-
-	virtual void render(sf::RenderWindow& window) override;
+	void ChangeTextOutline();
+	void GoToMainGame();
+	void GoToSettings();
 
 private:
 
-	Player player;
+	int elem;
+	int pos;
+	float opacity;
 
-	sf::Vector2f playerSpawn;
-	sf::Sprite logo;
-	sf::Text   subtitle;
-	sf::Text   debug;
-
-	float s_title_o;
-	float s_origins_o;
+	//Player player;
+	
+	sf::Sprite	logo;
+	sf::Text	subtitle;
+	sf::Text	start;
+	sf::Text	options;
+	sf::Text	quit;
 };
