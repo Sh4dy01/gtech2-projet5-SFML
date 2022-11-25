@@ -4,6 +4,7 @@
 #include "States/StateMainMenu.h"
 #include "States/StateLevel.h"
 #include "States/StateCombat.h"
+#include "States/StateSettingsMenu.h"
 
 #include "Manager/Resource/ResourceManager.h"
 
@@ -42,6 +43,7 @@ public:
 	StateMainMenu* stateMainMenu;
 	StateLevel*    stateLevel;
 	StateCombat*   stateCombat;
+	StateSettingsMenu* stateSettingsMenu;
 
 private:
 
