@@ -17,8 +17,8 @@ class Player : public AnimatedEntity {
 
 public:
 	Player();
-	void CheckDirection();
-	void Move();
+	void CheckDirection(double deltaTime);
+	void Move(double deltaTime);
 
 	void SetDirection(direction dir) { nextDirection = dir; };
 
