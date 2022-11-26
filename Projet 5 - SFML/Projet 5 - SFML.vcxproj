@@ -120,6 +120,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Src\Common\Point2.cpp" />
     <ClCompile Include="Src\Manager\AnimatedEntity.cpp" />
+    <ClCompile Include="Src\Manager\Audio\MusicManager.cpp" />
+    <ClCompile Include="Src\Manager\Audio\SoundManager.cpp" />
     <ClCompile Include="Src\Manager\Entity.cpp" />
     <ClCompile Include="Src\Manager\Game.cpp" />
     <ClCompile Include="Src\Manager\PlayerController.cpp" />
@@ -145,6 +147,8 @@
   <ItemGroup>
     <ClInclude Include="Src\Common\Point2.h" />
     <ClInclude Include="Src\Manager\AnimatedEntity.h" />
+    <ClInclude Include="Src\Manager\Audio\MusicManager.h" />
+    <ClInclude Include="Src\Manager\Audio\SoundManager.h" />
     <ClInclude Include="Src\Manager\Entity.h" />
     <ClInclude Include="Src\Manager\Game.h" />
     <ClInclude Include="Src\Manager\Registry\PokemonRegistry.h" />
@@ -176,6 +180,11 @@
   <ItemGroup>
     <Text Include="Src\Manager\Save\Maps.txt" />
     <Text Include="Src\Manager\Save\Tiles.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\Music\main-menu-theme.wav">
+      <DeploymentContent>true</DeploymentContent>
+    </Media>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

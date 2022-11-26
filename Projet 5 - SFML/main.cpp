@@ -15,13 +15,6 @@ int main()
 
 	sf::Clock clock;
 
-	// Load a music to play
-	/*sf::Music music;
-	if (!music.openFromFile("nice_music.ogg"))
-		return EXIT_FAILURE;*/
-	//music.play();
-	// 
-
 	double deltaTime = 1.0 / 60.0;
 
 	while (game.getWindow().isOpen())

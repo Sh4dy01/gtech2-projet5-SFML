@@ -7,6 +7,7 @@
 #include "States/StateSettingsMenu.h"
 
 #include "Manager/Resource/ResourceManager.h"
+#include "Manager/Audio/MusicManager.h"
 
 
 // Render space is the same as a Gameboy console's.
@@ -30,6 +31,7 @@ public:
 	sf::RenderWindow& getWindow() { return window; }
 
 	ResourceManager& getResourceManager() { return resourceManager; }
+	MusicManager& getMusicManager() { return musicManager; }
 
 
 
@@ -50,4 +52,5 @@ private:
 	sf::RenderWindow window;
 
 	ResourceManager resourceManager;
+	MusicManager musicManager;
 };
