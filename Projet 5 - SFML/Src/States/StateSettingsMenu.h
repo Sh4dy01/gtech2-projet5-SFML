@@ -2,14 +2,14 @@
 
 #include "Manager/State/State.h"
 
-class UIMainMenu;
+class UISettingsMenu;
 
 
-class StateMainMenu : public State
+class StateSettingsMenu : public State
 {
 public:
 
-	StateMainMenu();
+	StateSettingsMenu();
 
 	virtual void enter() override;
 	virtual void leave() override;
@@ -20,5 +20,5 @@ public:
 
 private:
 
-	UIMainMenu* uiMainMenu;
+	UISettingsMenu* uiSettingsMenu;
 };

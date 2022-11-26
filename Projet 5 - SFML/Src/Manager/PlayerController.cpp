@@ -9,10 +9,10 @@ Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave")
 	this->nextDirection = STILL;
 	this->isMoving = false;
 
-	speed = 1.0f;
+	speed = 0.5f;
 }
 
-void Player::CheckDirection() {
+void Player::CheckAllDirections(double d) {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) //Move Up
 		SetDirection(UP);
@@ -28,10 +28,23 @@ void Player::CheckDirection() {
 	else
 		SetDirection(STILL);
 
-	Move();
+	Move(d);
 }
 
-void Player::Move() {
+void Player::CheckLateralDirections(double d) {
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) //Move Right
+		SetDirection(RIGHT);
+
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) //Move Left
+		SetDirection(LEFT);
+	else
+		SetDirection(STILL);
+
+	Move(d);
+}
+
+void Player::Move(double d) {
 	switch (currentDirection)
 	{
 	case STILL:
@@ -72,12 +85,13 @@ void Player::Move() {
 		currentAnimation = nextAnimation;
 	}
 
-	if (count % 60 == 0)
+	if (count >= 0.2)
 	{
 		NextAnimationFrame();
 		count = 0;
 	}
-	count++;
+
+	count += d;
 }
 
 bool Player::IsSnappedToGrid()

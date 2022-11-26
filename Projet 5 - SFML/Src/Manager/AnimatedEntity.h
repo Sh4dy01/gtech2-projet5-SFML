@@ -26,7 +26,7 @@ protected:
 
     bool isMoving;
     
-    int count;
+    double count;
     int pos;
 
     animationType currentAnimation;

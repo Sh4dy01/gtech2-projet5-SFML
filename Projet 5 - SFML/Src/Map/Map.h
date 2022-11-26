@@ -12,6 +12,7 @@ public:
 	void         setWidth(int width);
 	void         setName(std::string name);
 	void         setValue(int value, int x, int y);
+	void         render();
 		
 	int          getLength();
 	int          getWidth();
@@ -27,5 +28,5 @@ private:
 	int width;
 
 	// Tab of pointer of Tile
-	int tab[100][100];
+	int tab[64][64];
 };

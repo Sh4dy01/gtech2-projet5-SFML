@@ -1,0 +1,12 @@
+
+2
+posX 1
+posY 1
+file Dave.png
+<
+
+1
+posX 17
+posY 1
+file Dave.png
+<

@@ -4,6 +4,7 @@
 #include "States/StateMainMenu.h"
 #include "States/StateLevel.h"
 #include "States/StateCombat.h"
+#include "States/StateSettingsMenu.h"
 
 #include "Manager/Resource/ResourceManager.h"
 
@@ -14,6 +15,7 @@
 #define GAME_SIZE_Y 256
 
 class Map;
+class Tile;
 
 class Game
 {
@@ -22,7 +24,6 @@ public:
 	Game();
 
 	void Initialization();
-	Map* MapLoader(const std::string& name);
 
 public:
 
@@ -42,6 +43,7 @@ public:
 	StateMainMenu* stateMainMenu;
 	StateLevel*    stateLevel;
 	StateCombat*   stateCombat;
+	StateSettingsMenu* stateSettingsMenu;
 
 private:
 

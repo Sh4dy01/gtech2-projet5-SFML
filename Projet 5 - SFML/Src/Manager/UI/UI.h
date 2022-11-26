@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 class Widget;
 
@@ -15,13 +17,11 @@ public:
 
 	virtual void step(double d);
 
-	virtual void render(sf::RenderWindow& window );
-
-	void addWidget(Widget* w);
+	void render(sf::RenderWindow& window );
 
 
+protected:
 
-private:
-
-	std::vector<Widget*> widgets;
+	double count;
+	std::vector<sf::Drawable*> elements;
 };

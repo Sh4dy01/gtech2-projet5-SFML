@@ -72,6 +72,18 @@
     <ClCompile Include="Src\Manager\Registry\PokedexEntry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src\States\StateSettingsMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\UI\UISettingsMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Manager\Resource\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Tiles\Tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Manager\Game.h">
@@ -116,10 +128,23 @@
     <ClInclude Include="Src\Manager\Resource\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Src\Manager\Registry\PokedexEntry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\Manager\Registry\PokemonRegistry.h">
+=======
+    <ClInclude Include="Src\States\StateSettingsMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\UI\UISettingsMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Manager\Resource\ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Tiles\Tile.h">
+>>>>>>> 12f882d208a317a664a8e5052079fd32b1ad3483
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -146,6 +171,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Src\Manager\Maps.txt" />
+    <Text Include="Src\Manager\Save\Maps.txt" />
+    <Text Include="Src\Manager\Save\Tiles.txt" />
   </ItemGroup>
 </Project>
