@@ -19,7 +19,7 @@ Game::Game()
 
 void Game::Initialization()
 {
-	window.create(sf::VideoMode(1024, 1024), "Pokemon : Origins");
+	window.create(sf::VideoMode(1024, 1024), "Pokemon : Origins", sf::Style::Titlebar | sf::Style::Close);
 	window.setVerticalSyncEnabled(true);
 
 	sf::View view(sf::Vector2f(GAME_SIZE_X / 2, GAME_SIZE_Y / 2), sf::Vector2f(GAME_SIZE_X, GAME_SIZE_Y));
