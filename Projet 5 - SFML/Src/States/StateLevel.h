@@ -9,6 +9,7 @@ public:
 
 	StateLevel();
 
+	virtual void enter() override;
 	virtual void update(double deltaTime) override;
 	virtual void render() override;
 };

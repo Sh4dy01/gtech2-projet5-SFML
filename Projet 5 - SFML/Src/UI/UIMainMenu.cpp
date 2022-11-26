@@ -79,14 +79,16 @@ void UIMainMenu::step(double d)
 
 	player.CheckLateralDirections(d);
 
-	if (!isButtonsDrew)
+
+	switch (isButtonsDrew)
 	{
+	case false:
 		DrawButtons(d);
-	}
-	else {
-		
+		break;
+	case true:
 		CheckButtonsInput();
 		count += d;
+		break;
 	}
 }
 

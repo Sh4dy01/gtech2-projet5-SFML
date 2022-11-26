@@ -9,9 +9,9 @@
 enum element {
 	TITLE = 0,
 	SUBTITLE = 1,
-	START = 2,
-	SETTINGS = 3,
-	QUIT = 4
+	START = 3,
+	SETTINGS = 4,
+	QUIT = 5
 };
 
 class UIMainMenu : public UI
