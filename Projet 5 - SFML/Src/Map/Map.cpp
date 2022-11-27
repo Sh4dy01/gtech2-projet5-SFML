@@ -1,4 +1,7 @@
 #include "Map.h"
+#include "Tiles/Tile.h"
+#include "Manager/Game.h"
+#include "Manager/SpriteConfig.h"
 
 Map::Map()
 {
@@ -31,6 +34,14 @@ void Map::setValue(int value, int x, int y)
 
 void Map::render()
 {
+	Tile temptile;
+	for (int i = 0; i < this->width; i++) {
+		for (int j = 0; j < this->length; j++) {
+			temptile = Game::getInstance().getResourceManager().TileLoader( this->tab[i][j]);
+			temptile.setPosition(i * SPRITE_SIZE,j * SPRITE_SIZE);
+			Game::getInstance().getWindow().draw(temptile);
+		}
+	}
 
 }
 
