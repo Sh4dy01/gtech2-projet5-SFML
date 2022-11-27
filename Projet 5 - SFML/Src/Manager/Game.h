@@ -25,6 +25,7 @@ public:
 	Game();
 
 	void Initialization();
+	void QuitGame();
 
 public:
 

@@ -148,6 +148,8 @@ void UIMainMenu::CheckButtonsInput()
 			case SETTINGS:
 				GoToSettings();
 				break;
+			case QUIT:
+				QuitTheGame();
 			default:
 				break;
 			}
@@ -174,4 +176,8 @@ void UIMainMenu::GoToMainGame() {
 
 void UIMainMenu::GoToSettings() {
 	State::switchState(Game::getInstance().stateSettingsMenu);
+}
+
+void UIMainMenu::QuitTheGame() {
+	Game::getInstance().QuitGame();
 }

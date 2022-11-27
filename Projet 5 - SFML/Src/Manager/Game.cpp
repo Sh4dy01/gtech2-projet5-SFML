@@ -32,3 +32,8 @@ void Game::Initialization()
 
 	State::setDefaultState(stateMainMenu);
 }
+
+void Game::QuitGame()
+{
+	window.close();
+}

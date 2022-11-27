@@ -24,8 +24,10 @@ public:
 	void DrawButtons(double d);
 	void CheckButtonsInput();
 	void ChangeTextOutline();
+
 	void GoToMainGame();
 	void GoToSettings();
+	void QuitTheGame();
 
 private:
 
