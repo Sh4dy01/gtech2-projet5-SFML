@@ -10,7 +10,7 @@ Game* Game::instance = 0;
 
 
 Game::Game()
-	: stateMainMenu(0), stateLevel(0), stateCombat(0), stateSettingsMenu(0)
+	: stateMainMenu(0), stateLevel(0), stateCombat(0)
 {
 	if (!instance) {
 		instance = this;
@@ -28,7 +28,6 @@ void Game::Initialization()
 	stateMainMenu = new StateMainMenu();
 	stateLevel    = new StateLevel();
 	stateCombat   = new StateCombat();
-	stateSettingsMenu   = new StateSettingsMenu();
 
 	State::setDefaultState(stateMainMenu);
 }
