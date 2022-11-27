@@ -158,10 +158,10 @@ void UIMainMenu::CheckButtonsInput()
 void UIMainMenu::ChangeTextOutline() {
 	std::cout << pos << std::endl;
 
-	if (pos < 3)
-		pos = 5;
-	else if (pos > 5)
-		pos = 3;
+	if (pos < START)
+		pos = QUIT;
+	else if (pos > QUIT)
+		pos = START;
 
 	((sf::Text*)elements[pos])->setOutlineThickness(outlineThickness);
 
