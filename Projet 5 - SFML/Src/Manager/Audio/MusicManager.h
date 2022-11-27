@@ -19,9 +19,10 @@ public:
 	void PauseCurrentMusic();
 	void StopMusic();
 
-	void SetVolume(int volume) { music->setVolume(volume); };
-
 	sf::Music* GetCurrentMusic() { return music; };
+	int GetVolume() { return music->getVolume(); };
+
+	void SetVolume(int volume) { music->setVolume(volume); };
 
 private:
 

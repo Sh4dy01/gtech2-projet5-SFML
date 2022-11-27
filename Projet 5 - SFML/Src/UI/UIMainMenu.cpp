@@ -11,9 +11,9 @@ sf::Color outlineColor = sf::Color(228, 172, 34, 255);
 float outlineThickness = 1.0f;
 
 UIMainMenu::UIMainMenu()
-	: opacity(0.0F), elem(TITLE), pos(3), isButtonsDrew(false)
+	: opacity(0.0F), elem(TITLE), pos(3), isButtonsDrew(false), musicVolume(Game::getInstance().getMusicManager().GetVolume())
 {
-	count = 1.0;
+	inputDelay = 1.0;
 	sf::Texture& logoTexture = Game::getInstance().getResourceManager().loadImage("pokemon-title.png");
 	sf::Texture& bgTexture = Game::getInstance().getResourceManager().loadImage("title-bg.jpg");
 	//logoTexture.setSmooth(false);
@@ -65,6 +65,33 @@ UIMainMenu::UIMainMenu()
 	quit.setOutlineColor(outlineColor);
 	elements.push_back(&quit);
 
+	musicVolumeText.setFont(font);
+	musicVolumeText.setString("Music volume : " + to_string(musicVolume) + "%");
+	musicVolumeText.setCharacterSize(8);
+	musicVolumeText.setPosition((start.getPosition().x - musicVolumeText.getLocalBounds().width / 2), start.getPosition().y);
+	musicVolumeText.setFillColor(sf::Color(255, 255, 255, 0));
+	musicVolumeText.setOutlineThickness(0.0f);
+	musicVolumeText.setOutlineColor(outlineColor);
+	elements.push_back(&musicVolumeText);
+
+	soundVolumeText.setFont(font);
+	soundVolumeText.setString("Sound volume :");
+	soundVolumeText.setCharacterSize(8);
+	soundVolumeText.setPosition((options.getPosition().x - soundVolumeText.getLocalBounds().width / 2), options.getPosition().y);
+	soundVolumeText.setFillColor(sf::Color(255, 255, 255, 0));
+	soundVolumeText.setOutlineThickness(0.0f);
+	soundVolumeText.setOutlineColor(outlineColor);
+	elements.push_back(&soundVolumeText);
+
+	applySettings.setFont(font);
+	applySettings.setString("Apply");
+	applySettings.setCharacterSize(8);
+	applySettings.setPosition((quit.getPosition().x - applySettings.getLocalBounds().width / 2), quit.getPosition().y);
+	applySettings.setFillColor(sf::Color(255, 255, 255, 0));
+	applySettings.setOutlineThickness(0.0f);
+	applySettings.setOutlineColor(outlineColor);
+	elements.push_back(&applySettings);
+
 	player.Initialize(1, sf::Vector2i(0, 8));
 	elements.push_back(&player);
 }
@@ -77,8 +104,10 @@ void UIMainMenu::step(double d)
 		logo.move(0, 75 * d * 2);
 	}
 
-	player.CheckLateralDirections(d);
-
+	if (!isSettingsView)
+	{
+		player.CheckLateralDirections(d);
+	}
 
 	switch (isButtonsDrew)
 	{
@@ -87,7 +116,7 @@ void UIMainMenu::step(double d)
 		break;
 	case true:
 		CheckButtonsInput();
-		count += d;
+		inputDelay += d;
 		break;
 	}
 }
@@ -127,17 +156,49 @@ void UIMainMenu::DrawButtons(double d)
 
 void UIMainMenu::CheckButtonsInput()
 {
-	if (count >= 0.2)
+	if (inputDelay >= INPUT_DELAY)
 	{
+		inputDelay = INPUT_DELAY;
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
-			((sf::Text*)elements[pos])->setOutlineThickness(0.0f);
+			UpdateTextOutline(pos, 0);
 			pos--;
-			ChangeTextOutline();
+			ChangeSelectedButton();
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-			((sf::Text*)elements[pos])->setOutlineThickness(0.0f);
+			UpdateTextOutline(pos, 0);
 			pos++;
-			ChangeTextOutline();
+			ChangeSelectedButton();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && isSettingsView) {
+			switch (pos)
+			{
+			case MUSIC:
+				musicVolume -= 5;
+				UpdateTextElement(pos, "Music volume : " + to_string(musicVolume) + "%");
+				break;
+			case SOUND:
+				soundVolume -= 5;
+				UpdateTextElement(pos, "Sound volume : " + to_string(soundVolume) + "%");
+				break;
+			}
+
+			ResetInputDelay();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && isSettingsView) {
+			switch (pos)
+			{
+			case MUSIC:
+				musicVolume += 5;
+				UpdateTextElement(pos, "Music volume : " + to_string(musicVolume) + "%");
+				break;
+			case SOUND:
+				soundVolume += 5;
+				UpdateTextElement(pos, "Sound volume : " + to_string(soundVolume) + "%");
+				break;
+			}
+
+			ResetInputDelay();
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 			switch (pos)
@@ -150,24 +211,36 @@ void UIMainMenu::CheckButtonsInput()
 				break;
 			case QUIT:
 				QuitTheGame();
+			case APPLY:
+				ApplySettings();
 			default:
 				break;
 			}
+
+			ResetInputDelay();
 		}
 	}
 }
 
-void UIMainMenu::ChangeTextOutline() {
+void UIMainMenu::ChangeSelectedButton() {
 	std::cout << pos << std::endl;
 
-	if (pos < START)
-		pos = QUIT;
-	else if (pos > QUIT)
-		pos = START;
+	if (!isSettingsView)
+	{
+		if (pos < START)
+			pos = QUIT;
+		else if (pos > QUIT)
+			pos = START;
+	}
+	else {
+		if (pos < MUSIC)
+			pos = APPLY;
+		else if (pos > APPLY)
+			pos = MUSIC;
+	}
 
-	((sf::Text*)elements[pos])->setOutlineThickness(outlineThickness);
-
-	count = 0;
+	UpdateTextOutline(pos, outlineThickness);
+	ResetInputDelay();
 }
 
 void UIMainMenu::GoToMainGame() {
@@ -175,7 +248,39 @@ void UIMainMenu::GoToMainGame() {
 }
 
 void UIMainMenu::GoToSettings() {
-	State::switchState(Game::getInstance().stateSettingsMenu);
+	isSettingsView = true;
+
+	start.setFillColor(sf::Color(255, 255, 255, 0));
+	options.setFillColor(sf::Color(255, 255, 255, 0));
+	UpdateTextOutline(SETTINGS, 0);
+	quit.setFillColor(sf::Color(255, 255, 255, 0));
+
+	UpdateTextOutline(MUSIC, outlineThickness);
+	musicVolumeText.setFillColor(sf::Color(255, 255, 255, 255));
+	soundVolumeText.setFillColor(sf::Color(255, 255, 255, 255));
+	applySettings.setFillColor(sf::Color(255, 255, 255, 255));
+
+	pos = MUSIC;
+}
+
+void UIMainMenu::ApplySettings()
+{
+	isSettingsView = false;
+
+	start.setFillColor(sf::Color(255, 255, 255, 255));
+	UpdateTextOutline(START, outlineThickness);
+	options.setFillColor(sf::Color(255, 255, 255, 255));
+	quit.setFillColor(sf::Color(255, 255, 255, 255));
+
+	musicVolumeText.setFillColor(sf::Color(255, 255, 255, 0));
+	soundVolumeText.setFillColor(sf::Color(255, 255, 255, 0));
+	applySettings.setFillColor(sf::Color(255, 255, 255, 0));
+	UpdateTextOutline(APPLY, 0);
+
+	pos = START;
+
+	Game::getInstance().getMusicManager().SetVolume(musicVolume);
+	// TODO: change volume of sound manager
 }
 
 void UIMainMenu::QuitTheGame() {
