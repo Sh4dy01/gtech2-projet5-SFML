@@ -139,7 +139,6 @@
     <ClCompile Include="Src\States\StateLevel.cpp" />
     <ClCompile Include="Src\States\StateMainMenu.cpp" />
     <ClCompile Include="Src\Tiles\Tile.cpp" />
-    <ClCompile Include="Src\UI\UICombat.cpp" />
     <ClCompile Include="Src\UI\UIMainMenu.cpp" />
     <ClCompile Include="Src\Manager\State\State.cpp" />
     <ClCompile Include="Src\Manager\UI\Panel.cpp" />
@@ -171,7 +170,6 @@
     <ClInclude Include="Src\States\StateMainMenu.h" />
     <ClInclude Include="Src\Tiles\Tile.h" />
     <ClInclude Include="Src\States\StateSettingsMenu.h" />
-    <ClInclude Include="Src\UI\UICombat.h" />
     <ClInclude Include="Src\UI\UIMainMenu.h" />
     <ClInclude Include="Src\Manager\State\State.h" />
     <ClInclude Include="Src\Manager\UI\Panel.h" />
@@ -180,9 +178,27 @@
     <ClInclude Include="Src\Manager\UI\Widget.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\Images\battle_action_background.png" />
+    <Image Include="Assets\Images\battle_background.png" />
+    <Image Include="Assets\Images\battle_fight_background.png" />
+    <Image Include="Assets\Images\bulbasaur.png" />
+    <Image Include="Assets\Images\pokemon-title.png" />
+    <Image Include="Assets\Images\tileset.png" />
+    <Image Include="Assets\Images\title-bg.jpg" />
+    <Image Include="Assets\Images\title-bg.png" />
     <Image Include="Assets\Sprites\Dave.png" />
     <Image Include="Assets\Sprites\Game Boy GBC - Pokemon Gold Silver - Characters Overworld.png" />
     <Image Include="Assets\Sprites\player.png" />
+    <Image Include="Assets\Sprites\pokemon\abra.png" />
+    <Image Include="Assets\Sprites\pokemon\arceus.png" />
+    <Image Include="Assets\Sprites\pokemon\bulbasaur.png" />
+    <Image Include="Assets\Sprites\pokemon\charmander.png" />
+    <Image Include="Assets\Sprites\pokemon\magikarp.png" />
+    <Image Include="Assets\Sprites\pokemon\miaouss.png" />
+    <Image Include="Assets\Sprites\pokemon\pikachu.png" />
+    <Image Include="Assets\Sprites\pokemon\rattata.png" />
+    <Image Include="Assets\Sprites\pokemon\sandshrew.png" />
+    <Image Include="Assets\Sprites\pokemon\squirtle.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Src\Manager\Save\Maps.txt" />
@@ -197,6 +213,9 @@
     <Media Include="Assets\Music\main-menu-theme.wav">
       <DeploymentContent>true</DeploymentContent>
     </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\Fonts\Pokemon-Classic.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
