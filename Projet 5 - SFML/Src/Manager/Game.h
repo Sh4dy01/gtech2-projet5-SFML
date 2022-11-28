@@ -48,6 +48,10 @@ public:
 	StateLevel*    stateLevel;
 	StateCombat*   stateCombat;
 
+	Map* currentMap;
+	Map test;
+	Map test2;
+
 private:
 
 	sf::RenderWindow window;
