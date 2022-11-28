@@ -244,7 +244,8 @@ void UIMainMenu::ChangeSelectedButton() {
 }
 
 void UIMainMenu::GoToMainGame() {
-	State::switchState(Game::getInstance().stateLevel);
+	State::switchState(Game::getInstance().stateCombat);
+	//State::switchState(Game::getInstance().stateLevel);
 }
 
 void UIMainMenu::GoToSettings() {

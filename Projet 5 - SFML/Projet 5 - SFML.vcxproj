@@ -135,8 +135,6 @@
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
     <ClCompile Include="Src\Manager\Registry\Pokemon\PokedexEntry.cpp" />
-    <ClCompile Include="Src\States\StateSettingsMenu.cpp" />
-    <ClCompile Include="Src\Manager\Registry\PokedexEntry.cpp" />
     <ClCompile Include="Src\States\StateCombat.cpp" />
     <ClCompile Include="Src\States\StateLevel.cpp" />
     <ClCompile Include="Src\States\StateMainMenu.cpp" />
