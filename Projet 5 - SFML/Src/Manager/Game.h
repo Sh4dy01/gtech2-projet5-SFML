@@ -4,9 +4,10 @@
 #include "States/StateMainMenu.h"
 #include "States/StateLevel.h"
 #include "States/StateCombat.h"
-#include "States/StateSettingsMenu.h"
 
 #include "Manager/Resource/ResourceManager.h"
+#include "Manager/Audio/MusicManager.h"
+#include "Manager/Audio/SoundManager.h"
 
 
 // Render space is the same as a Gameboy console's.
@@ -24,12 +25,15 @@ public:
 	Game();
 
 	void Initialization();
+	void QuitGame();
 
 public:
 
 	sf::RenderWindow& getWindow() { return window; }
 
 	ResourceManager& getResourceManager() { return resourceManager; }
+	MusicManager& getMusicManager() { return musicManager; }
+	SoundManager& getSoundManager() { return soundManager; }
 
 
 
@@ -43,11 +47,16 @@ public:
 	StateMainMenu* stateMainMenu;
 	StateLevel*    stateLevel;
 	StateCombat*   stateCombat;
-	StateSettingsMenu* stateSettingsMenu;
+
+	Map* currentMap;
+	Map test;
+	Map test2;
 
 private:
 
 	sf::RenderWindow window;
 
 	ResourceManager resourceManager;
+	MusicManager musicManager;
+	SoundManager soundManager;
 };

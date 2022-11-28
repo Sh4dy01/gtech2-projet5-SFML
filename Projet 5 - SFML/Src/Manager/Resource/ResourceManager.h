@@ -14,10 +14,12 @@ public:
 	ResourceManager();
 
 	Map* MapLoader(const std::string& name);
-	Tile TileLoader(int index);
+	Tile* TileLoader(int index);
+	bool getCollision(int index);
 
 	sf::Texture& loadImage(const char* fileName);
 	sf::Texture& loadSprite(const char* fileName);
+	sf::Texture& loadTile(const char* fileName);
 
 	sf::Font& loadFont(const char* filename);
 

@@ -10,7 +10,7 @@ Game* Game::instance = 0;
 
 
 Game::Game()
-	: stateMainMenu(0), stateLevel(0), stateCombat(0), stateSettingsMenu(0)
+	: stateMainMenu(0), stateLevel(0), stateCombat(0), test(*Game::getInstance().getResourceManager().MapLoader("mainMap")), test2(*Game::getInstance().getResourceManager().MapLoader("test2")), currentMap(&test)
 {
 	if (!instance) {
 		instance = this;
@@ -19,7 +19,7 @@ Game::Game()
 
 void Game::Initialization()
 {
-	window.create(sf::VideoMode(1024, 1024), "Pokemon : Origins");
+	window.create(sf::VideoMode(1024, 1024), "Pokemon : Origins", sf::Style::Titlebar | sf::Style::Close);
 	window.setVerticalSyncEnabled(true);
 
 	sf::View view(sf::Vector2f(GAME_SIZE_X / 2, GAME_SIZE_Y / 2), sf::Vector2f(GAME_SIZE_X, GAME_SIZE_Y));
@@ -28,7 +28,11 @@ void Game::Initialization()
 	stateMainMenu = new StateMainMenu();
 	stateLevel    = new StateLevel();
 	stateCombat   = new StateCombat();
-	stateSettingsMenu   = new StateSettingsMenu();
 
 	State::setDefaultState(stateMainMenu);
+}
+
+void Game::QuitGame()
+{
+	window.close();
 }

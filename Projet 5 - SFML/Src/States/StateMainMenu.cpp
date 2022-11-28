@@ -12,6 +12,7 @@ StateMainMenu::StateMainMenu()
 void StateMainMenu::enter()
 {
 	uiMainMenu = new UIMainMenu();
+	Game::getInstance().getMusicManager().LoadMusicAndPlay("main-menu-theme");
 }
 
 void StateMainMenu::leave()

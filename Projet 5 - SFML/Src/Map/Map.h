@@ -13,6 +13,9 @@ public:
 	void         setName(std::string name);
 	void         setValue(int value, int x, int y);
 	void         render();
+
+	// test de collision
+	bool         thereIsCollision(int x, int y);
 		
 	int          getLength();
 	int          getWidth();
