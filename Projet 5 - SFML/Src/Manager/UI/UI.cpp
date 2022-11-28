@@ -1,11 +1,12 @@
 #include "UI.h"
-
 #include "Widget.h"
+
+#include "Manager/Game.h"
 
 
 UI::UI()
 {
-
+	Game::getInstance().getSoundManager().LoadSound("select-sound");
 }
 
 void UI::step(double d)

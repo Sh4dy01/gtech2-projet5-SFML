@@ -2,7 +2,7 @@
 #include <SFML/Audio/Music.hpp>
 #include <string>
 
-#define BASE_MUSIC_PATH "Assets/Music/"
+#define BASE_MUSIC_PATH "Assets/Audio/Music/"
 #define BASE_MUSIC_EXTENSION ".wav"
 
 class MusicManager {

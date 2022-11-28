@@ -11,9 +11,8 @@ sf::Color outlineColor = sf::Color(228, 172, 34, 255);
 float outlineThickness = 1.0f;
 
 UIMainMenu::UIMainMenu()
-	: opacity(0.0F), elem(TITLE), pos(3), isButtonsDrew(false), musicVolume(Game::getInstance().getMusicManager().GetVolume())
+	: opacity(0.0F), elem(TITLE), pos(3), isButtonsDrew(false), musicVolume(Game::getInstance().getMusicManager().GetVolume()), soundVolume(Game::getInstance().getSoundManager().GetVolume())
 {
-	inputDelay = 1.0;
 	sf::Texture& logoTexture = Game::getInstance().getResourceManager().loadImage("pokemon-title.png");
 	sf::Texture& bgTexture = Game::getInstance().getResourceManager().loadImage("title-bg.jpg");
 	//logoTexture.setSmooth(false);
@@ -75,7 +74,7 @@ UIMainMenu::UIMainMenu()
 	elements.push_back(&musicVolumeText);
 
 	soundVolumeText.setFont(font);
-	soundVolumeText.setString("Sound volume :");
+	soundVolumeText.setString("Sound volume : " + to_string(soundVolume) + "%");
 	soundVolumeText.setCharacterSize(8);
 	soundVolumeText.setPosition((options.getPosition().x - soundVolumeText.getLocalBounds().width / 2), options.getPosition().y);
 	soundVolumeText.setFillColor(sf::Color(255, 255, 255, 0));
@@ -239,6 +238,7 @@ void UIMainMenu::ChangeSelectedButton() {
 			pos = MUSIC;
 	}
 
+	Game::getInstance().getSoundManager().PlaySound("select-sound");
 	UpdateTextOutline(pos, outlineThickness);
 	ResetInputDelay();
 }
@@ -280,7 +280,7 @@ void UIMainMenu::ApplySettings()
 	pos = START;
 
 	Game::getInstance().getMusicManager().SetVolume(musicVolume);
-	// TODO: change volume of sound manager
+	Game::getInstance().getSoundManager().SetVolume(soundVolume);
 }
 
 void UIMainMenu::QuitTheGame() {

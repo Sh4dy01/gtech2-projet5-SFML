@@ -17,7 +17,7 @@ void Entity::Initialize(sf::IntRect region, int scale, sf::Vector2i spawn)
 
 void Entity::SetSprite()
 {
-	std::cout << name.toAnsiString();
+	std::cout << name.toAnsiString() << std::endl;
 	_texture.loadFromFile(BASE_TEXTURE_PATH + name + ".png");
 	this->setTexture(_texture);
 }

@@ -182,6 +182,11 @@
     <Text Include="Src\Manager\Save\Tiles.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Assets\Audio\Music\battle-music.wav" />
+    <Media Include="Assets\Audio\Music\main-menu-theme.wav" />
+    <Media Include="Assets\Audio\Sound\select-sound.wav">
+      <DeploymentContent>true</DeploymentContent>
+    </Media>
     <Media Include="Assets\Music\main-menu-theme.wav">
       <DeploymentContent>true</DeploymentContent>
     </Media>

@@ -59,5 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\Music\main-menu-theme.wav" />
+    <Media Include="Assets\Audio\Sound\select-sound.wav" />
+    <Media Include="Assets\Audio\Music\battle-music.wav" />
+    <Media Include="Assets\Audio\Music\main-menu-theme.wav" />
   </ItemGroup>
 </Project>

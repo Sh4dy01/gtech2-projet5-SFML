@@ -7,6 +7,7 @@
 
 #include "Manager/Resource/ResourceManager.h"
 #include "Manager/Audio/MusicManager.h"
+#include "Manager/Audio/SoundManager.h"
 
 
 // Render space is the same as a Gameboy console's.
@@ -32,6 +33,7 @@ public:
 
 	ResourceManager& getResourceManager() { return resourceManager; }
 	MusicManager& getMusicManager() { return musicManager; }
+	SoundManager& getSoundManager() { return soundManager; }
 
 
 
@@ -52,4 +54,5 @@ private:
 
 	ResourceManager resourceManager;
 	MusicManager musicManager;
+	SoundManager soundManager;
 };
