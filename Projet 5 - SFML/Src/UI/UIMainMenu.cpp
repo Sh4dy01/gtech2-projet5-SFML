@@ -173,12 +173,18 @@ void UIMainMenu::CheckButtonsInput()
 			switch (pos)
 			{
 			case MUSIC:
-				musicVolume -= 5;
-				UpdateTextElement(pos, "Music volume : " + to_string(musicVolume) + "%");
+				if (musicVolume > 0)
+				{
+					musicVolume -= 5;
+					UpdateTextElement(pos, "Music volume : " + to_string(musicVolume) + "%");
+				}
 				break;
 			case SOUND:
-				soundVolume -= 5;
-				UpdateTextElement(pos, "Sound volume : " + to_string(soundVolume) + "%");
+				if (soundVolume > 0)
+				{
+					soundVolume -= 5;
+					UpdateTextElement(pos, "Sound volume : " + to_string(soundVolume) + "%");
+				}
 				break;
 			}
 
@@ -188,12 +194,18 @@ void UIMainMenu::CheckButtonsInput()
 			switch (pos)
 			{
 			case MUSIC:
-				musicVolume += 5;
-				UpdateTextElement(pos, "Music volume : " + to_string(musicVolume) + "%");
+				if (musicVolume < 100)
+				{
+					musicVolume += 5;
+					UpdateTextElement(pos, "Music volume : " + to_string(musicVolume) + "%");
+				}
 				break;
 			case SOUND:
-				soundVolume += 5;
-				UpdateTextElement(pos, "Sound volume : " + to_string(soundVolume) + "%");
+				if (soundVolume < 100)
+				{
+					soundVolume += 5;
+					UpdateTextElement(pos, "Sound volume : " + to_string(soundVolume) + "%");
+				}
 				break;
 			}
 
