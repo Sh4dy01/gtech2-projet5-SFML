@@ -54,6 +54,24 @@ sf::Texture& ResourceManager::loadSprite(const char* filename)
 	}
 }
 
+sf::Texture& ResourceManager::loadTile(const char* filename)
+{
+	auto elem = sprites.find(filename);
+
+	if (elem == sprites.end()) {
+		std::string path = BASE_TILES_PATH;
+		path += filename;
+
+		sf::Texture tex;
+		tex.loadFromFile(path);
+
+		return sprites.insert(std::pair<std::string, sf::Texture&>(filename, tex)).first->second;
+	}
+	else {
+		return elem->second;
+	}
+}
+
 sf::Font& ResourceManager::loadFont(const char* filename)
 {
 	auto elem = fonts.find(filename);
@@ -144,7 +162,7 @@ Map* ResourceManager::MapLoader(const std::string& name)
 	return &map;
 }
 
-Tile ResourceManager::TileLoader(int index)
+Tile* ResourceManager::TileLoader(int index)
 {
 	ifstream f(SAVETILE_FILE);
 
@@ -209,9 +227,64 @@ Tile ResourceManager::TileLoader(int index)
 	}
 	f.close();
 
-	sf::Texture& texture = Game::getInstance().getResourceManager().loadSprite(file.c_str());
+	sf::Texture& texture = Game::getInstance().getResourceManager().loadTile(file.c_str());
 	tile.setTexture(texture);
 	tile.setTextureRect(sf::IntRect(posX, posY, SPRITE_SIZE, SPRITE_SIZE));
 
-	return tile;
+	return &tile;
+}
+
+bool ResourceManager::getCollision(int index)
+{
+	ifstream f(SAVETILE_FILE);
+
+	bool isLoading = false;
+	bool collision = false;
+
+	// If settings file does not exist yet, return error.
+	if (!f) {
+		cout << "error : file Maps.txt does not exist." << endl;
+	}
+
+	string line, id;
+	int indexDetector;
+	while (!f.eof())
+	{
+		// Get line.
+		getline(f, line);
+		int countChar = 0;
+
+		// Ignore empty line.
+		if (line.empty()) {
+			continue;
+		}
+
+		// Formatted reading.
+		stringstream ss(line);
+		if (isLoading) {
+			ss >> id;
+		}
+		else {
+			ss >> indexDetector;
+		}
+
+		if (indexDetector == index) {
+			isLoading = true;
+		}
+
+		if (id == "<") {
+			isLoading = false;
+		}
+
+		if (isLoading) {
+
+			if (id == "collision") {
+				ss >> collision;
+			}
+		}
+
+
+	}
+	f.close();
+	return collision;
 }

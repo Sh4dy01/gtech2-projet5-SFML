@@ -1,4 +1,7 @@
 #include "Map.h"
+#include "Tiles/Tile.h"
+#include "Manager/Game.h"
+#include "Manager/SpriteConfig.h"
 
 Map::Map()
 {
@@ -31,7 +34,27 @@ void Map::setValue(int value, int x, int y)
 
 void Map::render()
 {
+	Tile temptile;
+	for (int i = 0; i < this->width; i++) {
+		for (int y = 0; y < this->length; y++) {
+			temptile = *Game::getInstance().getResourceManager().TileLoader( this->tab[i][y] );
+			temptile.setPosition( y * SPRITE_SIZE, i * SPRITE_SIZE);
+			Game::getInstance().getWindow().draw(temptile);
+		}
+	}
+}
 
+bool Map::thereIsCollision(int x, int y)
+{
+	if (x < 0 || x > this->width) {
+		return true;
+	}
+	else if (y < 0 || y > this->length) {
+		return true;
+	}
+	else {
+		return Game::getInstance().getResourceManager().getCollision(this->tab[x][y]);
+	}
 }
 
 int Map::getLength()
