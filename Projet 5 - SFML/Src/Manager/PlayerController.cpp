@@ -2,6 +2,7 @@
 #include "PlayerController.h"
 #include "Manager/SpriteConfig.h"
 #include <iostream>
+#include "Game.h"
 
 Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave")
 {
@@ -14,17 +15,40 @@ Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave")
 
 void Player::CheckAllDirections(double d) {
 
+	sf::Vector2f position= this->getPosition();
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) //Move Up
-		SetDirection(UP);
+	{
+		if (Game::getInstance().currentMap->thereIsCollision( position.x, position.y - 1 ))
+			SetDirection(UP);
+		else
+			SetDirection(STILL);
+	}
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) //Move Down
-		SetDirection(DOWN);
+	{
+		if (Game::getInstance().currentMap->thereIsCollision(position.x, position.y + 1))
+			SetDirection(DOWN);
+		else
+			SetDirection(STILL);
+	}
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) //Move Right
-		SetDirection(RIGHT);
+	{
+		if (Game::getInstance().currentMap->thereIsCollision(position.x + 1, position.y))
+			SetDirection(RIGHT);
+		else
+			SetDirection(STILL);
+	}
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) //Move Left
-		SetDirection(LEFT);
+	{
+		if (Game::getInstance().currentMap->thereIsCollision(position.x - 1, position.y))
+			SetDirection(LEFT);
+		else
+			SetDirection(STILL);
+	}
+
 	else
 		SetDirection(STILL);
 

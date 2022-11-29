@@ -8,6 +8,12 @@
 #include <sstream>
 #include <iostream>
 
+#define EXTERIOR_FILE "exterior.png"
+#define EXTERIOR_WIDTH 16
+#define EXTERIOR_HEIGHT 7
+
+
+
 using namespace std;
 static const char* const SAVEMAP_FILE = "Src/Manager/Save/Maps.txt";
 static const char* const SAVETILE_FILE = "Src/Manager/Save/Tiles.txt";
@@ -89,6 +95,10 @@ sf::Font& ResourceManager::loadFont(const char* filename)
 		return elem->second;
 	}
 }
+Tile ResourceManager::getTile(int index)
+{
+	return loadedTiles[index];
+}
 
 
 Map* ResourceManager::MapLoader(const std::string& name)
@@ -164,8 +174,14 @@ Map* ResourceManager::MapLoader(const std::string& name)
 
 Tile* ResourceManager::TileLoader(int index)
 {
-	ifstream f(SAVETILE_FILE);
 
+	for (int i = 0; i < loadedTilesIndex.size(); i++) {
+		if (loadedTilesIndex[i] == index) {
+			return &loadedTiles[i];
+		}
+	}
+
+	ifstream f(SAVETILE_FILE);
 	bool isLoading = false;
 	int posX = 0;
 	int posY = 0;
@@ -227,11 +243,35 @@ Tile* ResourceManager::TileLoader(int index)
 	}
 	f.close();
 
-	sf::Texture& texture = Game::getInstance().getResourceManager().loadTile(file.c_str());
-	tile.setTexture(texture);
-	tile.setTextureRect(sf::IntRect(posX, posY, SPRITE_SIZE, SPRITE_SIZE));
+	
 
+	for (int i = 0; i < loadedPng.size(); i++) {
+		if (loadedPng[i] == file) {
+			tile.setTexture(*loadedTextures[i]);
+			tile.setTextureRect(sf::IntRect(posX, posY, SPRITE_SIZE, SPRITE_SIZE));
+			loadedTiles.push_back(tile);
+			loadedTilesIndex.push_back(index);
+			return &tile;
+
+		}
+	}
+	
+	int i = this->fileLoader(file);
+	tile.setTexture(*loadedTextures[i]);
+	tile.setTextureRect(sf::IntRect(posX, posY, SPRITE_SIZE, SPRITE_SIZE));
+	loadedTiles.push_back(tile);
+	loadedTilesIndex.push_back(index);
 	return &tile;
+}
+
+int ResourceManager::fileLoader(string fileName)
+{
+	if (fileName == EXTERIOR_FILE) {
+		sf::Texture& texture = Game::getInstance().getResourceManager().loadTile(fileName.c_str());
+		loadedTextures.push_back(&texture);
+		loadedPng.push_back(fileName);
+		return loadedPng.size() - 1;
+	}
 }
 
 bool ResourceManager::getCollision(int index)

@@ -28,6 +28,7 @@ public:
 	void QuitGame();
 
 public:
+	Map getCurrentMap();
 
 	sf::RenderWindow& getWindow() { return window; }
 
