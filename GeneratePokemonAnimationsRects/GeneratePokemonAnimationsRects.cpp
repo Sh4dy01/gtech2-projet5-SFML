@@ -24,38 +24,38 @@ using namespace std;
 
 
 int main() {
-    ofstream f("PokemonAnimationsRegistry.h");
+    ofstream file("PokemonAnimationsRegistry.h");
 
-    f << "#pragma once " << endl;
-    f << "#include \"SFML/Graphics/Rect.hpp\"" << endl << endl;
+    file << "#pragma once " << endl;
+    file << "#include \"SFML/Graphics/Rect.hpp\"" << endl << endl;
 
     std::for_each(pokemons.begin(), pokemons.end(), [&](const auto& pokemon) {
         std::string pixels = std::to_string(pokemon.second);
 
-        f << "#define " << pokemon.first + "_ANIMATIONS \\" << endl;
-        f << "{ \\" << endl;
+        file << "#define " << pokemon.first + "_ANIMATIONS \\" << endl;
+        file << "{ \\" << endl;
 
         for (int numberOfAnim = 0; numberOfAnim < 3; numberOfAnim++)
         {
-            f << "  { \\" << endl;
+            file << "  { \\" << endl;
 
             for (int numberOfFrames = 0; numberOfFrames < 2; numberOfFrames++)
             {
-                f << "      sf::IntRect(" + std::to_string(coordsX[numberOfAnim] * pokemon.second) + ", " + std::to_string(coordsY[numberOfFrames] * pokemon.second) + ", " + pixels + ", " + pixels + ")";
-                if (numberOfFrames < 1) f << ",";
-                f << "\\" << endl;
+                file << "      sf::IntRect(" + std::to_string(coordsX[numberOfAnim] * pokemon.second) + ", " + std::to_string(coordsY[numberOfFrames] * pokemon.second) + ", " + pixels + ", " + pixels + ")";
+                if (numberOfFrames < 1) file << ",";
+                file << "\\" << endl;
             }
 
-            f << "  }";
-            if (numberOfAnim < 2) f << ",";
-            f << "\\" << endl;
+            file << "  }";
+            if (numberOfAnim < 2) file << ",";
+            file << "\\" << endl;
         }
 
-        f << "}" << endl << endl;
+        file << "}" << endl << endl;
 
     });
 
-    f.close();
+    file.close();
 
     return 0;
 }
