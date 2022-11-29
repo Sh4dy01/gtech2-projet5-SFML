@@ -55,7 +55,7 @@ sf::Texture& ResourceManager::loadSprite(const char* filename, bool isPokemon)
 		sf::Texture tex;
 		tex.loadFromFile(path);
 
-		std::cout << filename << " loaded !" << std::endl;
+		//std::cout << filename << " loaded !" << std::endl;
 
 		return sprites.insert(std::pair<std::string, sf::Texture&>(filename, tex)).first->second;
 	}
