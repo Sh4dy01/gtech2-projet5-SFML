@@ -7,11 +7,15 @@
 #include "Manager/SpriteConfig.h"
 #include <iostream>
 
+#include "Configs/Pokemon/Miaouss.h"
+
 sf::Color outlineColor = sf::Color(228, 172, 34, 255);
 float outlineThickness = 1.0f;
 
 UIMainMenu::UIMainMenu()
-	: opacity(0.0F), elem(TITLE), pos(3), isButtonsDrew(false), musicVolume(Game::getInstance().getMusicManager().GetVolume()), soundVolume(Game::getInstance().getSoundManager().GetVolume())
+	: opacity(0.0F), elem(TITLE), pos(3), isButtonsDrew(false),
+	musicVolume(Game::getInstance().getMusicManager().GetVolume()),
+	soundVolume(Game::getInstance().getSoundManager().GetVolume())
 {
 	sf::Texture& logoTexture = Game::getInstance().getResourceManager().loadImage("pokemon-title.png");
 	sf::Texture& bgTexture = Game::getInstance().getResourceManager().loadImage("title-bg.jpg");
@@ -21,7 +25,7 @@ UIMainMenu::UIMainMenu()
 
 	sf::Sprite* bg = new sf::Sprite();
 	bg->setTexture(bgTexture);
-	bg->setScale(sf::Vector2f(1.20f, 1.20f));
+	bg->setScale(sf::Vector2f(1.20f, 1.1));
 	elements.push_back(bg);
 
 	logo.setScale(sf::Vector2f(0.2F, 0.2F));
@@ -91,7 +95,10 @@ UIMainMenu::UIMainMenu()
 	applySettings.setOutlineColor(outlineColor);
 	elements.push_back(&applySettings);
 
-	player.Initialize(1, sf::Vector2i(0, 8));
+
+	player.Initialize(1, sf::Vector2i(2, 8));
+	player.SpawnFollower();
+	elements.push_back(player.GetFollower());
 	elements.push_back(&player);
 }
 	

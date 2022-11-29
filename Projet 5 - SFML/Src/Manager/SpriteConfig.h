@@ -8,6 +8,8 @@
 #define BASE_IMAGE_PATH "Assets/Images/"
 #define BASE_FONT_PATH "Assets/Fonts/"
 
+#define BASE_SPRITE_EXTENSION ".png"
+
 #define PLAYER_NAME "Dave"
 #define PLAYER_ANIMATION \
 {           \

@@ -42,20 +42,26 @@ sf::Texture& ResourceManager::loadImage(const char* filename)
 	}
 }
 
-sf::Texture& ResourceManager::loadSprite(const char* filename)
+sf::Texture& ResourceManager::loadSprite(const char* filename, bool isPokemon)
 {
 	auto elem = sprites.find(filename);
 
 	if (elem == sprites.end()) {
 		std::string path = BASE_SPRITE_PATH;
+		if (isPokemon) path += "Pokemon/";
 		path += filename;
+		path += BASE_SPRITE_EXTENSION;
 
 		sf::Texture tex;
 		tex.loadFromFile(path);
 
+		std::cout << filename << " loaded !" << std::endl;
+
 		return sprites.insert(std::pair<std::string, sf::Texture&>(filename, tex)).first->second;
 	}
 	else {
+		std::cout << filename << " already loaded !" << std::endl;
+
 		return elem->second;
 	}
 }

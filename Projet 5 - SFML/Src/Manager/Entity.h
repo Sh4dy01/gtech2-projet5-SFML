@@ -9,7 +9,7 @@ class Entity : public sf::Sprite {
 
 public:
 
-	Entity(sf::String);
+	Entity(sf::String, bool isPokemon);
 		/// <summary>
 		/// Set the sprite, scale and spawn position of an entity
 		/// </summary>
@@ -20,6 +20,8 @@ public:
 	void SetSpawn(sf::Vector2f spawn);
 
 protected:
+
+	bool isPokemon;
 
 	sf::String name;
 	sf::Texture _texture;

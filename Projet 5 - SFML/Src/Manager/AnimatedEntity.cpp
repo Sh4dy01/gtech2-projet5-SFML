@@ -2,10 +2,21 @@
 #include "Manager/SpriteConfig.h"
 #include <iostream>
 
-AnimatedEntity::AnimatedEntity(std::vector<std::vector<sf::IntRect>> animations, sf::String name) : Entity(name)
+AnimatedEntity::AnimatedEntity(std::vector<std::vector<sf::IntRect>> animations, sf::String name, bool isPokemon) : Entity(name, isPokemon)
 {
-    currentAnimation = WALK_DOWN;
-    nextAnimation = WALK_DOWN;
+	if (isPokemon)
+	{
+		this->currentAnimation = WALK_UP;
+		this->nextAnimation = WALK_UP;
+	}
+	else {
+		this->currentAnimation = WALK_DOWN;
+		this->nextAnimation = WALK_DOWN;
+	}
+
+	this->currentDirection = STILL;
+	this->nextDirection = STILL;
+	this->isMoving = false;
 
     this->count = 0;
     this->pos = 0;
@@ -19,9 +30,72 @@ AnimatedEntity::AnimatedEntity(std::vector<std::vector<sf::IntRect>> animations,
 
 void AnimatedEntity::Initialize(int scale, sf::Vector2i spawn)
 {
+	this->setOrigin(this->getLocalBounds().width/2, this->getLocalBounds().height / 2);
     this->setScale(sf::Vector2f(scale, scale));
     this->SetSpawn(sf::Vector2f(spawn));
     this->SetSprite();
+}
+
+void AnimatedEntity::Move(double d) {
+	switch (currentDirection)
+	{
+	case STILL:
+		this->move(0.0f, 0.0f);
+		StopCurrentAnimation();
+		isMoving = false;
+		break;
+	case LEFT:
+		this->move(-speed * d, 0.0f);
+		nextAnimation = WALK_LEFT;
+		isMoving = true;
+		break;
+	case UP:
+		this->move(0.0f, -speed * d);
+		nextAnimation = WALK_UP;
+		isMoving = true;
+		break;
+	case RIGHT:
+		this->move(speed * d, 0.0f);
+		nextAnimation = WALK_RIGHT;
+		isMoving = true;
+
+		break;
+	case DOWN:
+		this->move(0.0f, speed * d);
+		nextAnimation = WALK_DOWN;
+		isMoving = true;
+		break;
+	}
+
+	if (IsSnappedToGrid() && currentDirection != nextDirection)
+	{
+		currentDirection = nextDirection;
+	}
+
+	if (currentAnimation != nextAnimation)
+	{
+		currentAnimation = nextAnimation;
+	}
+
+	if (count >= 0.2)
+	{
+		NextAnimationFrame();
+		count = 0;
+	}
+
+	count += d;
+}
+
+bool AnimatedEntity::IsSnappedToGrid()
+{
+	if (int(this->getPosition().x) % (SPRITE_SIZE) == 0 &&
+		int(this->getPosition().y) % (SPRITE_SIZE) == 0)
+	{
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 void AnimatedEntity::NextAnimationFrame(void)

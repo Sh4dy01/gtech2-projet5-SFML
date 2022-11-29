@@ -125,8 +125,10 @@
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
     <ClCompile Include="Src\Manager\Entity.cpp" />
+    <ClCompile Include="Src\Manager\Follower.cpp" />
     <ClCompile Include="Src\Manager\Game.cpp" />
     <ClCompile Include="Src\Manager\PlayerController.cpp" />
+    <ClCompile Include="Src\Manager\PokemonWorld.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\Attack.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\AttackRegistry.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonRegistry.cpp" />
@@ -148,13 +150,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Common\Point2.h" />
+    <ClInclude Include="Src\Configs\Pokemon\Miaouss.h" />
     <ClInclude Include="Src\Manager\AnimatedEntity.h" />
     <ClInclude Include="Src\Manager\Audio\MusicManager.h" />
     <ClInclude Include="Src\Manager\Audio\SoundManager.h">
       <DeploymentContent>true</DeploymentContent>
     </ClInclude>
     <ClInclude Include="Src\Manager\Entity.h" />
+    <ClInclude Include="Src\Manager\Follower.h" />
     <ClInclude Include="Src\Manager\Game.h" />
+    <ClInclude Include="Src\Manager\PokemonWorld.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\Attack.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\AttackRegistry.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\PokemonRegistry.h" />
