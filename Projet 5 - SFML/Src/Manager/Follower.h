@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PokemonWorld.h"
+#include "Registry/Pokemon/PokemonWorld.h"
 
 class Player;
 
@@ -9,7 +9,7 @@ class Follower : public PokemonWorld {
 public:
 
 	Follower(Player*);
-	void ChangeFollower();
+	void ChangeFollower(int pokedexNumber);
 	virtual void Move(double d) override;
 	//virtual void Move(double d) override;
 
