@@ -14,7 +14,7 @@ public:
 	void          setPosX(int x);
 	void          setPosY(int y);
 	void          setIndex(int index);
-	void          setFile(const string file);
+	void          setFile(const string f);
 
 	//getters
 	int           getPosX();
@@ -25,7 +25,7 @@ public:
 private:
 
 	// name of the file where is the texture
-	string file;
+	string f;
 
 	// collision
 	bool collision;

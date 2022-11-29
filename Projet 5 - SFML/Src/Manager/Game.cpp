@@ -29,7 +29,7 @@ void Game::Initialization()
 	stateLevel    = new StateLevel();
 	stateCombat   = new StateCombat();
 
-	State::setDefaultState(stateLevel);
+	State::setDefaultState(stateMainMenu);
 }
 
 void Game::QuitGame()

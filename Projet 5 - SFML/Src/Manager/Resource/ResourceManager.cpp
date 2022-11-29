@@ -191,7 +191,7 @@ Tile* ResourceManager::TileLoader(int index)
 	bool isLoading = false;
 	int posX = 0;
 	int posY = 0;
-	string file;
+	string f;
 	Tile tile;
 
 	// If settings file does not exist yet, return error.
@@ -240,8 +240,8 @@ Tile* ResourceManager::TileLoader(int index)
 				tile.setPosY(posY);
 			}
 			else if (id == "file") {
-				ss >> file;
-				tile.setFile(file);
+				ss >> f;
+				tile.setFile(f);
 			}
 		}
 
@@ -252,7 +252,7 @@ Tile* ResourceManager::TileLoader(int index)
 	
 
 	for (int i = 0; i < loadedPng.size(); i++) {
-		if (loadedPng[i] == file) {
+		if (loadedPng[i] == f) {
 			tile.setTexture(*loadedTextures[i]);
 			tile.setTextureRect(sf::IntRect(posX, posY, SPRITE_SIZE, SPRITE_SIZE));
 			loadedTiles.push_back(tile);
@@ -262,7 +262,7 @@ Tile* ResourceManager::TileLoader(int index)
 		}
 	}
 	
-	int i = this->fileLoader(file);
+	int i = this->fileLoader(f);
 	tile.setTexture(*loadedTextures[i]);
 	tile.setTextureRect(sf::IntRect(posX, posY, SPRITE_SIZE, SPRITE_SIZE));
 	loadedTiles.push_back(tile);

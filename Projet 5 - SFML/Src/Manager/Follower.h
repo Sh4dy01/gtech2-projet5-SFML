@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PokemonWorld.h"
+#include "Registry/Pokemon/PokemonWorld.h"
 
 class Player;
 
