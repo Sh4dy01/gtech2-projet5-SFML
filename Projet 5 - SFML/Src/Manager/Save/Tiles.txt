@@ -782,3 +782,884 @@ collision true
 file exterior.png
 <
 
+112
+posX 0
+posY 0
+collision true
+file interior.png
+<
+
+113
+posX 16
+posY 0
+collision true
+file interior.png
+<
+
+114
+posX 32
+posY 0
+collision true
+file interior.png
+<
+
+115
+posX 48
+posY 0
+collision true
+file interior.png
+<
+
+116
+posX 64
+posY 0
+collision true
+file interior.png
+<
+
+117
+posX 80
+posY 0
+collision true
+file interior.png
+<
+
+118
+posX 96
+posY 0
+collision true
+file interior.png
+<
+
+119
+posX 112
+posY 0
+collision true
+file interior.png
+<
+
+120
+posX 128
+posY 0
+collision true
+file interior.png
+<
+
+121
+posX 144
+posY 0
+collision true
+file interior.png
+<
+
+122
+posX 160
+posY 0
+collision true
+file interior.png
+<
+
+123
+posX 176
+posY 0
+collision true
+file interior.png
+<
+
+124
+posX 192
+posY 0
+collision true
+file interior.png
+<
+
+125
+posX 208
+posY 0
+collision true
+file interior.png
+<
+
+126
+posX 0
+posY 16
+collision true
+file interior.png
+<
+
+127
+posX 16
+posY 16
+collision true
+file interior.png
+<
+
+128
+posX 32
+posY 16
+collision true
+file interior.png
+<
+
+129
+posX 48
+posY 16
+collision true
+file interior.png
+<
+
+130
+posX 64
+posY 16
+collision true
+file interior.png
+<
+
+131
+posX 80
+posY 16
+collision true
+file interior.png
+<
+
+132
+posX 96
+posY 16
+collision true
+file interior.png
+<
+
+133
+posX 112
+posY 16
+collision true
+file interior.png
+<
+
+134
+posX 128
+posY 16
+collision true
+file interior.png
+<
+
+135
+posX 144
+posY 16
+collision true
+file interior.png
+<
+
+136
+posX 160
+posY 16
+collision true
+file interior.png
+<
+
+137
+posX 176
+posY 16
+collision true
+file interior.png
+<
+
+138
+posX 192
+posY 16
+collision true
+file interior.png
+<
+
+139
+posX 208
+posY 16
+collision true
+file interior.png
+<
+
+140
+posX 0
+posY 32
+collision true
+file interior.png
+<
+
+141
+posX 16
+posY 32
+collision true
+file interior.png
+<
+
+142
+posX 32
+posY 32
+collision true
+file interior.png
+<
+
+143
+posX 48
+posY 32
+collision true
+file interior.png
+<
+
+144
+posX 64
+posY 32
+collision true
+file interior.png
+<
+
+145
+posX 80
+posY 32
+collision true
+file interior.png
+<
+
+146
+posX 96
+posY 32
+collision true
+file interior.png
+<
+
+147
+posX 112
+posY 32
+collision true
+file interior.png
+<
+
+148
+posX 128
+posY 32
+collision true
+file interior.png
+<
+
+149
+posX 144
+posY 32
+collision true
+file interior.png
+<
+
+150
+posX 160
+posY 32
+collision true
+file interior.png
+<
+
+151
+posX 176
+posY 32
+collision true
+file interior.png
+<
+
+152
+posX 192
+posY 32
+collision true
+file interior.png
+<
+
+153
+posX 208
+posY 32
+collision true
+file interior.png
+<
+
+154
+posX 0
+posY 48
+collision true
+file interior.png
+<
+
+155
+posX 16
+posY 48
+collision true
+file interior.png
+<
+
+156
+posX 32
+posY 48
+collision true
+file interior.png
+<
+
+157
+posX 48
+posY 48
+collision true
+file interior.png
+<
+
+158
+posX 64
+posY 48
+collision true
+file interior.png
+<
+
+159
+posX 80
+posY 48
+collision true
+file interior.png
+<
+
+160
+posX 96
+posY 48
+collision true
+file interior.png
+<
+
+161
+posX 112
+posY 48
+collision true
+file interior.png
+<
+
+162
+posX 128
+posY 48
+collision true
+file interior.png
+<
+
+163
+posX 144
+posY 48
+collision true
+file interior.png
+<
+
+164
+posX 160
+posY 48
+collision true
+file interior.png
+<
+
+165
+posX 176
+posY 48
+collision true
+file interior.png
+<
+
+166
+posX 192
+posY 48
+collision true
+file interior.png
+<
+
+167
+posX 208
+posY 48
+collision true
+file interior.png
+<
+
+168
+posX 0
+posY 64
+collision true
+file interior.png
+<
+
+169
+posX 16
+posY 64
+collision true
+file interior.png
+<
+
+170
+posX 32
+posY 64
+collision true
+file interior.png
+<
+
+171
+posX 48
+posY 64
+collision true
+file interior.png
+<
+
+172
+posX 64
+posY 64
+collision true
+file interior.png
+<
+
+173
+posX 80
+posY 64
+collision true
+file interior.png
+<
+
+174
+posX 96
+posY 64
+collision true
+file interior.png
+<
+
+175
+posX 112
+posY 64
+collision true
+file interior.png
+<
+
+176
+posX 128
+posY 64
+collision true
+file interior.png
+<
+
+177
+posX 144
+posY 64
+collision true
+file interior.png
+<
+
+178
+posX 160
+posY 64
+collision true
+file interior.png
+<
+
+179
+posX 176
+posY 64
+collision true
+file interior.png
+<
+
+180
+posX 192
+posY 64
+collision true
+file interior.png
+<
+
+181
+posX 208
+posY 64
+collision true
+file interior.png
+<
+
+182
+posX 0
+posY 80
+collision true
+file interior.png
+<
+
+183
+posX 16
+posY 80
+collision true
+file interior.png
+<
+
+184
+posX 32
+posY 80
+collision true
+file interior.png
+<
+
+185
+posX 48
+posY 80
+collision true
+file interior.png
+<
+
+186
+posX 64
+posY 80
+collision true
+file interior.png
+<
+
+187
+posX 80
+posY 80
+collision true
+file interior.png
+<
+
+188
+posX 96
+posY 80
+collision true
+file interior.png
+<
+
+189
+posX 112
+posY 80
+collision true
+file interior.png
+<
+
+190
+posX 128
+posY 80
+collision true
+file interior.png
+<
+
+191
+posX 144
+posY 80
+collision true
+file interior.png
+<
+
+192
+posX 160
+posY 80
+collision true
+file interior.png
+<
+
+193
+posX 176
+posY 80
+collision true
+file interior.png
+<
+
+194
+posX 192
+posY 80
+collision true
+file interior.png
+<
+
+195
+posX 208
+posY 80
+collision true
+file interior.png
+<
+
+196
+posX 0
+posY 96
+collision true
+file interior.png
+<
+
+197
+posX 16
+posY 96
+collision true
+file interior.png
+<
+
+198
+posX 32
+posY 96
+collision true
+file interior.png
+<
+
+199
+posX 48
+posY 96
+collision true
+file interior.png
+<
+
+200
+posX 64
+posY 96
+collision true
+file interior.png
+<
+
+201
+posX 80
+posY 96
+collision true
+file interior.png
+<
+
+202
+posX 96
+posY 96
+collision true
+file interior.png
+<
+
+203
+posX 112
+posY 96
+collision true
+file interior.png
+<
+
+204
+posX 128
+posY 96
+collision true
+file interior.png
+<
+
+205
+posX 144
+posY 96
+collision true
+file interior.png
+<
+
+206
+posX 160
+posY 96
+collision true
+file interior.png
+<
+
+207
+posX 176
+posY 96
+collision true
+file interior.png
+<
+
+208
+posX 192
+posY 96
+collision true
+file interior.png
+<
+
+209
+posX 208
+posY 96
+collision true
+file interior.png
+<
+
+210
+posX 0
+posY 112
+collision true
+file interior.png
+<
+
+211
+posX 16
+posY 112
+collision true
+file interior.png
+<
+
+212
+posX 32
+posY 112
+collision true
+file interior.png
+<
+
+213
+posX 48
+posY 112
+collision true
+file interior.png
+<
+
+214
+posX 64
+posY 112
+collision true
+file interior.png
+<
+
+215
+posX 80
+posY 112
+collision true
+file interior.png
+<
+
+216
+posX 96
+posY 112
+collision true
+file interior.png
+<
+
+217
+posX 112
+posY 112
+collision true
+file interior.png
+<
+
+218
+posX 128
+posY 112
+collision true
+file interior.png
+<
+
+219
+posX 144
+posY 112
+collision true
+file interior.png
+<
+
+220
+posX 160
+posY 112
+collision true
+file interior.png
+<
+
+221
+posX 176
+posY 112
+collision true
+file interior.png
+<
+
+222
+posX 192
+posY 112
+collision true
+file interior.png
+<
+
+223
+posX 208
+posY 112
+collision true
+file interior.png
+<
+
+224
+posX 0
+posY 128
+collision true
+file interior.png
+<
+
+225
+posX 16
+posY 128
+collision true
+file interior.png
+<
+
+226
+posX 32
+posY 128
+collision true
+file interior.png
+<
+
+227
+posX 48
+posY 128
+collision true
+file interior.png
+<
+
+228
+posX 64
+posY 128
+collision true
+file interior.png
+<
+
+229
+posX 80
+posY 128
+collision true
+file interior.png
+<
+
+230
+posX 96
+posY 128
+collision true
+file interior.png
+<
+
+231
+posX 112
+posY 128
+collision true
+file interior.png
+<
+
+232
+posX 128
+posY 128
+collision true
+file interior.png
+<
+
+233
+posX 144
+posY 128
+collision true
+file interior.png
+<
+
+234
+posX 160
+posY 128
+collision true
+file interior.png
+<
+
+235
+posX 176
+posY 128
+collision true
+file interior.png
+<
+
+236
+posX 192
+posY 128
+collision true
+file interior.png
+<
+
+237
+posX 208
+posY 128
+collision true
+file interior.png
+<

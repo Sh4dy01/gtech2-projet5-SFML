@@ -10,7 +10,7 @@ Game* Game::instance = 0;
 
 
 Game::Game()
-	: stateMainMenu(0), stateLevel(0), stateCombat(0), test(*Game::getInstance().getResourceManager().MapLoader("forest")), test2(*Game::getInstance().getResourceManager().MapLoader("test2")), currentMap(&test)
+	: stateMainMenu(0), stateLevel(0), stateCombat(0), test(*Game::getInstance().getResourceManager().MapLoader("livingRoom")), test2(*Game::getInstance().getResourceManager().MapLoader("test2")), currentMap(&test)
 {
 	if (!instance) {
 		instance = this;
