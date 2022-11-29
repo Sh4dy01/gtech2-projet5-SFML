@@ -3,12 +3,13 @@
 #include "PlayerController.h"
 #include <cmath>
 
-#define FOLLOWING_OFFSET  1.2
+#define FOLLOWING_OFFSET  (1.5*SPRITE_SIZE)
 
-Follower::Follower(Player* player) : PokemonWorld(MIAOUSS_ANIMATION, "miaouss")
+Follower::Follower(Player* player) : PokemonWorld(MIAOUSS_ANIMATION, "miaouss"), player(player)
 {
-	following = player;
-	speed = player->GetSpeed();
+	speed = player->GetSpeed()*0.95;
+	currentDirection = STILL;
+	this->setScale(sf::Vector2f(-1.0f, 1.0f));
 }
 
 void Follower::ChangeFollower()
@@ -19,35 +20,40 @@ void Follower::ChangeFollower()
 void Follower::Move(double d)
 {
 	sf::Vector2i offset;
+	float pathX = player->getPosition().x - this->getPosition().x;
+	float pathY = player->getPosition().y - this->getPosition().y;
 
-	switch (currentDirection)
+	if (pathX > FOLLOWING_OFFSET)
 	{
-	case STILL:
-		StopCurrentAnimation();
-		isMoving = false;
-		break;
-	case LEFT:
-		offset.x = FOLLOWING_OFFSET * SPRITE_SIZE;
+		offset.x = -FOLLOWING_OFFSET;
+		isMoving = true;
+		currentDirection = RIGHT;
+		nextAnimation = WALK_LEFT;
+		this->setScale(sf::Vector2f(-1.0f, 1.0f));
+	}
+	else if (pathX < -FOLLOWING_OFFSET) {
+		offset.x = FOLLOWING_OFFSET;
+		isMoving = true;
+		currentDirection = LEFT;
 		nextAnimation = WALK_LEFT;
 		this->setScale(sf::Vector2f(1.0f, 1.0f));
+	}
+	else if (pathY > FOLLOWING_OFFSET) {
 		isMoving = true;
-		break;
-	case UP:
-		offset.y = FOLLOWING_OFFSET * SPRITE_SIZE;
-		nextAnimation = WALK_UP;
-		isMoving = true;
-		break;
-	case RIGHT:
-		offset.x = -FOLLOWING_OFFSET * SPRITE_SIZE;
-		nextAnimation = WALK_LEFT;
-		isMoving = true;
-		this->setScale(sf::Vector2f(-1.0f, 1.0f));
-		break;
-	case DOWN:
-		offset.y = -FOLLOWING_OFFSET * SPRITE_SIZE;
+		currentDirection = DOWN;
+		offset.y = -FOLLOWING_OFFSET;
 		nextAnimation = WALK_DOWN;
+	}
+	else if (pathY < -FOLLOWING_OFFSET) {
 		isMoving = true;
-		break;
+		currentDirection = UP;
+		offset.y = FOLLOWING_OFFSET;
+		nextAnimation = WALK_UP;
+	}
+	else {
+		isMoving = false;
+		currentDirection = STILL;
+		StopCurrentAnimation();
 	}
 
 	if (currentDirection != nextDirection)
@@ -68,8 +74,8 @@ void Follower::Move(double d)
 
 	if (isMoving)
 	{
-		const float dir = atan((following->getPosition().x + offset.x - this->getPosition().x) / (following->getPosition().y + offset.y - this->getPosition().y));
-		this->move(speed*d * sin(dir), speed*d * cos(dir));
+		const float dir = atan((player->getPosition().x + offset.x - this->getPosition().x) / (player->getPosition().y + offset.y - this->getPosition().y));
+		this->move(speed * d * sin(dir), speed * d * cos(dir));
 	}
 
 	count += d;

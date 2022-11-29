@@ -15,5 +15,5 @@ public:
 
 private:
 
-	Player* following;
+	Player* player;
 };
