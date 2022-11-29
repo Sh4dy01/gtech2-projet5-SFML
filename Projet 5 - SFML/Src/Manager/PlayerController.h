@@ -15,6 +15,7 @@ public:
 	void SpawnFollower();
 
 	Follower* GetFollower() { return follower; };
+	int GetSpeed() { return this->speed; };
 
 private:
 

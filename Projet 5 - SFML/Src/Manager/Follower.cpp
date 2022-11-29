@@ -8,6 +8,7 @@
 Follower::Follower(Player* player) : PokemonWorld(MIAOUSS_ANIMATION, "miaouss")
 {
 	following = player;
+	speed = player->GetSpeed();
 }
 
 void Follower::ChangeFollower()
@@ -68,7 +69,7 @@ void Follower::Move(double d)
 	if (isMoving)
 	{
 		const float dir = atan((following->getPosition().x + offset.x - this->getPosition().x) / (following->getPosition().y + offset.y - this->getPosition().y));
-		this->move(speed * sin(dir), speed * cos(dir));
+		this->move(speed*d * sin(dir), speed*d * cos(dir));
 	}
 
 	count += d;
