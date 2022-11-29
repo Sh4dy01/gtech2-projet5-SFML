@@ -17,7 +17,7 @@ void Follower::ChangeFollower()
 
 void Follower::Move(double d)
 {
-	const float dir = atan((following->getPosition().x - this->getPosition().x) / (following->getPosition().y - this->getPosition().y));
+	sf::Vector2i offset;
 
 	switch (currentDirection)
 	{
@@ -26,20 +26,24 @@ void Follower::Move(double d)
 		isMoving = false;
 		break;
 	case LEFT:
+		offset.x = FOLLOWING_OFFSET * SPRITE_SIZE;
 		nextAnimation = WALK_LEFT;
 		this->setScale(sf::Vector2f(1.0f, 1.0f));
 		isMoving = true;
 		break;
 	case UP:
+		offset.y = FOLLOWING_OFFSET * SPRITE_SIZE;
 		nextAnimation = WALK_UP;
 		isMoving = true;
 		break;
 	case RIGHT:
+		offset.x = -FOLLOWING_OFFSET * SPRITE_SIZE;
 		nextAnimation = WALK_LEFT;
 		isMoving = true;
 		this->setScale(sf::Vector2f(-1.0f, 1.0f));
 		break;
 	case DOWN:
+		offset.y = -FOLLOWING_OFFSET * SPRITE_SIZE;
 		nextAnimation = WALK_DOWN;
 		isMoving = true;
 		break;
@@ -63,6 +67,7 @@ void Follower::Move(double d)
 
 	if (isMoving)
 	{
+		const float dir = atan((following->getPosition().x + offset.x - this->getPosition().x) / (following->getPosition().y + offset.y - this->getPosition().y));
 		this->move(speed * sin(dir), speed * cos(dir));
 	}
 
