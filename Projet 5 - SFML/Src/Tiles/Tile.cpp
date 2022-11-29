@@ -2,7 +2,7 @@
 
 Tile::Tile()
 {
-	this->f = "";
+	this->file = "";
 	this->posX = 0;
 	this->posY = 0;
 	this->index = 0;
@@ -27,9 +27,9 @@ void Tile::setIndex(int index)
 	this->index = index;
 }
 
-void Tile::setFile(const string f)
+void Tile::setFile(const string file)
 {
-	this->f = f;
+	this->file = file;
 }
 
 
@@ -51,5 +51,5 @@ int Tile::getIndex()
 
 const string Tile::getFile()
 {
-	return this->f;
+	return this->file;
 }

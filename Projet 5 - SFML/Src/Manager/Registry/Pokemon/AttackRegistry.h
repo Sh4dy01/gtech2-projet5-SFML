@@ -12,7 +12,6 @@ public:
 
 	static const Attack& TACKLE;
 	static const Attack& SCRATCH;
-	static const Attack& GROWL;
 	static const Attack& QUICK_ATTACK;
 	static const Attack& SPLASH;
 	static const Attack& VINE_WHIP;

@@ -1,6 +1,4 @@
 #pragma once
-#include <vector>
-#include "SFML/Graphics/Rect.hpp"
 
 class Attack;
 
@@ -35,7 +33,7 @@ class PokedexEntry
 {
 public:
 
-	PokedexEntry(int pokedexID, const char* name, Element e, int numAttacks, const Attack** attacks, std::vector<std::vector<sf::IntRect>> animations);
+	PokedexEntry(int pokedexID, const char* name, Element e, int numAttacks, const Attack** attacks);
 
 	int getPokedexID() const { return pokedexID; }
 
@@ -50,7 +48,6 @@ private:
 
 	const char* name;
 	Element element;
-	std::vector<std::vector<sf::IntRect>> animations;
 
 	int numAttacks;
 	const Attack** attacks;

@@ -1,10 +1,11 @@
 #include "Follower.h"
+#include "Configs/Pokemon/Miaouss.h"
 #include "PlayerController.h"
 #include <cmath>
 
 #define FOLLOWING_OFFSET  (1.5*SPRITE_SIZE)
 
-Follower::Follower(Player* player) : PokemonWorld(), player(player)
+Follower::Follower(Player* player) : PokemonWorld(MIAOUSS_ANIMATION, "miaouss"), player(player)
 {
 	speed = player->GetSpeed()*0.95;
 	currentDirection = STILL;
