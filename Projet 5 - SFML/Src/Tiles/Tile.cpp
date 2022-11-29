@@ -6,6 +6,7 @@ Tile::Tile()
 	this->posX = 0;
 	this->posY = 0;
 	this->index = 0;
+	this->collision = false;
 
 }
 

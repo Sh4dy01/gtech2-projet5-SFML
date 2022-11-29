@@ -27,6 +27,9 @@ private:
 	// name of the file where is the texture
 	string file;
 
+	// collision
+	bool collision;
+
 	// position in the file
 	int posX;
 	int posY;
