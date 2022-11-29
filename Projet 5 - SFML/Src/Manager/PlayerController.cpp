@@ -46,6 +46,8 @@ void Player::CheckAllDirections(double d) {
 			SetDirection(STILL);
 	}
 
+	
+
 	else
 		SetDirection(STILL);
 
@@ -62,7 +64,7 @@ void Player::CheckLateralDirections(double d) {
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 		this->SetDirection(LEFT);
 	} //Move Left
-		
+
 	else {
 		this->SetDirection(STILL);
 	}

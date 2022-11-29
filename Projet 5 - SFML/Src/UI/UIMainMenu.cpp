@@ -7,8 +7,6 @@
 #include "Manager/SpriteConfig.h"
 #include <iostream>
 
-#include "Configs/Pokemon/Miaouss.h"
-
 sf::Color outlineColor = sf::Color(228, 172, 34, 255);
 float outlineThickness = 1.0f;
 
