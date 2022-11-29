@@ -12,6 +12,9 @@
 #define EXTERIOR_WIDTH 16
 #define EXTERIOR_HEIGHT 7
 
+#define INTERIOR_FILE "interior.png"
+#define INTERIOR_WIDTH 13
+#define INTERIOR_HEIGHT 9
 
 
 using namespace std;
@@ -278,6 +281,14 @@ int ResourceManager::fileLoader(string fileName)
 		loadedPng.push_back(fileName);
 		return loadedPng.size() - 1;
 	}
+
+	if (fileName == INTERIOR_FILE) {
+		sf::Texture& texture = Game::getInstance().getResourceManager().loadTile(fileName.c_str());
+		loadedTextures.push_back(&texture);
+		loadedPng.push_back(fileName);
+		return loadedPng.size() - 1;
+	}
+
 }
 
 bool ResourceManager::getCollision(int index)

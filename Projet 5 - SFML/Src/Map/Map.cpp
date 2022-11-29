@@ -37,8 +37,8 @@ void Map::render()
 	Tile temptile;
 	for (int i = 0; i < this->width; i++) {
 		for (int y = 0; y < this->length; y++) {
-			temptile = *Game::getInstance().getResourceManager().TileLoader( this->tab[i][y] );
-			temptile.setPosition( y * SPRITE_SIZE, i * SPRITE_SIZE);
+			temptile = *Game::getInstance().getResourceManager().TileLoader( this->tab[y][i] );
+			temptile.setPosition( i * SPRITE_SIZE, y * SPRITE_SIZE);
 			Game::getInstance().getWindow().draw(temptile);
 		}
 	}
