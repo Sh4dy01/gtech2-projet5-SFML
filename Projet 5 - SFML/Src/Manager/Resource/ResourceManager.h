@@ -18,7 +18,7 @@ public:
 	bool getCollision(int index);
 
 	sf::Texture& loadImage(const char* fileName);
-	sf::Texture& loadSprite(const char* fileName);
+	sf::Texture& loadSprite(const char* fileName, bool isPokemon);
 	sf::Texture& loadTile(const char* fileName);
 
 	sf::Font& loadFont(const char* filename);

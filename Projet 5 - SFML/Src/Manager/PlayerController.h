@@ -2,31 +2,21 @@
 
 #include "Manager/SpriteConfig.h"
 #include "AnimatedEntity.h"
-#include "Common/Point2.h"
-
-enum direction
-{
-	STILL = 0,
-	LEFT = 1,
-	UP = 2,
-	RIGHT = 3,
-	DOWN = 4
-};
+#include "Follower.h"
 
 class Player : public AnimatedEntity {
 
 public:
+
 	Player();
 	void CheckAllDirections(double deltaTime);
 	void CheckLateralDirections(double deltaTime);
-	void Move(double deltaTime);
 
-	void SetDirection(direction dir) { nextDirection = dir; };
+	void SpawnFollower();
 
-	bool IsSnappedToGrid();
+	Follower* GetFollower() { return follower; };
 
 private:
 
-	direction nextDirection;
-	direction currentDirection;
+	Follower* follower;
 };

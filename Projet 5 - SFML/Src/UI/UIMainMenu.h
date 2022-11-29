@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Manager/UI/UI.h"
+#include "Manager/AnimatedEntity.h"
 #include "Manager/PlayerController.h"
 
 #include <SFML/Graphics/Sprite.hpp>
