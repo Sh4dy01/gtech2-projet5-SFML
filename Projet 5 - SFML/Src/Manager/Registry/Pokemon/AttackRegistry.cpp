@@ -17,6 +17,7 @@ const Attack& AttackRegistry::ROLLOUT       = attacks[8];
 const Attack& AttackRegistry::CONFUSION     = attacks[9];
 const Attack& AttackRegistry::JUDGMENT      = attacks[10];
 const Attack& AttackRegistry::HYPER_BEAM    = attacks[11];
+const Attack& AttackRegistry::GROWL			= attacks[12];
 
 
 
@@ -36,4 +37,5 @@ const Attack AttackRegistry::attacks[] =
 	
 	Attack("Judgment",     100, Element::NORMAL),
 	Attack("Hyper beam",   120, Element::NORMAL),
+	Attack("Growl",			 0, Element::NORMAL),
 };
