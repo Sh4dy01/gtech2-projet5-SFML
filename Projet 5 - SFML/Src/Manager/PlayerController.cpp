@@ -2,106 +2,103 @@
 #include "PlayerController.h"
 #include "Manager/SpriteConfig.h"
 #include <iostream>
+#include "Game.h"
 
-Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave")
+Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave", false)
 {
-	this->currentDirection = STILL;
-	this->nextDirection = STILL;
-	this->isMoving = false;
-
-	speed = 0.5f;
+	speed = 50.0f;
+	follower = new Follower(this);
 }
 
 void Player::CheckAllDirections(double d) {
 
+	sf::Vector2f position= this->getPosition();
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) //Move Up
-		SetDirection(UP);
+	{
+		if (Game::getInstance().currentMap->thereIsCollision( position.x, position.y - 1 ))
+			SetDirection(UP);
+		else
+			SetDirection(STILL);
+	}
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) //Move Down
-		SetDirection(DOWN);
+	{
+		if (Game::getInstance().currentMap->thereIsCollision(position.x, position.y + 1))
+			SetDirection(DOWN);
+		else
+			SetDirection(STILL);
+	}
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) //Move Right
-		SetDirection(RIGHT);
+	{
+		if (Game::getInstance().currentMap->thereIsCollision(position.x + 1, position.y))
+			SetDirection(RIGHT);
+		else
+			SetDirection(STILL);
+	}
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) //Move Left
-		SetDirection(LEFT);
+	{
+		if (Game::getInstance().currentMap->thereIsCollision(position.x - 1, position.y))
+			SetDirection(LEFT);
+		else
+			SetDirection(STILL);
+	}
+
 	else
 		SetDirection(STILL);
 
-	Move(d);
+	this->Move(d);
 }
 
 void Player::CheckLateralDirections(double d) {
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) //Move Right
-		SetDirection(RIGHT);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		this->SetDirection(RIGHT);
+		follower->SetDirection(RIGHT);
+	} //Move Right
+		
 
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) //Move Left
-		SetDirection(LEFT);
-	else
-		SetDirection(STILL);
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+		this->SetDirection(LEFT);
+		follower->SetDirection(LEFT);
+	} //Move Left
+		
+	else {
+		this->SetDirection(STILL);
+		follower->SetDirection(STILL);
+	}
 
-	Move(d);
+	this->Move(d);
+
+	if (follower)
+	{
+		follower->Move(d);
+	}
 }
 
-void Player::Move(double d) {
-	switch (currentDirection)
+void Player::SpawnFollower()
+{
+	sf::Vector2i playerPos = sf::Vector2i(this->getPosition().x/SPRITE_SIZE, this->getPosition().y / SPRITE_SIZE);
+
+	switch (this->GetCurrentDirection())
 	{
-	case STILL:
-		this->move(0.0f, 0.0f);
-		StopCurrentAnimation();
-		isMoving = false;
-		break;
 	case LEFT:
-		this->move(-speed, 0.0f);
-		nextAnimation = WALK_LEFT;
-		isMoving = true;
-		break;
-	case UP:
-		this->move(0.0f, -speed);
-		nextAnimation = WALK_UP;
-		isMoving = true;
+		playerPos.x++;
 		break;
 	case RIGHT:
-		this->move(speed, 0.0f);
-		nextAnimation = WALK_RIGHT;
-		isMoving = true;
-
+		playerPos.x--;
+		break;
+	case UP:
+		playerPos.y++;
 		break;
 	case DOWN:
-		this->move(0.0f, speed);
-		nextAnimation = WALK_DOWN;
-		isMoving = true;
+		playerPos.y--;
+	default:
+		playerPos.x--;
 		break;
 	}
 
-	if (this->IsSnappedToGrid() && currentDirection != nextDirection)
-	{
-		currentDirection = nextDirection;
-	}
-
-	if (currentAnimation != nextAnimation)
-	{
-		currentAnimation = nextAnimation;
-	}
-
-	if (count >= 0.2)
-	{
-		NextAnimationFrame();
-		count = 0;
-	}
-
-	count += d;
-}
-
-bool Player::IsSnappedToGrid()
-{
-	if (int(this->getPosition().x) % (SPRITE_SIZE) == 0 &&
-		int(this->getPosition().y) % (SPRITE_SIZE) == 0)
-	{
-		return true;
-	}
-	else {
-		return false;
-	}
+	follower->Initialize(1, playerPos);
 }

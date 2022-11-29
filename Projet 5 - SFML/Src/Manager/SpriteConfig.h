@@ -4,8 +4,11 @@
 #define BASE_SCALE_FACTOR 4
 #define BASE_TEXTURE_PATH "Assets/Sprites/" // TODO : compatibility, remove when no longer needed
 #define BASE_SPRITE_PATH "Assets/Sprites/"
+#define BASE_TILES_PATH "Assets/Tiles/"
 #define BASE_IMAGE_PATH "Assets/Images/"
 #define BASE_FONT_PATH "Assets/Fonts/"
+
+#define BASE_SPRITE_EXTENSION ".png"
 
 #define PLAYER_NAME "Dave"
 #define PLAYER_ANIMATION \

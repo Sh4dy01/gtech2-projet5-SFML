@@ -1,12 +1,784 @@
-
-2
-posX 1
-posY 1
-file Dave.png
+0
+posX 0
+posY 0
+collision false
+file exterior.png
 <
 
 1
-posX 17
-posY 1
-file Dave.png
+posX 16
+posY 0
+collision true
+file exterior.png
 <
+
+2
+posX 32
+posY 0
+collision true
+file exterior.png
+<
+
+3
+posX 48
+posY 0
+collision false
+file exterior.png
+<
+
+4
+posX 64
+posY 0
+collision true
+file exterior.png
+<
+
+5
+posX 80
+posY 0
+collision false
+file exterior.png
+<
+
+6
+posX 96
+posY 0
+collision true
+file exterior.png
+<
+
+7
+posX 112
+posY 0
+collision true
+file exterior.png
+<
+
+8
+posX 128
+posY 0
+collision true
+file exterior.png
+<
+
+9
+posX 144
+posY 0
+collision true
+file exterior.png
+<
+
+10
+posX 160
+posY 0
+collision true
+file exterior.png
+<
+
+11
+posX 176
+posY 0
+collision true
+file exterior.png
+<
+
+12
+posX 192
+posY 0
+collision true
+file exterior.png
+<
+
+13
+posX 208
+posY 0
+collision true
+file exterior.png
+<
+
+14
+posX 224
+posY 0
+collision true
+file exterior.png
+<
+
+15
+posX 240
+posY 0
+collision true
+file exterior.png
+<
+
+16
+posX 0
+posY 16
+collision true
+file exterior.png
+<
+
+17
+posX 16
+posY 16
+collision true
+file exterior.png
+<
+
+18
+posX 32
+posY 16
+collision true
+file exterior.png
+<
+
+19
+posX 48
+posY 16
+collision true
+file exterior.png
+<
+
+20
+posX 64
+posY 16
+collision true
+file exterior.png
+<
+
+21
+posX 80
+posY 16
+collision true
+file exterior.png
+<
+
+22
+posX 96
+posY 16
+collision true
+file exterior.png
+<
+
+23
+posX 112
+posY 16
+collision true
+file exterior.png
+<
+
+24
+posX 128
+posY 16
+collision true
+file exterior.png
+<
+
+25
+posX 144
+posY 16
+collision true
+file exterior.png
+<
+
+26
+posX 160
+posY 16
+collision true
+file exterior.png
+<
+
+27
+posX 176
+posY 16
+collision true
+file exterior.png
+<
+
+28
+posX 192
+posY 16
+collision true
+file exterior.png
+<
+
+29
+posX 208
+posY 16
+collision true
+file exterior.png
+<
+
+30
+posX 224
+posY 16
+collision true
+file exterior.png
+<
+
+31
+posX 240
+posY 16
+collision true
+file exterior.png
+<
+
+32
+posX 0
+posY 32
+collision true
+file exterior.png
+<
+
+33
+posX 16
+posY 32
+collision true
+file exterior.png
+<
+
+34
+posX 32
+posY 32
+collision true
+file exterior.png
+<
+
+35
+posX 48
+posY 32
+collision true
+file exterior.png
+<
+
+36
+posX 64
+posY 32
+collision true
+file exterior.png
+<
+
+37
+posX 80
+posY 32
+collision true
+file exterior.png
+<
+
+38
+posX 96
+posY 32
+collision true
+file exterior.png
+<
+
+39
+posX 112
+posY 32
+collision true
+file exterior.png
+<
+
+40
+posX 128
+posY 32
+collision true
+file exterior.png
+<
+
+41
+posX 144
+posY 32
+collision true
+file exterior.png
+<
+
+42
+posX 160
+posY 32
+collision true
+file exterior.png
+<
+
+43
+posX 176
+posY 32
+collision true
+file exterior.png
+<
+
+44
+posX 192
+posY 32
+collision true
+file exterior.png
+<
+
+45
+posX 208
+posY 32
+collision true
+file exterior.png
+<
+
+46
+posX 224
+posY 32
+collision true
+file exterior.png
+<
+
+47
+posX 240
+posY 32
+collision true
+file exterior.png
+<
+
+48
+posX 0
+posY 48
+collision false
+file exterior.png
+<
+
+49
+posX 16
+posY 48
+collision false
+file exterior.png
+<
+
+50
+posX 32
+posY 48
+collision true
+file exterior.png
+<
+
+51
+posX 48
+posY 48
+collision true
+file exterior.png
+<
+
+52
+posX 64
+posY 48
+collision true
+file exterior.png
+<
+
+53
+posX 80
+posY 48
+collision true
+file exterior.png
+<
+
+54
+posX 96
+posY 48
+collision true
+file exterior.png
+<
+
+55
+posX 112
+posY 48
+collision true
+file exterior.png
+<
+
+56
+posX 128
+posY 48
+collision true
+file exterior.png
+<
+
+57
+posX 144
+posY 48
+collision true
+file exterior.png
+<
+
+58
+posX 160
+posY 48
+collision true
+file exterior.png
+<
+
+59
+posX 176
+posY 48
+collision true
+file exterior.png
+<
+
+60
+posX 192
+posY 48
+collision true
+file exterior.png
+<
+
+61
+posX 208
+posY 48
+collision true
+file exterior.png
+<
+
+62
+posX 224
+posY 48
+collision true
+file exterior.png
+<
+
+63
+posX 240
+posY 48
+collision true
+file exterior.png
+<
+
+64
+posX 0
+posY 64
+collision false
+file exterior.png
+<
+
+65
+posX 16
+posY 64
+collision true
+file exterior.png
+<
+
+66
+posX 32
+posY 64
+collision true
+file exterior.png
+<
+
+67
+posX 48
+posY 64
+collision true
+file exterior.png
+<
+
+68
+posX 64
+posY 64
+collision true
+file exterior.png
+<
+
+69
+posX 80
+posY 64
+collision true
+file exterior.png
+<
+
+70
+posX 96
+posY 64
+collision true
+file exterior.png
+<
+
+71
+posX 112
+posY 64
+collision false
+file exterior.png
+<
+
+72
+posX 128
+posY 64
+collision true
+file exterior.png
+<
+
+73
+posX 144
+posY 64
+collision true
+file exterior.png
+<
+
+74
+posX 160
+posY 64
+collision true
+file exterior.png
+<
+
+75
+posX 176
+posY 64
+collision true
+file exterior.png
+<
+
+76
+posX 192
+posY 64
+collision true
+file exterior.png
+<
+
+77
+posX 208
+posY 64
+collision true
+file exterior.png
+<
+
+78
+posX 224
+posY 64
+collision true
+file exterior.png
+<
+
+79
+posX 240
+posY 64
+collision true
+file exterior.png
+<
+
+80
+posX 0
+posY 80
+collision true
+file exterior.png
+<
+
+81
+posX 16
+posY 80
+collision true
+file exterior.png
+<
+
+82
+posX 32
+posY 80
+collision true
+file exterior.png
+<
+
+83
+posX 48
+posY 80
+collision true
+file exterior.png
+<
+
+84
+posX 64
+posY 80
+collision true
+file exterior.png
+<
+
+85
+posX 80
+posY 80
+collision true
+file exterior.png
+<
+
+86
+posX 96
+posY 80
+collision true
+file exterior.png
+<
+
+87
+posX 112
+posY 80
+collision false
+file exterior.png
+<
+
+88
+posX 128
+posY 80
+collision true
+file exterior.png
+<
+
+89
+posX 144
+posY 80
+collision true
+file exterior.png
+<
+
+90
+posX 160
+posY 80
+collision true
+file exterior.png
+<
+
+91
+posX 176
+posY 80
+collision true
+file exterior.png
+<
+
+92
+posX 192
+posY 80
+collision true
+file exterior.png
+<
+
+93
+posX 208
+posY 80
+collision true
+file exterior.png
+<
+
+94
+posX 224
+posY 80
+collision true
+file exterior.png
+<
+
+95
+posX 240
+posY 80
+collision true
+file exterior.png
+<
+
+96
+posX 0
+posY 96
+collision true
+file exterior.png
+<
+
+97
+posX 16
+posY 96
+collision true
+file exterior.png
+<
+
+98
+posX 32
+posY 96
+collision true
+file exterior.png
+<
+
+99
+posX 48
+posY 96
+collision true
+file exterior.png
+<
+
+100
+posX 64
+posY 96
+collision true
+file exterior.png
+<
+
+101
+posX 80
+posY 96
+collision true
+file exterior.png
+<
+
+102
+posX 96
+posY 96
+collision true
+file exterior.png
+<
+
+103
+posX 112
+posY 96
+collision true
+file exterior.png
+<
+
+104
+posX 128
+posY 96
+collision true
+file exterior.png
+<
+
+105
+posX 144
+posY 96
+collision true
+file exterior.png
+<
+
+106
+posX 160
+posY 96
+collision true
+file exterior.png
+<
+
+107
+posX 176
+posY 96
+collision true
+file exterior.png
+<
+
+108
+posX 192
+posY 96
+collision true
+file exterior.png
+<
+
+109
+posX 208
+posY 96
+collision true
+file exterior.png
+<
+
+110
+posX 224
+posY 96
+collision true
+file exterior.png
+<
+
+111
+posX 240
+posY 96
+collision true
+file exterior.png
+<
+

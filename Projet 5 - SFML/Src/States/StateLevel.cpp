@@ -20,5 +20,5 @@ void StateLevel::update(double deltaTime)
 
 void StateLevel::render()
 {
-
+	Game::getInstance().getCurrentMap().render();
 }

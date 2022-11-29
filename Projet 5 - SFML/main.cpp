@@ -26,6 +26,8 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				game.getWindow().close();
+			else if (event.type == sf::Event::KeyPressed)
+				State::getCurrentState()->keypress(event.key.code);
 		}
 
 		// TODO : implement delta time.
