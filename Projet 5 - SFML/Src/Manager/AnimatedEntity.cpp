@@ -4,15 +4,8 @@
 
 AnimatedEntity::AnimatedEntity(std::vector<std::vector<sf::IntRect>> animations, sf::String name, bool isPokemon) : Entity(name, isPokemon)
 {
-	if (isPokemon)
-	{
-		this->currentAnimation = WALK_UP;
-		this->nextAnimation = WALK_UP;
-	}
-	else {
-		this->currentAnimation = WALK_DOWN;
-		this->nextAnimation = WALK_DOWN;
-	}
+	this->currentAnimation = WALK_DOWN;
+	this->nextAnimation = WALK_DOWN;
 
 	this->currentDirection = STILL;
 	this->nextDirection = STILL;
@@ -21,19 +14,16 @@ AnimatedEntity::AnimatedEntity(std::vector<std::vector<sf::IntRect>> animations,
     this->count = 0;
     this->pos = 0;
     this->animations = animations;
-
-    if (animations.size() <= 0)
-        throw;
-
-    this->setTextureRect(this->animations[currentAnimation][this->pos]);
 }
 
 void AnimatedEntity::Initialize(int scale, sf::Vector2i spawn)
 {
-	this->setOrigin(this->getLocalBounds().width/2, this->getLocalBounds().height / 2);
     this->setScale(sf::Vector2f(scale, scale));
     this->SetSpawn(sf::Vector2f(spawn));
     this->SetSprite();
+
+	this->setTextureRect(this->animations[currentAnimation][this->pos]);
+	this->setOrigin(this->getLocalBounds().width / 2, this->getLocalBounds().height / 2);
 }
 
 void AnimatedEntity::Move(double d) {

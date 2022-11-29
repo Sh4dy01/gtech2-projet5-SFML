@@ -1,6 +1,6 @@
 #include "PokemonRegistry.h"
-
 #include "AttackRegistry.h"
+#include "PokemonAnimationsRegistry.h"
 
 
 
@@ -40,6 +40,12 @@ static const Attack* Sandshrew_Attacks[] =
 	&AttackRegistry::SCRATCH
 };
 
+static const Attack* Miaouss_Attacks[] =
+{
+	&AttackRegistry::SCRATCH,
+	&AttackRegistry::GROWL
+};
+
 static const Attack* Abra_Attacks[] =
 {
 	&AttackRegistry::CONFUSION
@@ -61,16 +67,17 @@ static const Attack* Arceus_Attacks[] =
 
 const PokedexEntry PokemonRegistry::pokemons[] =
 {
-	PokedexEntry(0,   "YOU",        Element::NORMAL,   0, 0),
-	PokedexEntry(1,   "BULBASAUR",  Element::GRASS,    2, Bulbasaur_Attacks),
-	PokedexEntry(4,   "CHARMANDER", Element::FIRE,     2, Charmander_Attacks),
-	PokedexEntry(7,   "SQUIRTLE",   Element::WATER,    2, Squirtle_Attacks),
-	PokedexEntry(19,  "RATTATA",    Element::NATURE,   2, Rattata_Attacks),
-	PokedexEntry(25,  "PIKACHU",    Element::ELECTRIC, 2, Pikachu_Attacks),
-	PokedexEntry(27,  "SANDSHREW",  Element::GROUND,   2, Sandshrew_Attacks),
-	PokedexEntry(63,  "ABRA",       Element::PSYCHIC,  1, Abra_Attacks),
-	PokedexEntry(129, "MAGIKARP",   Element::WATER,    2, Magikarp_Attacks),
-	PokedexEntry(493, "ARCEUS",     Element::NORMAL,   2, Arceus_Attacks),
+	//PokedexEntry(0,   "YOU",        Element::NORMAL,   0, 0, NULL),
+	PokedexEntry(1,   "BULBASAUR",  Element::GRASS,    2, Bulbasaur_Attacks, BULBASAUR_ANIMATIONS ),
+	PokedexEntry(4,   "CHARMANDER", Element::FIRE,     2, Charmander_Attacks, CHARMANDER_ANIMATIONS),
+	PokedexEntry(7,   "SQUIRTLE",   Element::WATER,    2, Squirtle_Attacks, SQUIRTLE_ANIMATIONS),
+	PokedexEntry(19,  "RATTATA",    Element::NATURE,   2, Rattata_Attacks, RATTATA_ANIMATIONS),
+	PokedexEntry(25,  "PIKACHU",    Element::ELECTRIC, 2, Pikachu_Attacks, PIKACHU_ANIMATIONS),
+	PokedexEntry(27,  "SANDSHREW",  Element::GROUND,   2, Sandshrew_Attacks, SANDSHREW_ANIMATIONS),
+	PokedexEntry(52,  "MIAOUSS",	Element::NATURE,   2, Miaouss_Attacks, MIAOUSS_ANIMATIONS),
+	PokedexEntry(63,  "ABRA",       Element::PSYCHIC,  1, Abra_Attacks, ABRA_ANIMATIONS),
+	PokedexEntry(129, "MAGIKARP",   Element::WATER,    2, Magikarp_Attacks, MAGIKARP_ANIMATIONS),
+	PokedexEntry(493, "ARCEUS",     Element::NORMAL,   2, Arceus_Attacks, ARCEUS_ANIMATIONS),
 };
 
 
