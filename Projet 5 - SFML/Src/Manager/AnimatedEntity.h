@@ -31,6 +31,7 @@ public:
 
     virtual void Move(double d);
     bool IsSnappedToGrid();
+    bool IsThereACollision(void);
 
     void NextAnimationFrame(void);
     virtual void StopCurrentAnimation(void);
