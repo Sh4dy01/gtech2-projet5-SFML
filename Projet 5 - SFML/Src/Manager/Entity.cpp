@@ -31,3 +31,7 @@ void Entity::SetSpawn(sf::Vector2f spawn)
 	this->setPosition(spawn);
 	std::cout << "Spawned " << this->name.toAnsiString() << " at " << this->getPosition().x/SPRITE_SIZE << ":" << this->getPosition().y/ SPRITE_SIZE << std::endl;
 }
+
+void Entity::PrintCoords() {
+	std::cout << name.toAnsiString() << " : " << this->getPosition().x << ", " << this->getPosition().y << std::endl;
+}

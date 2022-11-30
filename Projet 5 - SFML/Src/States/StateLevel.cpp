@@ -19,6 +19,7 @@ void StateLevel::enter()
 	{
 		if (map.getType()[i] == "pokemon")
 		{
+			std::cout << "creating " << map.getEntityName()[i] << " pokemon" << std::endl;
 			PokemonWorld* pokemon = new PokemonWorld(std::stoi(map.getEntityName()[i].c_str()));
 			pokemon->SetCurrentDirection(map.getDir()[i]);
 			pokemon->Initialize(1, sf::Vector2i(map.getPosX()[i], map.getPosY()[i]));
@@ -41,6 +42,7 @@ void StateLevel::update(double deltaTime)
 	for (PokemonWorld* p : pokemons) {
 		if (p->IsPlayerDetected(&player))
 		{
+			//State::getCurrentState()->switchState(Game::getInstance().stateCombat);
 			std::cout << "COMBAT STATE" << std::endl;
 		}
 	}
