@@ -13,7 +13,7 @@ public:
 
 	ResourceManager();
 
-	Map* MapLoader(const std::string& name);
+	void MapLoader(Map& outMap, const std::string& name);
 	Tile* TileLoader(int index);
 	int fileLoader(string fileName);
 	bool getCollision(int index);
