@@ -2,6 +2,7 @@
 
 #include "Manager/State/State.h"
 #include "Manager/PlayerController.h"
+#include "Map/Map.h"
 
 class PokemonWorld;
 
@@ -18,8 +19,11 @@ public:
 
 private:
 
-	sf::View camera;
+	std::vector<Tile> levelTiles;
 	std::vector<PokemonWorld*> pokemons;
+
+	sf::View camera;
+	Map currentMap;
 	Player player;
 
 };
