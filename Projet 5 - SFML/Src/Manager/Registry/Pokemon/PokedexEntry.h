@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 class Attack;
 
 
@@ -39,6 +41,12 @@ public:
 
 	const char* getName() const { return name; }
 	Element getElement() const { return element; }
+
+	int getNumAttacks() const { return numAttacks; }
+	const Attack** getAttacks() const { return attacks; }
+
+	std::string getSpriteFightFilename() const;
+	std::string getSpriteOpponentFilename() const;
 
 
 

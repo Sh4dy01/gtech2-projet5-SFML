@@ -4,6 +4,30 @@
 
 
 
+static const char* element_strings[] =
+{
+	"NORMAL",
+	"NATURE",
+	"FIRE",
+	"WATER",
+	"GRASS",
+	"ELECTRIC",
+	"ICE",
+	"FIGHTING",
+	"POISON",
+	"GROUND",
+	"FLYING",
+	"PSYCHIC",
+	"BUG",
+	"ROCK",
+	"GHOST",
+	"DRAGON",
+	"DARK",
+	"STEEL"
+};
+
+
+
 static const Attack* Bulbasaur_Attacks[] =
 {
 	&AttackRegistry::VINE_WHIP,
@@ -61,7 +85,7 @@ static const Attack* Arceus_Attacks[] =
 
 const PokedexEntry PokemonRegistry::pokemons[] =
 {
-	PokedexEntry(0,   "YOU",        Element::NORMAL,   0, 0),
+	PokedexEntry(0,   "DAVE",       Element::NORMAL,   0, 0),
 	PokedexEntry(1,   "BULBASAUR",  Element::GRASS,    2, Bulbasaur_Attacks),
 	PokedexEntry(4,   "CHARMANDER", Element::FIRE,     2, Charmander_Attacks),
 	PokedexEntry(7,   "SQUIRTLE",   Element::WATER,    2, Squirtle_Attacks),
@@ -85,6 +109,11 @@ const PokedexEntry* PokemonRegistry::getPokemonByPokedexNumber(int pokedexID)
 
 	int id = bin_search(PokemonRegistry::pokemons, 0, elemCount, pokedexID);
 	return (id == -1) ? 0 : &PokemonRegistry::pokemons[id];
+}
+
+const char* PokemonRegistry::getElementName(Element e)
+{
+	return element_strings[e];
 }
 
 

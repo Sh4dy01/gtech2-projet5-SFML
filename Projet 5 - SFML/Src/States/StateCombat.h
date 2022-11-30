@@ -4,6 +4,8 @@
 
 #include <SFML/Graphics.hpp>
 
+class Attack;
+
 
 class StateCombat : public State
 {
@@ -18,6 +20,9 @@ public:
 
 		// Current health.
 		int health;
+
+		// Pokemon's level.
+		int level;
 	};
 
 	enum CombatView
@@ -47,6 +52,10 @@ private:
 	void setTextDefaults(sf::Text& t);
 	void setWidgetPosition(sf::Transformable& t, int x, int y);
 
+	void updateArrowPosition();
+
+	void triggerAttack();
+
 
 private:
 
@@ -55,6 +64,10 @@ private:
 
 	bool turn;
 
+		/// Selected action / attack.
+	int action;
+	int attack;
+
 	CombatView view;
 
 		/// Resources.
@@ -62,12 +75,21 @@ private:
 	sf::Texture* texActionBackground;
 	sf::Texture* texFightBackground;
 
+	sf::Texture* texPlayerPokemonSprite;
+	sf::Texture* texEnemyPokemonSprite;
+
 		/// Sprites.
 	sf::Sprite background;
 
 	sf::Sprite playerSprite;
 	sf::Sprite enemySprite;
+	sf::Sprite arrowSprite;
 
 	sf::Text playerName;
 	sf::Text enemyName;
+
+	sf::Text attacks[4];
+	sf::Text attackType;
+
+	std::vector<sf::Drawable*> sprites;
 };
