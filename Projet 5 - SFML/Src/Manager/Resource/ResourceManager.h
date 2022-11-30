@@ -36,4 +36,5 @@ private:
 	std::vector<int> loadedTilesIndex;
 	std::vector<sf::Texture*> loadedTextures;
 	std::vector<string> loadedPng;
+	std::vector<int> collision;
 };

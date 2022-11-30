@@ -11,20 +11,28 @@ Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave", false)
 }
 
 void Player::CheckAllDirections(double d) {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) //Move Up
-		SetDirection(UP);
 
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) //Move Down
-		SetDirection(DOWN);
+	sf::Vector2i playerPos = sf::Vector2i(this->getPosition().x / SPRITE_SIZE, this->getPosition().y / SPRITE_SIZE);
 
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) //Move Right
-		SetDirection(RIGHT);
+	direction dir = STILL;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {//Move Up
+		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x, playerPos.y, UP))
+			dir = UP;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {//Move Down
+		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x, playerPos.y, DOWN))
+			dir = DOWN;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {//Move Right
+		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x, playerPos.y, RIGHT))
+			dir = RIGHT;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {//Move Left
+		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x, playerPos.y, LEFT))
+			dir = LEFT;
+	}
 
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) //Move Left
-		SetDirection(LEFT);
-
-	else
-		SetDirection(STILL);
+	SetDirection(dir);
 
 	this->Move(d);
 	MoveFollower(d);

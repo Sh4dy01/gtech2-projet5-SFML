@@ -26,7 +26,7 @@ public:
 	void					  setNbrEntity(int);
 
 	// test de collision
-	bool					  thereIsCollision(int x, int y);
+	bool					  thereIsCollision(int x, int y, int dir);
 		
 	// getters
 	int						  getLength();

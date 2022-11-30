@@ -2,6 +2,7 @@
 #include "Tiles/Tile.h"
 #include "Manager/Game.h"
 #include "Manager/SpriteConfig.h"
+#include "Manager/AnimatedEntity.h"
 
 Map::Map()
 {
@@ -45,16 +46,53 @@ void Map::render()
 	}
 }
 
-bool Map::thereIsCollision(int x, int y)
+bool Map::thereIsCollision(int x, int y, int dir)
 {
-	if (x < 0 || x > this->width) {
-		return true;
+	cout << x << " : " << y << " = " << this->tab[y][x] << endl;
+	for (int i = 0; i < this->length; i++) {
+		for (int j = 0; j < this->width; j++) {
+			cout << this->tab[i][j] << " ";
+		}
+		cout << endl;
 	}
-	else if (y < 0 || y > this->length) {
-		return true;
-	}
-	else {
-		return Game::getInstance().getResourceManager().getCollision(this->tab[x][y]);
+	switch (dir)
+	{
+	case UP:
+		if (y - 1 < 0) {
+			return true;
+		}
+		else {
+			return Game::getInstance().getResourceManager().getCollision(this->tab[y - 1][x]);
+		}
+		break;
+
+	case DOWN:
+		if (y + 1 >= this->length) {
+			return true;
+		}
+		else {
+			return Game::getInstance().getResourceManager().getCollision(this->tab[y + 1][x]);
+		}
+		break;
+
+	case RIGHT:
+		if (x + 1 >= this->width) {
+			return true;
+		}
+		else {
+			return Game::getInstance().getResourceManager().getCollision(this->tab[y][x + 1]);
+		}
+		break;
+
+	case LEFT:
+		if (x - 1 < 0) {
+			return true;
+		}
+		else {
+			return Game::getInstance().getResourceManager().getCollision(this->tab[y][x - 1]);
+		}
+		break;
+
 	}
 }
 

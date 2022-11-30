@@ -39,35 +39,27 @@ void AnimatedEntity::Move(double d) {
 		break;
 
 	case LEFT:
-		if (!Game::getInstance().currentMap->thereIsCollision(pos.x - 1, pos.y)) {
-			this->move(-speed * d, 0.0f);
-			nextAnimation = WALK_LEFT;
-			isMoving = true;
-		}
+		this->move(-speed * d, 0.0f);
+		nextAnimation = WALK_LEFT;
+		isMoving = true;
 		break;
 
 	case UP:
-		if (!Game::getInstance().currentMap->thereIsCollision(pos.x, pos.y - 1)) {
-			this->move(0.0f, -speed * d);
-			nextAnimation = WALK_UP;
-			isMoving = true;
-		}
+		this->move(0.0f, -speed * d);
+		nextAnimation = WALK_UP;
+		isMoving = true;
 		break;
 
 	case RIGHT:
-		if (!Game::getInstance().currentMap->thereIsCollision(pos.x + 1, pos.y)) {
-			this->move(speed * d, 0.0f);
-			nextAnimation = WALK_RIGHT;
-			isMoving = true;
-		}
+		this->move(speed * d, 0.0f);
+		nextAnimation = WALK_RIGHT;
+		isMoving = true;
 		break;
 
 	case DOWN:
-		if (!Game::getInstance().currentMap->thereIsCollision(pos.x, pos.y + 1)) {
-			this->move(0.0f, speed * d);
-			nextAnimation = WALK_DOWN;
-			isMoving = true;
-		}
+		this->move(0.0f, speed * d);
+		nextAnimation = WALK_DOWN;
+		isMoving = true;
 		break;
 	}
 

@@ -241,6 +241,7 @@ Tile* ResourceManager::TileLoader(int index)
 
 	ifstream f(SAVETILE_FILE);
 	bool isLoading = false;
+	bool collided = false;
 	int posX = 0;
 	int posY = 0;
 	string file;
@@ -295,6 +296,11 @@ Tile* ResourceManager::TileLoader(int index)
 				ss >> file;
 				tile.setFile(file);
 			}
+			else if (id == "collision") {
+				ss >> collided;
+				if (collided)
+				collision.push_back(index);
+			}
 		}
 
 
@@ -342,55 +348,9 @@ int ResourceManager::fileLoader(string fileName)
 
 bool ResourceManager::getCollision(int index)
 {
-	ifstream f(SAVETILE_FILE);
-
-	bool isLoading = false;
-	bool collision = false;
-
-	// If settings file does not exist yet, return error.
-	if (!f) {
-		cout << "error : file Maps.txt does not exist." << endl;
+	for (int i = 0; i < collision.size(); i++) {
+		if (collision[i]==index)
+			return true;
 	}
-
-	string line, id;
-	int indexDetector;
-	while (!f.eof())
-	{
-		// Get line.
-		getline(f, line);
-		int countChar = 0;
-
-		// Ignore empty line.
-		if (line.empty()) {
-			continue;
-		}
-
-		// Formatted reading.
-		stringstream ss(line);
-		if (isLoading) {
-			ss >> id;
-		}
-		else {
-			ss >> indexDetector;
-		}
-
-		if (indexDetector == index) {
-			isLoading = true;
-		}
-
-		if (id == "<") {
-			isLoading = false;
-		}
-
-		if (isLoading) {
-
-			if (id == "collision") {
-				ss >> collision;
-			}
-		}
-
-
-	}
-	f.close();
-	return collision;
+	return false;
 }

@@ -10,7 +10,7 @@ StateLevel::StateLevel()
 void StateLevel::enter()
 {
 	Game::getInstance().getMusicManager().PauseCurrentMusic();
-	player.Initialize(1, sf::Vector2i(10, 10));
+	player.Initialize(1, sf::Vector2i(15, 15));
 	elements.push_back(&player);
 
 	camera = sf::View(player.getPosition(), sf::Vector2f(150, 150));

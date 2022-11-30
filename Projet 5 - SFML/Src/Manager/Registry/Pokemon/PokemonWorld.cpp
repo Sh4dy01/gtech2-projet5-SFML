@@ -18,7 +18,6 @@ void PokemonWorld::Move(double d)
 	switch (currentDirection)
 	{
 	case STILL:
-		this->move(0.0f, 0.0f);
 		StopCurrentAnimation();
 		isMoving = false;
 		break;
