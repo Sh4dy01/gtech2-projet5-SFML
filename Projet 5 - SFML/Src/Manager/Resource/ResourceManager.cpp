@@ -241,7 +241,6 @@ Tile* ResourceManager::TileLoader(int index)
 
 	ifstream f(SAVETILE_FILE);
 	bool isLoading = false;
-	bool collided = false;
 	int posX = 0;
 	int posY = 0;
 	string file;
@@ -297,8 +296,9 @@ Tile* ResourceManager::TileLoader(int index)
 				tile.setFile(file);
 			}
 			else if (id == "collision") {
+				string collided;
 				ss >> collided;
-				if (collided)
+				if (collided == "true")
 				collision.push_back(index);
 			}
 		}

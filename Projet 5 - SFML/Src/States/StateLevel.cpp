@@ -13,7 +13,7 @@ void StateLevel::enter()
 	Map map = Game::getInstance().getCurrentMap();
 
 	Game::getInstance().getMusicManager().PauseCurrentMusic();
-	player.Initialize(0.8, sf::Vector2i(10, 10));
+	player.Initialize(0.8, sf::Vector2i(14, 14));
 
 	for (int i = 0; i < map.getNbrEntity(); i++)
 	{

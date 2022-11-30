@@ -48,6 +48,8 @@ void Map::render()
 
 bool Map::thereIsCollision(int x, int y, int dir)
 {
+
+	cout << x << " : " << y << " = " << this->tab[x][y] << endl;
 	switch (dir)
 	{
 	case UP:
