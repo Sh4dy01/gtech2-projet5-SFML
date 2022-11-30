@@ -47,6 +47,20 @@ void AnimatedEntity::Initialize(float scale, sf::Vector2i spawn)
 }
 
 void AnimatedEntity::Move(double d) {
+	sf::Vector2i pos = sf::Vector2i(this->getPosition().x / SPRITE_SIZE, this->getPosition().y / SPRITE_SIZE);
+
+	if (IsSnappedToGrid() && currentDirection != nextDirection)
+	{
+		currentDirection = nextDirection;
+		int x = int(getPosition().x);
+		int y = int(getPosition().y);
+
+		this->setPosition(x, y);
+	}
+	if (currentAnimation != nextAnimation)
+	{
+		currentAnimation = nextAnimation;
+	}
 
 	switch (currentDirection)
 	{
@@ -67,7 +81,7 @@ void AnimatedEntity::Move(double d) {
 		nextAnimation = WALK_UP;
 		isMoving = true;
 		break;
-		
+
 	case RIGHT:
 		this->move(speed * d, 0.0f);
 		nextAnimation = WALK_RIGHT;
@@ -79,20 +93,6 @@ void AnimatedEntity::Move(double d) {
 		nextAnimation = WALK_DOWN;
 		isMoving = true;
 		break;
-	}
-
-	if (IsSnappedToGrid() && currentDirection != nextDirection)
-	{
-		currentDirection = nextDirection;
-		int x = int(getPosition().x);
-		int y = int(getPosition().y);
-
-		this->setPosition(x, y);
-	}
-
-	if (currentAnimation != nextAnimation)
-	{
-		currentAnimation = nextAnimation;
 	}
 
 	if (count >= 0.2)
