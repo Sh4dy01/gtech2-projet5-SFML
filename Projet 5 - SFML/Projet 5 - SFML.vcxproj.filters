@@ -25,10 +25,10 @@
     <ClCompile Include="Src\Manager\Registry\Pokemon\Attack.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\AttackRegistry.cpp" />
     <ClCompile Include="Src\Manager\Follower.cpp" />
-    <ClCompile Include="Src\Manager\Resource\MusicManager.cpp" />
     <ClCompile Include="Src\Manager\Resource\SoundManager.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonWorld.cpp" />
     <ClCompile Include="Src\Map\Map.cpp" />
+    <ClCompile Include="Src\Manager\Resource\MusicManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Common\Point2.h" />
@@ -55,10 +55,10 @@
     <ClInclude Include="Src\Manager\Registry\Pokemon\AttackRegistry.h" />
     <ClInclude Include="Src\Manager\Follower.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\PokemonAnimationsRegistry.h" />
-    <ClInclude Include="Src\Manager\Resource\MusicManager.h" />
     <ClInclude Include="Src\Manager\Resource\SoundManager.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\PokemonWorld.h" />
     <ClInclude Include="Src\Map\Map.h" />
+    <ClInclude Include="Src\Manager\Resource\MusicManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Sprites\Dave.png" />

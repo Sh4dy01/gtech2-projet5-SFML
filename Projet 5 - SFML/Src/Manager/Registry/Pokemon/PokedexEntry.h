@@ -2,6 +2,8 @@
 #include <vector>
 #include "SFML/Graphics/Rect.hpp"
 
+#include <string>
+
 class Attack;
 
 
@@ -42,6 +44,12 @@ public:
 	const char* getName() const { return name; }
 	Element getElement() const { return element; }
 	std::vector<std::vector<sf::IntRect>> getAnimations() const { return animations; }
+
+	int getNumAttacks() const { return numAttacks; }
+	const Attack** getAttacks() const { return attacks; }
+
+	std::string getSpriteFightFilename() const;
+	std::string getSpriteOpponentFilename() const;
 
 
 

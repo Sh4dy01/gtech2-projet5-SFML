@@ -4,6 +4,30 @@
 
 
 
+static const char* element_strings[] =
+{
+	"NORMAL",
+	"NATURE",
+	"FIRE",
+	"WATER",
+	"GRASS",
+	"ELECTRIC",
+	"ICE",
+	"FIGHTING",
+	"POISON",
+	"GROUND",
+	"FLYING",
+	"PSYCHIC",
+	"BUG",
+	"ROCK",
+	"GHOST",
+	"DRAGON",
+	"DARK",
+	"STEEL"
+};
+
+
+
 static const Attack* Bulbasaur_Attacks[] =
 {
 	&AttackRegistry::VINE_WHIP,
@@ -40,7 +64,7 @@ static const Attack* Sandshrew_Attacks[] =
 	&AttackRegistry::SCRATCH
 };
 
-static const Attack* Miaouss_Attacks[] =
+static const Attack* Meowth_Attacks[] =
 {
 	&AttackRegistry::SCRATCH,
 	&AttackRegistry::GROWL
@@ -67,17 +91,17 @@ static const Attack* Arceus_Attacks[] =
 
 const PokedexEntry PokemonRegistry::pokemons[] =
 {
-	//PokedexEntry(0,   "YOU",        Element::NORMAL,   0, 0, NULL),
-	PokedexEntry(1,   "BULBASAUR",  Element::GRASS,    2, Bulbasaur_Attacks, BULBASAUR_ANIMATIONS ),
+	PokedexEntry(0,   "DAVE",       Element::NORMAL,   0, 0, {}),
+	PokedexEntry(1,   "BULBASAUR",  Element::GRASS,    2, Bulbasaur_Attacks,  BULBASAUR_ANIMATIONS),
 	PokedexEntry(4,   "CHARMANDER", Element::FIRE,     2, Charmander_Attacks, CHARMANDER_ANIMATIONS),
-	PokedexEntry(7,   "SQUIRTLE",   Element::WATER,    2, Squirtle_Attacks, SQUIRTLE_ANIMATIONS),
-	PokedexEntry(19,  "RATTATA",    Element::NATURE,   2, Rattata_Attacks, RATTATA_ANIMATIONS),
-	PokedexEntry(25,  "PIKACHU",    Element::ELECTRIC, 2, Pikachu_Attacks, PIKACHU_ANIMATIONS),
-	PokedexEntry(27,  "SANDSHREW",  Element::GROUND,   2, Sandshrew_Attacks, SANDSHREW_ANIMATIONS),
-	PokedexEntry(52,  "MIAOUSS",	Element::NATURE,   2, Miaouss_Attacks, MIAOUSS_ANIMATIONS),
-	PokedexEntry(63,  "ABRA",       Element::PSYCHIC,  1, Abra_Attacks, ABRA_ANIMATIONS),
-	PokedexEntry(129, "MAGIKARP",   Element::WATER,    2, Magikarp_Attacks, MAGIKARP_ANIMATIONS),
-	PokedexEntry(493, "ARCEUS",     Element::NORMAL,   2, Arceus_Attacks, ARCEUS_ANIMATIONS),
+	PokedexEntry(7,   "SQUIRTLE",   Element::WATER,    2, Squirtle_Attacks,   SQUIRTLE_ANIMATIONS),
+	PokedexEntry(19,  "RATTATA",    Element::NATURE,   2, Rattata_Attacks,    RATTATA_ANIMATIONS),
+	PokedexEntry(25,  "PIKACHU",    Element::ELECTRIC, 2, Pikachu_Attacks,    PIKACHU_ANIMATIONS),
+	PokedexEntry(27,  "SANDSHREW",  Element::GROUND,   2, Sandshrew_Attacks,  SANDSHREW_ANIMATIONS),
+	PokedexEntry(52,  "MEOWTH",	    Element::NATURE,   2, Meowth_Attacks,    MEOWTH_ANIMATIONS),
+	PokedexEntry(63,  "ABRA",       Element::PSYCHIC,  1, Abra_Attacks,       ABRA_ANIMATIONS),
+	PokedexEntry(129, "MAGIKARP",   Element::WATER,    2, Magikarp_Attacks,   MAGIKARP_ANIMATIONS),
+	PokedexEntry(493, "ARCEUS",     Element::NORMAL,   2, Arceus_Attacks,     ARCEUS_ANIMATIONS),
 };
 
 
@@ -92,6 +116,11 @@ const PokedexEntry* PokemonRegistry::getPokemonByPokedexNumber(int pokedexID)
 
 	int id = bin_search(PokemonRegistry::pokemons, 0, elemCount, pokedexID);
 	return (id == -1) ? 0 : &PokemonRegistry::pokemons[id];
+}
+
+const char* PokemonRegistry::getElementName(Element e)
+{
+	return element_strings[e];
 }
 
 
