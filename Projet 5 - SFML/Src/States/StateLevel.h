@@ -12,5 +12,11 @@ public:
 
 	virtual void enter() override;
 	virtual void update(double deltaTime) override;
-	virtual void render() override;
+	virtual void render(sf::RenderWindow& window) override;
+
+private:
+
+	sf::View camera;
+	Player player;
+
 };

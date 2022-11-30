@@ -16,7 +16,7 @@ public:
 	virtual void leave() override;
 
 	virtual void update(double deltaTime) override;
-	virtual void render() override;
+	virtual void render(sf::RenderWindow& window) override;
 
 
 private:

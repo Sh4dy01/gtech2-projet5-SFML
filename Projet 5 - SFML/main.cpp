@@ -34,7 +34,7 @@ int main()
 		State::getCurrentState()->update(deltaTime);
 
 		game.getWindow().clear();
-		State::getCurrentState()->render();
+		State::getCurrentState()->render(game.getWindow());
 		game.getWindow().display();
 
 		State::updateNextState();

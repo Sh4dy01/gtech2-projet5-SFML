@@ -68,7 +68,7 @@ void StateCombat::update(double deltaTime)
 
 }
 
-void StateCombat::render()
+void StateCombat::render(sf::RenderWindow& window)
 {
 	Game::getInstance().getWindow().draw(background);
 

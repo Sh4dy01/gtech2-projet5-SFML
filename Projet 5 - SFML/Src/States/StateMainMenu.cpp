@@ -25,7 +25,8 @@ void StateMainMenu::update(double deltaTime)
 	uiMainMenu->step(deltaTime);
 }
 
-void StateMainMenu::render()
+
+void StateMainMenu::render(sf::RenderWindow& window)
 {
 	uiMainMenu->render(Game::getInstance().getWindow());
 }
