@@ -128,15 +128,15 @@
     <ClCompile Include="Src\Manager\Follower.cpp" />
     <ClCompile Include="Src\Manager\Game.cpp" />
     <ClCompile Include="Src\Manager\PlayerController.cpp" />
-    <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonWorld.cpp" />
+    <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonWorld.cpp">
+      <DeploymentContent>false</DeploymentContent>
+    </ClCompile>
     <ClCompile Include="Src\Manager\Registry\Pokemon\Attack.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\AttackRegistry.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonRegistry.cpp" />
     <ClCompile Include="Src\Manager\Resource\ResourceManager.cpp" />
-    <ClCompile Include="Src\Map\Map.cpp">
-      <DeploymentContent>true</DeploymentContent>
-    </ClCompile>
     <ClCompile Include="Src\Manager\Registry\Pokemon\PokedexEntry.cpp" />
+    <ClCompile Include="Src\Map\Map.cpp" />
     <ClCompile Include="Src\States\StateCombat.cpp" />
     <ClCompile Include="Src\States\StateLevel.cpp" />
     <ClCompile Include="Src\States\StateMainMenu.cpp" />
@@ -166,10 +166,8 @@
     <ClInclude Include="Src\Manager\Resource\ResourceManager.h" />
     <ClInclude Include="Src\Manager\SpriteConfig.h" />
     <ClInclude Include="Src\Manager\PlayerController.h" />
-    <ClInclude Include="Src\Map\Map.h">
-      <DeploymentContent>true</DeploymentContent>
-    </ClInclude>
     <ClInclude Include="Src\Manager\Registry\Pokemon\PokedexEntry.h" />
+    <ClInclude Include="Src\Map\Map.h" />
     <ClInclude Include="Src\States\StateCombat.h" />
     <ClInclude Include="Src\States\StateLevel.h" />
     <ClInclude Include="Src\States\StateMainMenu.h" />

@@ -27,15 +27,18 @@ class AnimatedEntity : public Entity
 public:
 
     AnimatedEntity(std::vector<std::vector<sf::IntRect>>, sf::String, bool isPokemon);
-    virtual void Initialize(int scale, sf::Vector2i spawn);
+    virtual void Initialize(float scale, sf::Vector2i spawn);
 
     virtual void Move(double d);
     bool IsSnappedToGrid();
-    void SetDirection(direction dir) { nextDirection = dir; };
-    direction GetCurrentDirection() { return currentDirection; };
 
     void NextAnimationFrame(void);
     virtual void StopCurrentAnimation(void);
+
+    direction GetCurrentDirection() { return currentDirection; };
+
+    void SetDirection(direction dir) { nextDirection = dir; };
+    void SetCurrentDirection(direction dir) { currentDirection = dir; };
 
 protected:
 

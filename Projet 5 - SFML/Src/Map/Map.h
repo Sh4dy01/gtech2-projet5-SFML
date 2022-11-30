@@ -1,4 +1,5 @@
 #pragma once
+#include "Manager/AnimatedEntity.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -20,7 +21,7 @@ public:
 	void					  setValue(int value, int x, int y);
 	void					  setPosX(std::vector<int>&);
 	void					  setPosY(std::vector<int>&);
-	void					  setDir(std::vector<int>&);
+	void					  setDir(std::vector<direction>&);
 	void					  setEntityName(std::vector<std::string>&);
 	void					  setType(std::vector<std::string>&);
 	void					  setNbrEntity(int);
@@ -36,7 +37,7 @@ public:
 	std::string&			  getName();
     std::vector<int>&         getPosX();
 	std::vector<int>&         getPosY();
-	std::vector<int>&         getDir();
+	std::vector<direction>&   getDir();
 	std::vector<std::string>& getEntityName();
 	std::vector<std::string>& getType();
 
@@ -55,7 +56,7 @@ private:
 	int nbrEntity;
 	std::vector<int> posX;
 	std::vector<int> posY;
-	std::vector<int> dir;
+	std::vector<direction> dir;
 	std::vector<std::string> entityName;
 	std::vector<std::string> type;
 };

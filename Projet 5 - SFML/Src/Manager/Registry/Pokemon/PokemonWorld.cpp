@@ -1,5 +1,4 @@
 #include "PokemonWorld.h"
-#include "PokemonRegistry.h"
 #include <iostream>
 
 PokemonWorld::PokemonWorld(int pokedexNumber) : pokemon(PokemonRegistry::getPokemonByPokedexNumber(pokedexNumber)), AnimatedEntity(animations, name, true)
@@ -11,6 +10,42 @@ PokemonWorld::PokemonWorld(int pokedexNumber) : pokemon(PokemonRegistry::getPoke
 	}
 
 	speed = 0.5f;
+}
+
+bool PokemonWorld::IsPlayerDetected(Player* player) {
+	switch (currentDirection)
+	{
+	case LEFT:
+		if (this->getPosition().y == player->getPosition().y && 
+			player->getPosition().x < this->getPosition().x)
+		{
+			return true;
+		}
+		break;
+	case UP:
+		if (this->getPosition().x == player->getPosition().x && 
+			player->getPosition().y < this->getPosition().y)
+		{
+			return true;
+		}
+		break;
+	case RIGHT:
+		if (this->getPosition().y == player->getPosition().y && 
+			player->getPosition().x > this->getPosition().x)
+		{
+			return true;
+		}
+		break;
+	case DOWN:
+		if (this->getPosition().x == player->getPosition().x && 
+			player->getPosition().y > this->getPosition().y)
+		{
+			return true;
+		}
+		break;
+	}
+	
+	return false;
 }
 
 void PokemonWorld::Move(double d)

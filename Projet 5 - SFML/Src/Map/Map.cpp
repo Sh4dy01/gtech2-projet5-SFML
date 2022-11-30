@@ -126,7 +126,7 @@ void Map::setPosY(std::vector<int>& posY)
 	this->posY = posY;
 }
 
-void Map::setDir(std::vector<int>& dir)
+void Map::setDir(std::vector<direction>& dir)
 {
 	this->dir = dir;
 }
@@ -161,7 +161,7 @@ std::vector<int>& Map::getPosY()
 	return this->posY;
 }
 
-std::vector<int>& Map::getDir()
+std::vector<direction>& Map::getDir()
 {
 	return this->dir;
 }

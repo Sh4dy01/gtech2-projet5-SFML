@@ -9,7 +9,6 @@
     <ClCompile Include="Src\Manager\PlayerController.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonRegistry.cpp" />
     <ClCompile Include="Src\Manager\Resource\ResourceManager.cpp" />
-    <ClCompile Include="Src\Map\Map.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\PokedexEntry.cpp" />
     <ClCompile Include="Src\Manager\Resource\ResourceManager.cpp" />
     <ClCompile Include="Src\Map\Map.cpp" />
@@ -25,10 +24,11 @@
     <ClCompile Include="Src\Manager\UI\Widget.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\Attack.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\AttackRegistry.cpp" />
-    <ClCompile Include="Src\Manager\Audio\MusicManager.cpp" />
-    <ClCompile Include="Src\Manager\Audio\SoundManager.cpp" />
-    <ClCompile Include="Src\Manager\PokemonWorld.cpp" />
     <ClCompile Include="Src\Manager\Follower.cpp" />
+    <ClCompile Include="Src\Manager\Resource\MusicManager.cpp" />
+    <ClCompile Include="Src\Manager\Resource\SoundManager.cpp" />
+    <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonWorld.cpp" />
+    <ClCompile Include="Src\Map\Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Common\Point2.h" />
@@ -39,7 +39,6 @@
     <ClInclude Include="Src\Manager\Resource\ResourceManager.h" />
     <ClInclude Include="Src\Manager\SpriteConfig.h" />
     <ClInclude Include="Src\Manager\PlayerController.h" />
-    <ClInclude Include="Src\Map\Map.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\PokedexEntry.h" />
     <ClInclude Include="Src\States\StateCombat.h" />
     <ClInclude Include="Src\States\StateLevel.h" />
@@ -54,11 +53,12 @@
     <ClInclude Include="Src\Manager\UI\Widget.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\Attack.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\AttackRegistry.h" />
-    <ClInclude Include="Src\Manager\Audio\MusicManager.h" />
-    <ClInclude Include="Src\Manager\Audio\SoundManager.h" />
-    <ClInclude Include="Src\Configs\Pokemon\Miaouss.h" />
-    <ClInclude Include="Src\Manager\PokemonWorld.h" />
     <ClInclude Include="Src\Manager\Follower.h" />
+    <ClInclude Include="Src\Manager\Registry\Pokemon\PokemonAnimationsRegistry.h" />
+    <ClInclude Include="Src\Manager\Resource\MusicManager.h" />
+    <ClInclude Include="Src\Manager\Resource\SoundManager.h" />
+    <ClInclude Include="Src\Manager\Registry\Pokemon\PokemonWorld.h" />
+    <ClInclude Include="Src\Map\Map.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Sprites\Dave.png" />

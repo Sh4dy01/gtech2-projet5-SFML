@@ -2,8 +2,6 @@
 
 #include "Registry/Pokemon/PokemonWorld.h"
 
-class Player;
-
 class Follower : public PokemonWorld {
 
 public:

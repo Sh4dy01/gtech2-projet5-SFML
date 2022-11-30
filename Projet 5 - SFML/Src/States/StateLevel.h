@@ -3,6 +3,8 @@
 #include "Manager/State/State.h"
 #include "Manager/PlayerController.h"
 
+class PokemonWorld;
+
 
 class StateLevel : public State
 {
@@ -17,6 +19,7 @@ public:
 private:
 
 	sf::View camera;
+	std::vector<PokemonWorld*> pokemons;
 	Player player;
 
 };

@@ -8,7 +8,7 @@ Entity::Entity(sf::String name, bool isPokemon) : name(name), isPokemon(isPokemo
 }
 
 
-void Entity::Initialize(sf::IntRect region, int scale, sf::Vector2i spawn) 
+void Entity::Initialize(sf::IntRect region, float scale, sf::Vector2i spawn) 
 {
 	this->SetSprite();
 	this->setOrigin(this->getLocalBounds().width / 2, this->getLocalBounds().height / 2);

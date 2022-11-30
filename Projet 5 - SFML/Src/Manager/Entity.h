@@ -15,7 +15,7 @@ public:
 		/// </summary>
 		/// <param name="region">Region to render the sprite from the atlas</param>
 		/// <param name="scale">Add a scale to the BASE_SCALE_FACTOR which is 4</param>
-	virtual void Initialize(sf::IntRect region, int scale, sf::Vector2i spawn);
+	virtual void Initialize(sf::IntRect region, float scale, sf::Vector2i spawn);
 	void SetSprite();
 	void SetSpawn(sf::Vector2f spawn);
 
