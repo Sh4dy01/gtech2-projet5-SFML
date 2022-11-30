@@ -1,10 +1,11 @@
 #include "Follower.h"
 #include "PlayerController.h"
+#include <iostream>
 #include <cmath>
 
 #define FOLLOWING_OFFSET  (1.3*SPRITE_SIZE)
 
-Follower::Follower(Player* player) : PokemonWorld(493), player(player)
+Follower::Follower(Player* player) : PokemonWorld(52), player(player)
 {
 	speed = player->GetSpeed()*0.95;
 	currentDirection = STILL;
@@ -30,38 +31,46 @@ void Follower::Move(double d)
 	float pathX = player->getPosition().x - this->getPosition().x;
 	float pathY = player->getPosition().y - this->getPosition().y;
 
-	if (pathX > FOLLOWING_OFFSET)
-	{
-		offset.x = -FOLLOWING_OFFSET;
+	if (abs(pathX) > FOLLOWING_OFFSET || abs(pathY) > FOLLOWING_OFFSET) {
+
 		isMoving = true;
-		currentDirection = RIGHT;
-		nextAnimation = WALK_LEFT;
-		this->setScale(sf::Vector2f(-1.0f, 1.0f));
-	}
-	else if (pathX < -FOLLOWING_OFFSET) {
-		offset.x = FOLLOWING_OFFSET;
-		isMoving = true;
-		currentDirection = LEFT;
-		nextAnimation = WALK_LEFT;
-		this->setScale(sf::Vector2f(1.0f, 1.0f));
-	}
-	else if (pathY > FOLLOWING_OFFSET) {
-		isMoving = true;
-		currentDirection = DOWN;
-		offset.y = -FOLLOWING_OFFSET;
-		nextAnimation = WALK_DOWN;
-	}
-	else if (pathY < -FOLLOWING_OFFSET) {
-		isMoving = true;
-		currentDirection = UP;
-		offset.y = FOLLOWING_OFFSET;
-		nextAnimation = WALK_UP;
+
+		if (pathX > FOLLOWING_OFFSET)
+		{
+			offset.x = -FOLLOWING_OFFSET;
+			currentDirection = RIGHT;
+			nextAnimation = WALK_LEFT;
+			this->setScale(sf::Vector2f(-1.0f, 1.0f));
+		}
+		else if (pathX < -FOLLOWING_OFFSET) {
+			offset.x = FOLLOWING_OFFSET;
+			currentDirection = LEFT;
+			nextAnimation = WALK_LEFT;
+			this->setScale(sf::Vector2f(1.0f, 1.0f));
+		}
+
+		if (pathY > FOLLOWING_OFFSET) {
+			currentDirection = DOWN;
+			if (speed < 0) speed = -speed;
+			offset.y = -FOLLOWING_OFFSET;
+			nextAnimation = WALK_DOWN;
+		}
+		else if (pathY < -FOLLOWING_OFFSET) {
+			currentDirection = UP;
+			if (speed > 0) speed = -speed;
+			std::cout << speed << std::endl;
+			offset.y = FOLLOWING_OFFSET;
+			nextAnimation = WALK_UP;
+		}
+
+		std::cout << offset.x << ":" << offset.y << std::endl;
 	}
 	else {
 		isMoving = false;
 		currentDirection = STILL;
 		StopCurrentAnimation();
 	}
+
 
 	if (currentDirection != nextDirection)
 	{

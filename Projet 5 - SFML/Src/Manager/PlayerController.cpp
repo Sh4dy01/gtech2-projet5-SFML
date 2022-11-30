@@ -52,6 +52,7 @@ void Player::CheckAllDirections(double d) {
 		SetDirection(STILL);
 
 	this->Move(d);
+	MoveFollower(d);
 }
 
 void Player::CheckLateralDirections(double d) {
@@ -70,10 +71,14 @@ void Player::CheckLateralDirections(double d) {
 	}
 
 	this->Move(d);
+	MoveFollower(d);
+}
 
+void Player::MoveFollower(double deltaTime)
+{
 	if (follower)
 	{
-		follower->Move(d);
+		follower->Move(deltaTime);
 	}
 }
 

@@ -11,7 +11,8 @@ public:
 	Player();
 	void CheckAllDirections(double deltaTime);
 	void CheckLateralDirections(double deltaTime);
-
+	
+	void MoveFollower(double deltaTime);
 	void SpawnFollower();
 
 	Follower* GetFollower() { return follower; };

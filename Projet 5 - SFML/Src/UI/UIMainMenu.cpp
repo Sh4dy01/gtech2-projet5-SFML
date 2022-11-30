@@ -110,7 +110,7 @@ void UIMainMenu::step(double d)
 
 	if (!isSettingsView)
 	{
-		player.CheckLateralDirections(d);
+		player.CheckAllDirections(d);
 	}
 
 	switch (isButtonsDrew)
