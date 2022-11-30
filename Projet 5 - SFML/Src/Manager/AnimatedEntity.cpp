@@ -1,4 +1,5 @@
 #include "AnimatedEntity.h"
+#include "Game.h"
 #include "Manager/SpriteConfig.h"
 #include <iostream>
 
@@ -27,6 +28,8 @@ void AnimatedEntity::Initialize(int scale, sf::Vector2i spawn)
 }
 
 void AnimatedEntity::Move(double d) {
+	sf::Vector2f pos = sf::Vector2f(this->getPosition().x / 16, this->getPosition().y / 16);
+
 	switch (currentDirection)
 	{
 	case STILL:
@@ -34,26 +37,37 @@ void AnimatedEntity::Move(double d) {
 		StopCurrentAnimation();
 		isMoving = false;
 		break;
-	case LEFT:
-		this->move(-speed * d, 0.0f);
-		nextAnimation = WALK_LEFT;
-		isMoving = true;
-		break;
-	case UP:
-		this->move(0.0f, -speed * d);
-		nextAnimation = WALK_UP;
-		isMoving = true;
-		break;
-	case RIGHT:
-		this->move(speed * d, 0.0f);
-		nextAnimation = WALK_RIGHT;
-		isMoving = true;
 
+	case LEFT:
+		if (!Game::getInstance().currentMap->thereIsCollision(pos.x - 1, pos.y)) {
+			this->move(-speed * d, 0.0f);
+			nextAnimation = WALK_LEFT;
+			isMoving = true;
+		}
 		break;
+
+	case UP:
+		if (!Game::getInstance().currentMap->thereIsCollision(pos.x, pos.y - 1)) {
+			this->move(0.0f, -speed * d);
+			nextAnimation = WALK_UP;
+			isMoving = true;
+		}
+		break;
+
+	case RIGHT:
+		if (!Game::getInstance().currentMap->thereIsCollision(pos.x + 1, pos.y)) {
+			this->move(speed * d, 0.0f);
+			nextAnimation = WALK_RIGHT;
+			isMoving = true;
+		}
+		break;
+
 	case DOWN:
-		this->move(0.0f, speed * d);
-		nextAnimation = WALK_DOWN;
-		isMoving = true;
+		if (!Game::getInstance().currentMap->thereIsCollision(pos.x, pos.y + 1)) {
+			this->move(0.0f, speed * d);
+			nextAnimation = WALK_DOWN;
+			isMoving = true;
+		}
 		break;
 	}
 

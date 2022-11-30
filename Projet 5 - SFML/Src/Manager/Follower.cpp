@@ -62,8 +62,6 @@ void Follower::Move(double d)
 			offset.y = FOLLOWING_OFFSET;
 			nextAnimation = WALK_UP;
 		}
-
-		std::cout << offset.x << ":" << offset.y << std::endl;
 	}
 	else {
 		isMoving = false;

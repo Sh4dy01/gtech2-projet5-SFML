@@ -110,7 +110,7 @@ void UIMainMenu::step(double d)
 
 	if (!isSettingsView)
 	{
-		player.CheckAllDirections(d);
+		player.CheckLateralDirections(d);
 	}
 
 	switch (isButtonsDrew)
@@ -261,7 +261,7 @@ void UIMainMenu::ChangeSelectedButton() {
 }
 
 void UIMainMenu::GoToMainGame() {
-	State::switchState(Game::getInstance().stateCombat);
+	State::switchState(Game::getInstance().stateLevel);
 	//State::switchState(Game::getInstance().stateLevel);
 }
 
