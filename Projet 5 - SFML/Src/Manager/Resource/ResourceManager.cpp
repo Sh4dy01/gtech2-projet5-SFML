@@ -123,7 +123,7 @@ void ResourceManager::MapLoader(Map& outMap, const std::string& name)
 	int nbrEntity = 0;
 	std::vector<int> posX;
 	std::vector<int> posY;
-	std::vector<int> dir;
+	std::vector<direction> dir;
 	std::vector<std::string> entityName;
 	std::vector<std::string> type;
 
@@ -196,10 +196,10 @@ void ResourceManager::MapLoader(Map& outMap, const std::string& name)
 				outMap.setPosY(posY);
 			}
 			else if (id == "dir") {
-				int tempValue = 0;
+				int tempValue = STILL;
 				for (int i = 0; i < nbrEntity; i++) {
 					ss >> tempValue;
-					dir.push_back(tempValue);
+					dir.push_back((direction)tempValue);
 				}
 				outMap.setDir(dir);
 			}

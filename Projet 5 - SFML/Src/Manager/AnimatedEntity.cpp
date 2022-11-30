@@ -17,11 +17,30 @@ AnimatedEntity::AnimatedEntity(std::vector<std::vector<sf::IntRect>> animations,
     this->animations = animations;
 }
 
-void AnimatedEntity::Initialize(int scale, sf::Vector2i spawn)
+void AnimatedEntity::Initialize(float scale, sf::Vector2i spawn)
 {
     this->setScale(sf::Vector2f(scale, scale));
     this->SetSpawn(sf::Vector2f(spawn));
     this->SetSprite();
+
+	switch (currentDirection)
+	{
+	case LEFT:
+		currentAnimation = WALK_LEFT;
+		break;
+	case UP:
+		currentAnimation = WALK_UP;
+		break;
+	case RIGHT:
+		currentAnimation = WALK_LEFT;
+		this->setScale(-1.0f, 1.0f);
+		break;
+	case DOWN:
+		currentAnimation = WALK_DOWN;
+		break;
+	default:
+		break;
+	}
 
 	this->setTextureRect(this->animations[currentAnimation][this->pos]);
 	this->setOrigin(this->getLocalBounds().width / 2, this->getLocalBounds().height / 2);
@@ -39,12 +58,10 @@ void AnimatedEntity::Move(double d) {
 		break;
 
 	case LEFT:
-		if (!Game::getInstance().getCurrentMap().thereIsCollision(pos.x - 1, pos.y)) {
-			this->move(-speed * d, 0.0f);
-			nextAnimation = WALK_LEFT;
-			isMoving = true;
-		}
-		break;
+		this->move(-speed * d, 0.0f);
+		nextAnimation = WALK_LEFT;
+		isMoving = true;
+	break;
 
 	case UP:
 		if (!Game::getInstance().getCurrentMap().thereIsCollision(pos.x, pos.y - 1)) {
