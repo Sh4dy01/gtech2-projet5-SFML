@@ -2,7 +2,8 @@
 
 #include "Manager/SpriteConfig.h"
 #include "AnimatedEntity.h"
-#include "Follower.h"
+
+class Follower;
 
 class Player : public AnimatedEntity {
 

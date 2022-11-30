@@ -4,6 +4,8 @@
 #include <iostream>
 #include "Game.h"
 
+#include "Follower.h"
+
 Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave", false)
 {
 	speed = 50.0f;

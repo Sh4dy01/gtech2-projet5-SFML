@@ -1,4 +1,5 @@
 #include "Manager/Game.h"
+#include "Manager/Registry/Pokemon/PokemonWorld.h"
 #include "StateLevel.h"
 #include <iostream>
 
@@ -21,7 +22,8 @@ void StateLevel::enter()
 			PokemonWorld* pokemon = new PokemonWorld(std::stoi(map.getEntityName()[i].c_str()));
 			pokemon->SetCurrentDirection(map.getDir()[i]);
 			pokemon->Initialize(1, sf::Vector2i(map.getPosX()[i], map.getPosY()[i]));
-			elements.push_back(pokemon);
+			pokemons.push_back(pokemon);
+			elements.push_back((sf::Drawable*)pokemon);
 		}
 	}
 	elements.push_back(&player);
@@ -35,6 +37,13 @@ void StateLevel::update(double deltaTime)
 	player.CheckAllDirections(deltaTime);
 	camera.setCenter(player.getPosition());
 	Game::getInstance().setCamera(camera);
+
+	for (PokemonWorld* p : pokemons) {
+		if (p->IsPlayerDetected(&player))
+		{
+			std::cout << "COMBAT STATE" << std::endl;
+		}
+	}
 }
 
 void StateLevel::render(sf::RenderWindow& window)

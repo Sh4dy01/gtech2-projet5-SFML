@@ -128,7 +128,9 @@
     <ClCompile Include="Src\Manager\Follower.cpp" />
     <ClCompile Include="Src\Manager\Game.cpp" />
     <ClCompile Include="Src\Manager\PlayerController.cpp" />
-    <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonWorld.cpp" />
+    <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonWorld.cpp">
+      <DeploymentContent>false</DeploymentContent>
+    </ClCompile>
     <ClCompile Include="Src\Manager\Registry\Pokemon\Attack.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\AttackRegistry.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonRegistry.cpp" />
