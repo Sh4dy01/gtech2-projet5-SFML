@@ -15,6 +15,8 @@ void StateLevel::enter()
 
 	Game::getInstance().getMusicManager().PauseCurrentMusic();
 	player.Initialize(0.8, sf::Vector2i(14, 14));
+	player.SpawnFollower(52);
+	elements.push_back((sf::Drawable*)player.GetFollower());
 
 	for (int i = 0; i < currentMap.getNbrEntity(); i++)
 	{
@@ -22,7 +24,7 @@ void StateLevel::enter()
 		{
 			PokemonWorld* pokemon = new PokemonWorld(std::stoi(currentMap.getEntityName()[i].c_str()));
 			pokemon->SetCurrentDirection(currentMap.getDir()[i]);
-			pokemon->Initialize(1, sf::Vector2i(currentMap.getPosX()[i], currentMap.getPosY()[i]));
+			pokemon->Initialize(0.75, sf::Vector2i(currentMap.getPosX()[i], currentMap.getPosY()[i]));
 			pokemon->FindAndSetDetectionRange();
 			pokemons.push_back(pokemon);
 			elements.push_back((sf::Drawable*)pokemon);
@@ -31,6 +33,12 @@ void StateLevel::enter()
 	elements.push_back(&player);
 	camera = sf::View(player.getPosition(), sf::Vector2f(150, 150));
 	Game::getInstance().setCamera(camera);
+}
+
+void StateLevel::leave()
+{
+	pokemons.clear();
+	levelTiles.clear();
 }
 
 void StateLevel::update(double deltaTime)

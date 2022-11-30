@@ -19,8 +19,6 @@ bool PokemonWorld::IsPlayerDetected(Player* player) {
 	bool IsSameY = this->getPosition().y == player->getPosition().y;
 	int distX = (player->getPosition().x - this->getPosition().x) / SPRITE_SIZE;
 	int distY = (player->getPosition().y - this->getPosition().y) / SPRITE_SIZE;
-
-	std::cout << name.toAnsiString() << ":" << distX << ", " << distY << std::endl;
 	
 	switch (currentDirection)
 	{

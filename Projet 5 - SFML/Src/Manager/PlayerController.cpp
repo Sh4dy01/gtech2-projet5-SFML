@@ -9,14 +9,13 @@
 Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave", false)
 {
 	speed = 50.0f;
-	follower = new Follower(this);
 }
 
 void Player::CheckAllDirections(double d) {
 
 	sf::Vector2i playerPos = sf::Vector2i(this->getPosition().x / SPRITE_SIZE, this->getPosition().y / SPRITE_SIZE);
-
 	direction dir = STILL;
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {//Move Up
 		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x-1, playerPos.y-1, UP))
 			dir = UP;
@@ -42,18 +41,26 @@ void Player::CheckAllDirections(double d) {
 
 void Player::CheckLateralDirections(double d) {
 
+	sf::Vector2i playerPos = sf::Vector2i(this->getPosition().x / SPRITE_SIZE, this->getPosition().y / SPRITE_SIZE);
+	direction dir = STILL;
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		this->SetDirection(RIGHT);
-	} //Move Right
+		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x - 1, playerPos.y - 1, RIGHT))
+			dir = RIGHT;
+	}
 		
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-		this->SetDirection(LEFT);
-	} //Move Left
+		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x - 1, playerPos.y - 1, LEFT))
+			dir = LEFT;
+	} 
 
 	else {
 		this->SetDirection(STILL);
 	}
+
+	SetDirection(dir);
+
 
 	this->Move(d);
 	MoveFollower(d);
@@ -67,7 +74,7 @@ void Player::MoveFollower(double deltaTime)
 	}
 }
 
-void Player::SpawnFollower()
+void Player::SpawnFollower(int pokedexNumber)
 {
 	sf::Vector2i playerPos = sf::Vector2i(this->getPosition().x/SPRITE_SIZE, this->getPosition().y / SPRITE_SIZE);
 
@@ -89,5 +96,6 @@ void Player::SpawnFollower()
 		break;
 	}
 
-	follower->Initialize(1, playerPos);
+	follower = new Follower(this, pokedexNumber);
+	follower->Initialize(FOLLOWER_SCALE, playerPos);
 }
