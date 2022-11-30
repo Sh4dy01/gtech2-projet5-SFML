@@ -14,6 +14,9 @@ public:
 	//render
 	void				      render();
 
+	// test de collision
+	bool					  thereIsCollision(int x, int y, int dir);
+
 	// setters
 	void					  setHeight(int height);
 	void					  setWidth(int width);
@@ -25,9 +28,6 @@ public:
 	void					  setEntityName(std::vector<std::string>&);
 	void					  setType(std::vector<std::string>&);
 	void					  setNbrEntity(int);
-
-	// test de collision
-	bool					  thereIsCollision(int x, int y, int dir);
 		
 	// getters
 	int						  getHeight();
@@ -59,4 +59,5 @@ private:
 	std::vector<direction> dir;
 	std::vector<std::string> entityName;
 	std::vector<std::string> type;
+
 };

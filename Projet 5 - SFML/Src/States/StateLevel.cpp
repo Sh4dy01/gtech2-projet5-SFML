@@ -1,6 +1,7 @@
 #include "Manager/Game.h"
 #include "Manager/Registry/Pokemon/PokemonWorld.h"
 #include "StateLevel.h"
+#include "Manager/SpriteConfig.h"
 #include <iostream>
 
 StateLevel::StateLevel()
@@ -8,12 +9,12 @@ StateLevel::StateLevel()
 
 }
 
-void StateLevel::enter()
+void StateLevel::enter(sf::Vector2i playerPosition)
 {
-	Map map = Game::getInstance().getCurrentMap();
+	Map map = Game::getInstance().getMap();
 
 	Game::getInstance().getMusicManager().PauseCurrentMusic();
-	player.Initialize(0.8, sf::Vector2i(14, 14));
+	player.Initialize(0.8, sf::Vector2i(playerPosition.x, playerPosition.y));
 
 	for (int i = 0; i < map.getNbrEntity(); i++)
 	{
@@ -46,11 +47,16 @@ void StateLevel::update(double deltaTime)
 			std::cout << "COMBAT STATE" << std::endl;
 		}
 	}
+	
+	sf::Vector2i event = Game::getInstance().getResourceManager().eventModifyCurrentMap(player.getPosition().x / SPRITE_SIZE, player.getPosition().y / SPRITE_SIZE);
+	if (event.x != -1 || event.y != -1) {
+		this->enter(event);
+	}
 }
 
 void StateLevel::render(sf::RenderWindow& window)
 {
-	Game::getInstance().getCurrentMap().render();
+	Game::getInstance().getMap().render();
 
 	for (sf::Drawable* e : elements) {
 		window.draw(*e);

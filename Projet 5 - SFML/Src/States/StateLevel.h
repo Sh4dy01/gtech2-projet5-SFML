@@ -12,7 +12,7 @@ public:
 
 	StateLevel();
 
-	virtual void enter() override;
+	virtual void enter(sf::Vector2i) override;
 	virtual void update(double deltaTime) override;
 	virtual void render(sf::RenderWindow& window) override;
 

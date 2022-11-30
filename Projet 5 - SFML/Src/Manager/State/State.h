@@ -11,6 +11,7 @@ public:
 
 		/// Called when the state manager switches to this state.
 	virtual void enter() { }
+	virtual void enter(sf::Vector2i) { }
 
 		/// Called when the state manager exits this state.
 	virtual void leave() { }
@@ -23,10 +24,12 @@ public:
 
 		/// Proceed with a state switch, if necessary.
 	static void updateNextState();
+	static void updateNextState(sf::Vector2i);
 
 	static State* getCurrentState() { return currentState; }
 
 	static void setDefaultState(State* s);
+	static void setDefaultState(State* s, sf::Vector2i vect);
 
 
 

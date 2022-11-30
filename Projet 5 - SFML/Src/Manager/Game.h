@@ -28,7 +28,8 @@ public:
 	void QuitGame();
 
 public:
-	Map getCurrentMap();
+	Map getMap();
+	void setMap(Map);
 
 	sf::RenderWindow& getWindow() { return window; }
 
@@ -50,9 +51,8 @@ public:
 	StateLevel*    stateLevel;
 	StateCombat*   stateCombat;
 
-	Map* currentMap;
-	Map test;
-	Map test2;
+	Map map;
+
 
 private:
 

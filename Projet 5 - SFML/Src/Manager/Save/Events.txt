@@ -1,0 +1,7 @@
+nbrEvent 4
+eventCurrentMap startMap startMap city city
+eventNewCurrentMap city city startMap startMap
+posX 32 32 0 0
+posY 11 12 15 16
+newPosX 0 0 32 32
+newPosY 15 16 11 12

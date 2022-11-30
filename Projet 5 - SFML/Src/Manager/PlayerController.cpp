@@ -18,19 +18,19 @@ void Player::CheckAllDirections(double d) {
 
 	direction dir = STILL;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {//Move Up
-		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x-1, playerPos.y-1, UP))
+		if (!Game::getInstance().getMap().thereIsCollision(playerPos.x-1, playerPos.y-1, UP))
 			dir = UP;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {//Move Down
-		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x-1, playerPos.y-1, DOWN))
+		if (!Game::getInstance().getMap().thereIsCollision(playerPos.x-1, playerPos.y-1, DOWN))
 			dir = DOWN;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {//Move Right
-		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x-1, playerPos.y-1, RIGHT))
+		if (!Game::getInstance().getMap().thereIsCollision(playerPos.x-1, playerPos.y-1, RIGHT))
 			dir = RIGHT;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {//Move Left
-		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x-1, playerPos.y-1, LEFT))
+		if (!Game::getInstance().getMap().thereIsCollision(playerPos.x-1, playerPos.y-1, LEFT))
 			dir = LEFT;
 	}
 
