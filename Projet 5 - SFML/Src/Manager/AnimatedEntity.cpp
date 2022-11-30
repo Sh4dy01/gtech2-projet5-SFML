@@ -47,7 +47,6 @@ void AnimatedEntity::Initialize(float scale, sf::Vector2i spawn)
 }
 
 void AnimatedEntity::Move(double d) {
-	sf::Vector2f pos = sf::Vector2f(this->getPosition().x / 16, this->getPosition().y / 16);
 
 	switch (currentDirection)
 	{
@@ -85,6 +84,10 @@ void AnimatedEntity::Move(double d) {
 	if (IsSnappedToGrid() && currentDirection != nextDirection)
 	{
 		currentDirection = nextDirection;
+		int x = int(getPosition().x);
+		int y = int(getPosition().y);
+
+		this->setPosition(x, y);
 	}
 
 	if (currentAnimation != nextAnimation)
