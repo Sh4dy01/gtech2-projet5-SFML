@@ -2,7 +2,7 @@
 #include "StateCombat.h"
 
 #include "Manager/Resource/ResourceManager.h"
-#include "Manager/Audio/MusicManager.h"
+#include "Manager/Resource/MusicManager.h"
 #include "Manager/Registry/Pokemon/PokemonRegistry.h"
 
 #include <SFML/Graphics.hpp>
