@@ -6,8 +6,8 @@
 #include "States/StateCombat.h"
 
 #include "Manager/Resource/ResourceManager.h"
-#include "Manager/Audio/MusicManager.h"
-#include "Manager/Audio/SoundManager.h"
+#include "Manager/Resource/MusicManager.h"
+#include "Manager/Resource/SoundManager.h"
 
 
 // Render space is the same as a Gameboy console's.
@@ -28,6 +28,7 @@ public:
 	void QuitGame();
 
 public:
+	Map getCurrentMap();
 
 	sf::RenderWindow& getWindow() { return window; }
 
@@ -35,6 +36,7 @@ public:
 	MusicManager& getMusicManager() { return musicManager; }
 	SoundManager& getSoundManager() { return soundManager; }
 
+	void setCamera(sf::View camera) { window.setView(camera);}
 
 
 	// Game instance.

@@ -4,12 +4,21 @@
 
 enum animationType
 {
-    WALK_DOWN = 0,
-    WALK_UP = 1,
-    WALK_LEFT = 2,
-    WALK_RIGHT = 3,
-    STAND_UP = 4,
-    STAND_DOWN = 5
+    WALK_DOWN,
+    WALK_UP,
+    WALK_LEFT,
+    WALK_RIGHT,
+    STAND_UP,
+    STAND_DOWN
+};
+
+enum direction
+{
+    STILL,
+    LEFT,
+    UP,
+    RIGHT,
+    DOWN
 };
 
 class AnimatedEntity : public Entity
@@ -17,10 +26,19 @@ class AnimatedEntity : public Entity
 
 public:
 
-    AnimatedEntity(std::vector<std::vector<sf::IntRect>>, sf::String);
-    void Initialize(int scale, sf::Vector2i spawn);
+    AnimatedEntity(std::vector<std::vector<sf::IntRect>>, sf::String, bool isPokemon);
+    virtual void Initialize(float scale, sf::Vector2i spawn);
+
+    virtual void Move(double d);
+    bool IsSnappedToGrid();
+
     void NextAnimationFrame(void);
-    void StopCurrentAnimation(void);
+    virtual void StopCurrentAnimation(void);
+
+    direction GetCurrentDirection() { return currentDirection; };
+
+    void SetDirection(direction dir) { nextDirection = dir; };
+    void SetCurrentDirection(direction dir) { currentDirection = dir; };
 
 protected:
 
@@ -28,6 +46,9 @@ protected:
     
     double count;
     int pos;
+
+    direction nextDirection;
+    direction currentDirection;
 
     animationType currentAnimation;
     animationType nextAnimation;

@@ -139,7 +139,7 @@ void StateCombat::update(double deltaTime)
 	
 }
 
-void StateCombat::render()
+void StateCombat::render(sf::RenderWindow& window)
 {
 	for (const sf::Drawable* d : sprites) {
 		Game::getInstance().getWindow().draw(*d);

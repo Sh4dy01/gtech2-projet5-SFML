@@ -9,13 +9,9 @@
     <ClCompile Include="Src\Manager\PlayerController.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonRegistry.cpp" />
     <ClCompile Include="Src\Manager\Resource\ResourceManager.cpp" />
-    <ClCompile Include="Src\Map\Map.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\PokedexEntry.cpp" />
-    <ClCompile Include="Src\States\StateSettingsMenu.cpp" />
-    <ClCompile Include="Src\Manager\Registry\PokemonRegistry.cpp" />
     <ClCompile Include="Src\Manager\Resource\ResourceManager.cpp" />
     <ClCompile Include="Src\Map\Map.cpp" />
-    <ClCompile Include="Src\Manager\Registry\PokedexEntry.cpp" />
     <ClCompile Include="Src\States\StateCombat.cpp" />
     <ClCompile Include="Src\States\StateLevel.cpp" />
     <ClCompile Include="Src\States\StateMainMenu.cpp" />
@@ -26,12 +22,13 @@
     <ClCompile Include="Src\Manager\UI\Text.cpp" />
     <ClCompile Include="Src\Manager\UI\UI.cpp" />
     <ClCompile Include="Src\Manager\UI\Widget.cpp" />
-    <ClCompile Include="Src\UI\UISettingsMenu.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\Attack.cpp" />
-    <ClCompile Include="Src\UI\UICombat.cpp" />
     <ClCompile Include="Src\Manager\Registry\Pokemon\AttackRegistry.cpp" />
-    <ClCompile Include="Src\Manager\Audio\MusicManager.cpp" />
-    <ClCompile Include="Src\Manager\Audio\SoundManager.cpp" />
+    <ClCompile Include="Src\Manager\Follower.cpp" />
+    <ClCompile Include="Src\Manager\Resource\MusicManager.cpp" />
+    <ClCompile Include="Src\Manager\Resource\SoundManager.cpp" />
+    <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonWorld.cpp" />
+    <ClCompile Include="Src\Map\Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Common\Point2.h" />
@@ -39,13 +36,10 @@
     <ClInclude Include="Src\Manager\Entity.h" />
     <ClInclude Include="Src\Manager\Game.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\PokemonRegistry.h" />
-    <ClInclude Include="Src\Manager\Registry\PokemonRegistry.h" />
     <ClInclude Include="Src\Manager\Resource\ResourceManager.h" />
     <ClInclude Include="Src\Manager\SpriteConfig.h" />
     <ClInclude Include="Src\Manager\PlayerController.h" />
-    <ClInclude Include="Src\Map\Map.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\PokedexEntry.h" />
-    <ClInclude Include="Src\Manager\Registry\PokedexEntry.h" />
     <ClInclude Include="Src\States\StateCombat.h" />
     <ClInclude Include="Src\States\StateLevel.h" />
     <ClInclude Include="Src\States\StateMainMenu.h" />
@@ -57,17 +51,37 @@
     <ClInclude Include="Src\Manager\UI\Text.h" />
     <ClInclude Include="Src\Manager\UI\UI.h" />
     <ClInclude Include="Src\Manager\UI\Widget.h" />
-    <ClInclude Include="Src\UI\UISettingsMenu.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\Attack.h" />
-    <ClInclude Include="Src\UI\UICombat.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\AttackRegistry.h" />
-    <ClInclude Include="Src\Manager\Audio\MusicManager.h" />
-    <ClInclude Include="Src\Manager\Audio\SoundManager.h" />
+    <ClInclude Include="Src\Manager\Follower.h" />
+    <ClInclude Include="Src\Manager\Registry\Pokemon\PokemonAnimationsRegistry.h" />
+    <ClInclude Include="Src\Manager\Resource\MusicManager.h" />
+    <ClInclude Include="Src\Manager\Resource\SoundManager.h" />
+    <ClInclude Include="Src\Manager\Registry\Pokemon\PokemonWorld.h" />
+    <ClInclude Include="Src\Map\Map.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Sprites\Dave.png" />
     <Image Include="Assets\Sprites\Game Boy GBC - Pokemon Gold Silver - Characters Overworld.png" />
     <Image Include="Assets\Sprites\player.png" />
+    <Image Include="Assets\Images\battle_action_background.png" />
+    <Image Include="Assets\Images\battle_background.png" />
+    <Image Include="Assets\Images\battle_fight_background.png" />
+    <Image Include="Assets\Images\bulbasaur.png" />
+    <Image Include="Assets\Images\pokemon-title.png" />
+    <Image Include="Assets\Images\tileset.png" />
+    <Image Include="Assets\Images\title-bg.jpg" />
+    <Image Include="Assets\Images\title-bg.png" />
+    <Image Include="Assets\Sprites\pokemon\abra.png" />
+    <Image Include="Assets\Sprites\pokemon\arceus.png" />
+    <Image Include="Assets\Sprites\pokemon\bulbasaur.png" />
+    <Image Include="Assets\Sprites\pokemon\charmander.png" />
+    <Image Include="Assets\Sprites\pokemon\magikarp.png" />
+    <Image Include="Assets\Sprites\pokemon\miaouss.png" />
+    <Image Include="Assets\Sprites\pokemon\pikachu.png" />
+    <Image Include="Assets\Sprites\pokemon\rattata.png" />
+    <Image Include="Assets\Sprites\pokemon\sandshrew.png" />
+    <Image Include="Assets\Sprites\pokemon\squirtle.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Src\Manager\Save\Maps.txt" />
@@ -78,5 +92,8 @@
     <Media Include="Assets\Audio\Sound\select-sound.wav" />
     <Media Include="Assets\Audio\Music\battle-music.wav" />
     <Media Include="Assets\Audio\Music\main-menu-theme.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\Fonts\Pokemon-Classic.ttf" />
   </ItemGroup>
 </Project>
