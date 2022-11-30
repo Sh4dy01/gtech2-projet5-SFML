@@ -14,9 +14,9 @@ Map::Map()
 	}
 }
 
-void Map::setLength(int length)
+void Map::setHeight(int height)
 {
-	this->length = length;
+	this->height = height;
 }
 
 void Map::setWidth(int width)
@@ -37,10 +37,10 @@ void Map::setValue(int value, int x, int y)
 void Map::render()
 {
 	Tile temptile;
-	for (int i = 0; i < this->width; i++) {
-		for (int y = 0; y < this->length; y++) {
-			temptile = *Game::getInstance().getResourceManager().TileLoader( this->tab[y][i] );
-			temptile.setPosition( i * SPRITE_SIZE + 8, y * SPRITE_SIZE + 8);
+	for (int y = 0; y < this->width; y++) {
+		for (int x = 0; x < this->height; x++) {
+			temptile = *Game::getInstance().getResourceManager().TileLoader( this->tab[x][y] );
+			temptile.setPosition( y * SPRITE_SIZE + 8, x * SPRITE_SIZE + 8);
 			Game::getInstance().getWindow().draw(temptile);
 		}
 	}
@@ -48,13 +48,6 @@ void Map::render()
 
 bool Map::thereIsCollision(int x, int y, int dir)
 {
-	cout << x << " : " << y << " = " << this->tab[y][x] << endl;
-	for (int i = 0; i < this->length; i++) {
-		for (int j = 0; j < this->width; j++) {
-			cout << this->tab[i][j] << " ";
-		}
-		cout << endl;
-	}
 	switch (dir)
 	{
 	case UP:
@@ -67,7 +60,7 @@ bool Map::thereIsCollision(int x, int y, int dir)
 		break;
 
 	case DOWN:
-		if (y + 1 >= this->length) {
+		if (y + 1 >= this->height) {
 			return true;
 		}
 		else {
@@ -96,9 +89,9 @@ bool Map::thereIsCollision(int x, int y, int dir)
 	}
 }
 
-int Map::getLength()
+int Map::getHeight()
 {
-	return this->length;
+	return this->height;
 }
 
 int Map::getWidth()
