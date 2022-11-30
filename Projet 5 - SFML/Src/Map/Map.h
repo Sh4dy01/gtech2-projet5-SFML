@@ -15,7 +15,7 @@ public:
 	void				      render();
 
 	// setters
-	void					  setLength(int length);
+	void					  setHeight(int height);
 	void					  setWidth(int width);
 	void					  setName(std::string name);
 	void					  setValue(int value, int x, int y);
@@ -30,7 +30,7 @@ public:
 	bool					  thereIsCollision(int x, int y, int dir);
 		
 	// getters
-	int						  getLength();
+	int						  getHeight();
 	int						  getWidth();
 	int						  getValue(int x, int y);
 	int						  getNbrEntity();
@@ -46,7 +46,7 @@ private:
 	std::string name;
 
 	// dimensions of the map
-	int length;
+	int height;
 	int width;
 
 	// Tab of pointer of Tile

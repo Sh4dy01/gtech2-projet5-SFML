@@ -81,7 +81,7 @@
   }\
 }
 
-#define MIAOUSS_ANIMATIONS \
+#define MEOWTH_ANIMATIONS \
 { \
   { \
       sf::IntRect(23, 0, 23, 23),\

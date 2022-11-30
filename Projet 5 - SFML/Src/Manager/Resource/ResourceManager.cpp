@@ -117,7 +117,7 @@ void ResourceManager::MapLoader(Map& outMap, const std::string& name)
 	bool mapLoading = false;
 	bool tabLoading = false;
 	int width = 0;
-	int length = 0;
+	int height = 0;
 	int countLine = 0;
 	int countChar = 0;
 	int nbrEntity = 0;
@@ -159,19 +159,19 @@ void ResourceManager::MapLoader(Map& outMap, const std::string& name)
 
 		if (mapLoading) {
 
-			if (id == "length") {
-				ss >> length;
-				outMap.setLength(length);
+			if (id == "height") {
+				ss >> height;
+				outMap.setHeight(height);
 			}
 			else if (id == "width") {
 				ss >> width;
 				outMap.setWidth(width);
 			}
-			else if (id == "-" && length != 0 && width != 0) {
+			else if (id == "-" && height != 0 && width != 0) {
 				int id;
 				for (int i = 0; i < width; i++) {
 					ss >> id;
-					outMap.setValue(id, countLine, countChar);
+					outMap.setValue(id, countLine, i);
 					countChar += 1;
 				}
 			}
@@ -241,7 +241,6 @@ Tile* ResourceManager::TileLoader(int index)
 
 	ifstream f(SAVETILE_FILE);
 	bool isLoading = false;
-	bool collided = false;
 	int posX = 0;
 	int posY = 0;
 	string file;
@@ -297,8 +296,9 @@ Tile* ResourceManager::TileLoader(int index)
 				tile.setFile(file);
 			}
 			else if (id == "collision") {
+				string collided;
 				ss >> collided;
-				if (collided)
+				if (collided == "true")
 				collision.push_back(index);
 			}
 		}
