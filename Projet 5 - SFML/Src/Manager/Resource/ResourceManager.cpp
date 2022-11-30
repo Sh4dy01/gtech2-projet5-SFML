@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <vector>
 
 #define EXTERIOR_FILE "exterior.png"
 #define EXTERIOR_WIDTH 16
@@ -110,7 +111,7 @@ Tile ResourceManager::getTile(int index)
 }
 
 
-Map* ResourceManager::MapLoader(const std::string& name)
+void ResourceManager::MapLoader(Map& outMap, const std::string& name)
 {
 	ifstream f(SAVEMAP_FILE);
 	bool mapLoading = false;
@@ -119,12 +120,16 @@ Map* ResourceManager::MapLoader(const std::string& name)
 	int length = 0;
 	int countLine = 0;
 	int countChar = 0;
-	Map map;
+	int nbrEntity = 0;
+	std::vector<int> posX;
+	std::vector<int> posY;
+	std::vector<int> dir;
+	std::vector<std::string> entityName;
+	std::vector<std::string> type;
 
 	// If settings file does not exist yet, return error.
 	if (!f) {
 		cout << "error : file Maps.txt does not exist." << endl;
-		return 0;
 	}
 
 	string line, id;
@@ -156,19 +161,63 @@ Map* ResourceManager::MapLoader(const std::string& name)
 
 			if (id == "length") {
 				ss >> length;
-				map.setLength(length);
+				outMap.setLength(length);
 			}
 			else if (id == "width") {
 				ss >> width;
-				map.setWidth(width);
+				outMap.setWidth(width);
 			}
-			else if (length != 0 && width != 0) {
+			else if (id == "-" && length != 0 && width != 0) {
 				int id;
 				for (int i = 0; i < width; i++) {
 					ss >> id;
-					map.setValue(id, countLine, countChar);
+					outMap.setValue(id, countLine, countChar);
 					countChar += 1;
 				}
+			}
+			else if (id == "nbrEntity") {
+				ss >> nbrEntity;
+				outMap.setNbrEntity(nbrEntity);
+			}
+			else if (id == "posX") {
+				int tempValue = 0;
+				for (int i = 0; i < nbrEntity; i++) {
+					ss >> tempValue;
+					posX.push_back(tempValue);
+				}
+				outMap.setPosX(posX);
+			}
+			else if (id == "posY") {
+				int tempValue = 0;
+				for (int i = 0; i < nbrEntity; i++) {
+					ss >> tempValue;
+					posY.push_back(tempValue);
+				}
+				outMap.setPosY(posY);
+			}
+			else if (id == "dir") {
+				int tempValue = 0;
+				for (int i = 0; i < nbrEntity; i++) {
+					ss >> tempValue;
+					dir.push_back(tempValue);
+				}
+				outMap.setDir(dir);
+			}
+			else if (id == "entity") {
+				std::string tempString = "";
+				for (int i = 0; i < nbrEntity; i++) {
+					ss >> tempString;
+					entityName.push_back(tempString);
+				}
+				outMap.setEntityName(entityName);
+			}
+			else if (id == "type") {
+				std::string tempString = "";
+				for (int i = 0; i < nbrEntity; i++) {
+					ss >> tempString;
+					type.push_back(tempString);
+				}
+				outMap.setType(type);
 			}
 		}
 
@@ -177,8 +226,8 @@ Map* ResourceManager::MapLoader(const std::string& name)
 		countLine += 1;
 
 	}
+
 	f.close();
-	return &map;
 }
 
 Tile* ResourceManager::TileLoader(int index)

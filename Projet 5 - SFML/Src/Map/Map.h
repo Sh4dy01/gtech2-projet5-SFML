@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <string>
+#include <vector>
 
 class Tile;
 
@@ -8,19 +10,35 @@ class Map
 public:
 	Map();
 
-	void         setLength(int length);
-	void         setWidth(int width);
-	void         setName(std::string name);
-	void         setValue(int value, int x, int y);
-	void         render();
+	//render
+	void				      render();
+
+	// setters
+	void					  setLength(int length);
+	void					  setWidth(int width);
+	void					  setName(std::string name);
+	void					  setValue(int value, int x, int y);
+	void					  setPosX(std::vector<int>&);
+	void					  setPosY(std::vector<int>&);
+	void					  setDir(std::vector<int>&);
+	void					  setEntityName(std::vector<std::string>&);
+	void					  setType(std::vector<std::string>&);
+	void					  setNbrEntity(int);
 
 	// test de collision
-	bool         thereIsCollision(int x, int y);
+	bool					  thereIsCollision(int x, int y);
 		
-	int          getLength();
-	int          getWidth();
-	int			 getValue(int x, int y);
-	std::string  getName();
+	// getters
+	int						  getLength();
+	int						  getWidth();
+	int						  getValue(int x, int y);
+	int						  getNbrEntity();
+	std::string&			  getName();
+    std::vector<int>&         getPosX();
+	std::vector<int>&         getPosY();
+	std::vector<int>&         getDir();
+	std::vector<std::string>& getEntityName();
+	std::vector<std::string>& getType();
 
 private:
 
@@ -32,4 +50,12 @@ private:
 
 	// Tab of pointer of Tile
 	int tab[64][64];
+
+	// manage entity
+	int nbrEntity;
+	std::vector<int> posX;
+	std::vector<int> posY;
+	std::vector<int> dir;
+	std::vector<std::string> entityName;
+	std::vector<std::string> type;
 };

@@ -5,6 +5,7 @@
 
 Map::Map()
 {
+	int nbrEntity = 0;
 	for (int i = 0; i < 64; i++) {
 		for (int j = 0; j < 64; j++) {
 			this->tab[i][j] = 0;
@@ -72,8 +73,67 @@ int Map::getValue(int x, int y)
 	return this->tab[x][y];
 }
 
-std::string Map::getName()
+std::string& Map::getName()
 {
 	return this->name;
 }
 
+void Map::setPosX(std::vector<int>& posX)
+{
+	this->posX = posX;
+}
+
+void Map::setPosY(std::vector<int>& posY)
+{
+	this->posY = posY;
+}
+
+void Map::setDir(std::vector<int>& dir)
+{
+	this->dir = dir;
+}
+
+void Map::setEntityName(std::vector<std::string>& entityName)
+{
+	this->entityName = entityName;
+}
+
+void Map::setType(std::vector<std::string>& type)
+{
+	this->type = type;
+}
+
+void Map::setNbrEntity(int nbrEntity)
+{
+	this->nbrEntity = nbrEntity;
+}
+
+int Map::getNbrEntity()
+{
+	return nbrEntity;
+}
+
+std::vector<int>& Map::getPosX()
+{
+	return this->posX;
+}
+
+std::vector<int>& Map::getPosY()
+{
+	return this->posY;
+}
+
+std::vector<int>& Map::getDir()
+{
+	return this->dir;
+}
+
+std::vector<std::string>& Map::getEntityName()
+{
+	return this->entityName;
+}
+
+std::vector<std::string>& Map::getType()
+{
+	return this->type;
+}
