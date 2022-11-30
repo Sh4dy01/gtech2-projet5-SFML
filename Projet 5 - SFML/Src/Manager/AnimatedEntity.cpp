@@ -62,25 +62,23 @@ void AnimatedEntity::Move(double d) {
 		nextAnimation = WALK_LEFT;
 		isMoving = true;
 		break;
-		}
-		break;
+
+	case UP:
 		this->move(0.0f, -speed * d);
 		nextAnimation = WALK_UP;
 		isMoving = true;
-			isMoving = true;
-		}
 		break;
+		
+	case RIGHT:
 		this->move(speed * d, 0.0f);
 		nextAnimation = WALK_RIGHT;
 		isMoving = true;
-			isMoving = true;
-		}
 		break;
+
+	case DOWN:
 		this->move(0.0f, speed * d);
 		nextAnimation = WALK_DOWN;
 		isMoving = true;
-			isMoving = true;
-		}
 		break;
 	}
 
