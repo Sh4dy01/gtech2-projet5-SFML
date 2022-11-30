@@ -239,8 +239,6 @@ void UIMainMenu::CheckButtonsInput()
 }
 
 void UIMainMenu::ChangeSelectedButton() {
-	std::cout << pos << std::endl;
-
 	if (!isSettingsView)
 	{
 		if (pos < START)

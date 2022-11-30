@@ -20,8 +20,6 @@ bool PokemonWorld::IsPlayerDetected(Player* player) {
 	int distX = (this->getPosition().x - player->getPosition().x) / SPRITE_SIZE;
 	int distY = (this->getPosition().y - player->getPosition().y) / SPRITE_SIZE;
 
-	std::cout << distX << ":" << distY << std::endl;
-
 	switch (currentDirection)
 	{
 	case LEFT:
