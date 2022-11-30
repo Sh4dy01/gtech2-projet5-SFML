@@ -10,10 +10,19 @@ public:
 	PokemonWorld(int pokedexNumber);
 
 	bool IsPlayerDetected(Player* player);
+	/// <summary>
+	/// Determine the range of the detection until the next world collision
+	/// </summary>
+	int GetDetectionRange();
+
 	virtual void Move(double d) override;
 	virtual void StopCurrentAnimation(void) override;
 
 protected:
 	
 	const PokedexEntry* pokemon;
+
+private:
+
+	float range;
 };

@@ -7,38 +7,43 @@ PokemonWorld::PokemonWorld(int pokedexNumber) : pokemon(PokemonRegistry::getPoke
 	{
 		this->name = pokemon->getName();
 		this->animations = pokemon->getAnimations();
+		range = GetDetectionRange();
 	}
 
 	speed = 0.5f;
 }
 
 bool PokemonWorld::IsPlayerDetected(Player* player) {
+
+	bool IsSameX = this->getPosition().x == player->getPosition().x;
+	bool IsSameY = this->getPosition().y == player->getPosition().y;
+	int distX = (this->getPosition().x - player->getPosition().x) / SPRITE_SIZE;
+	int distY = (this->getPosition().y - player->getPosition().y) / SPRITE_SIZE;
+
+	std::cout << distX << ":" << distY << std::endl;
+
 	switch (currentDirection)
 	{
 	case LEFT:
-		if (this->getPosition().y == player->getPosition().y && 
-			player->getPosition().x < this->getPosition().x)
+		if (IsSameY && distX <= range)
 		{
 			return true;
 		}
 		break;
 	case UP:
-		if (this->getPosition().x == player->getPosition().x && 
-			player->getPosition().y < this->getPosition().y)
+		if (IsSameX && distY <= range)
 		{
 			return true;
 		}
 		break;
 	case RIGHT:
-		if (this->getPosition().y == player->getPosition().y && 
-			player->getPosition().x > this->getPosition().x)
+		if (IsSameY && -distX <= range)
 		{
 			return true;
 		}
 		break;
 	case DOWN:
-		if (this->getPosition().x == player->getPosition().x && 
-			player->getPosition().y > this->getPosition().y)
+		if (IsSameX && distY <= range)
 		{
 			return true;
 		}
@@ -46,6 +51,11 @@ bool PokemonWorld::IsPlayerDetected(Player* player) {
 	}
 	
 	return false;
+}
+
+int PokemonWorld::GetDetectionRange()
+{
+	return 5;
 }
 
 void PokemonWorld::Move(double d)
