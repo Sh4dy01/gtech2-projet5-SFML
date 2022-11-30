@@ -36,6 +36,7 @@ public:
 	MusicManager& getMusicManager() { return musicManager; }
 	SoundManager& getSoundManager() { return soundManager; }
 
+	void setCamera(sf::View camera) { window.setView(camera);}
 
 
 	// Game instance.
