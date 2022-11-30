@@ -12,7 +12,7 @@ public:
 	Map();
 
 	//render
-	void				      render();
+	void					  LoadTiles();
 
 	// setters
 	void					  setHeight(int height);
@@ -30,6 +30,7 @@ public:
 	bool					  thereIsCollision(int x, int y, int dir);
 		
 	// getters
+	std::vector<Tile>	      getTiles() { return tiles; };
 	int						  getHeight();
 	int						  getWidth();
 	int						  getValue(int x, int y);
@@ -59,4 +60,5 @@ private:
 	std::vector<direction> dir;
 	std::vector<std::string> entityName;
 	std::vector<std::string> type;
+	std::vector<Tile> tiles;
 };
