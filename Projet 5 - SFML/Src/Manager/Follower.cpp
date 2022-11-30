@@ -58,7 +58,6 @@ void Follower::Move(double d)
 		else if (pathY < -FOLLOWING_OFFSET) {
 			currentDirection = UP;
 			if (speed > 0) speed = -speed;
-			std::cout << speed << std::endl;
 			offset.y = FOLLOWING_OFFSET;
 			nextAnimation = WALK_UP;
 		}
