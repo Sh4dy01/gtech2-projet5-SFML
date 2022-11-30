@@ -13,7 +13,7 @@ public:
 	/// <summary>
 	/// Determine the range of the detection until the next world collision
 	/// </summary>
-	int GetDetectionRange();
+	void FindAndSetDetectionRange();
 
 	virtual void Move(double d) override;
 	virtual void StopCurrentAnimation(void) override;

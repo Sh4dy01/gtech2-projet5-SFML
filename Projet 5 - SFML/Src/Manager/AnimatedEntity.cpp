@@ -146,3 +146,7 @@ void AnimatedEntity::StopCurrentAnimation() {
 
     this->setTextureRect(animations[this->currentAnimation][this->pos]);
 }
+
+bool AnimatedEntity::IsThereACollision() {
+	return Game::getInstance().currentMap->thereIsCollision(getPosition().x / SPRITE_SIZE - 1, getPosition().y / SPRITE_SIZE - 1, currentDirection);
+}

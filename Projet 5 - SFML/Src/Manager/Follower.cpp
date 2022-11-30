@@ -1,27 +1,27 @@
 #include "Follower.h"
+#include "Game.h"
 #include "PlayerController.h"
 #include <iostream>
 #include <cmath>
 
 #define FOLLOWING_OFFSET  (1.3*SPRITE_SIZE)
 
-Follower::Follower(Player* player) : PokemonWorld(52), player(player)
+Follower::Follower(Player* player, int pokedexNumber) : PokemonWorld(pokedexNumber), player(player)
 {
 	speed = player->GetSpeed()*0.95;
-	currentDirection = STILL;
-	this->setScale(sf::Vector2f(-1.0f, 1.0f));
+	currentDirection = player->GetCurrentDirection();
 }
 
 void Follower::ChangeFollower(int pokedexNumber)
 {
 	const PokedexEntry* newPokemon = PokemonRegistry::getPokemonByPokedexNumber(pokedexNumber);
 
-	if (newPokemon )
+	if (newPokemon)
 	{
 		this->pokemon = newPokemon;
 		this->name = pokemon->getName();
 		this->animations = pokemon->getAnimations();
-		this->Initialize(1, sf::Vector2i(this->getPosition().x/SPRITE_SIZE, this->getPosition().y / SPRITE_SIZE));
+		this->Initialize(FOLLOWER_SCALE, sf::Vector2i(this->getPosition().x/SPRITE_SIZE, this->getPosition().y / SPRITE_SIZE));
 	}
 }
 
@@ -40,13 +40,13 @@ void Follower::Move(double d)
 			offset.x = -FOLLOWING_OFFSET;
 			currentDirection = RIGHT;
 			nextAnimation = WALK_LEFT;
-			this->setScale(sf::Vector2f(-1.0f, 1.0f));
+			this->setScale(sf::Vector2f(-FOLLOWER_SCALE, FOLLOWER_SCALE));
 		}
 		else if (pathX < -FOLLOWING_OFFSET) {
 			offset.x = FOLLOWING_OFFSET;
 			currentDirection = LEFT;
 			nextAnimation = WALK_LEFT;
-			this->setScale(sf::Vector2f(1.0f, 1.0f));
+			this->setScale(sf::Vector2f(FOLLOWER_SCALE, FOLLOWER_SCALE));
 		}
 
 		if (pathY > FOLLOWING_OFFSET) {
@@ -68,7 +68,6 @@ void Follower::Move(double d)
 		StopCurrentAnimation();
 	}
 
-
 	if (currentDirection != nextDirection)
 	{
 		currentDirection = nextDirection;
@@ -85,11 +84,11 @@ void Follower::Move(double d)
 		count = 0;
 	}
 
-	if (isMoving)
+	if (isMoving && !IsThereACollision())
 	{
 		const float dir = atan((player->getPosition().x + offset.x - this->getPosition().x) / (player->getPosition().y + offset.y - this->getPosition().y));
 		this->move(speed * d * sin(dir), speed * d * cos(dir));
 	}
-
+	
 	count += d;
 }

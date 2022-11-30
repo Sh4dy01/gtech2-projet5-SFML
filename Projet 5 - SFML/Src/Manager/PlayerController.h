@@ -14,7 +14,7 @@ public:
 	void CheckLateralDirections(double deltaTime);
 	
 	void MoveFollower(double deltaTime);
-	void SpawnFollower();
+	void SpawnFollower(int pokedexNumber);
 
 	Follower* GetFollower() { return follower; };
 	int GetSpeed() { return this->speed; };

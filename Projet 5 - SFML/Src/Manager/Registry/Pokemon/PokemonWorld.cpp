@@ -1,4 +1,5 @@
 #include "PokemonWorld.h"
+#include "Manager/Game.h"
 #include <iostream>
 
 PokemonWorld::PokemonWorld(int pokedexNumber) : pokemon(PokemonRegistry::getPokemonByPokedexNumber(pokedexNumber)), AnimatedEntity(animations, name, true)
@@ -7,7 +8,6 @@ PokemonWorld::PokemonWorld(int pokedexNumber) : pokemon(PokemonRegistry::getPoke
 	{
 		this->name = pokemon->getName();
 		this->animations = pokemon->getAnimations();
-		range = GetDetectionRange();
 	}
 
 	speed = 0.5f;
@@ -17,43 +17,68 @@ bool PokemonWorld::IsPlayerDetected(Player* player) {
 
 	bool IsSameX = this->getPosition().x == player->getPosition().x;
 	bool IsSameY = this->getPosition().y == player->getPosition().y;
-	int distX = (this->getPosition().x - player->getPosition().x) / SPRITE_SIZE;
-	int distY = (this->getPosition().y - player->getPosition().y) / SPRITE_SIZE;
-
+	int distX = (player->getPosition().x - this->getPosition().x) / SPRITE_SIZE;
+	int distY = (player->getPosition().y - this->getPosition().y) / SPRITE_SIZE;
+	
 	switch (currentDirection)
 	{
 	case LEFT:
-		if (IsSameY && distX <= range)
-		{
+		if (IsSameY && distX <= 0 && abs(distX) <= range)
 			return true;
-		}
 		break;
+
 	case UP:
-		if (IsSameX && distY <= range)
-		{
+		if (IsSameX && distY <= 0 && abs(distY) <= range)
 			return true;
-		}
 		break;
+
 	case RIGHT:
-		if (IsSameY && -distX <= range)
-		{
+		if (IsSameY && distX >= 0 && abs(distX) <= range)
 			return true;
-		}
 		break;
+
 	case DOWN:
-		if (IsSameX && distY <= range)
-		{
+		if (IsSameX && distY >= 0 && abs(distY) <= range)
 			return true;
-		}
 		break;
 	}
 	
 	return false;
 }
 
-int PokemonWorld::GetDetectionRange()
+void PokemonWorld::FindAndSetDetectionRange()
 {
-	return 5;
+	int range = 0;
+	int x = getPosition().x / SPRITE_SIZE;
+	int y = getPosition().y / SPRITE_SIZE;
+
+
+	while (!Game::getInstance().currentMap->thereIsCollision(x-1, y-1, currentDirection))
+	{
+		range++;
+
+		switch (currentDirection)
+		{
+		case LEFT:
+			x--;
+			break;
+		case UP:
+			y--;
+			break;
+		case RIGHT:
+			x++;
+			break;
+		case DOWN:
+			y++;
+			break;
+		default:
+			break;
+		}
+	}
+
+	std::cout << name.toAnsiString() << " has " << range << " range" << std::endl << std::endl;
+
+	this->range = range;
 }
 
 void PokemonWorld::Move(double d)

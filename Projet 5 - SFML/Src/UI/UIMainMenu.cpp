@@ -95,7 +95,7 @@ UIMainMenu::UIMainMenu()
 
 
 	player.Initialize(1, sf::Vector2i(2, 8));
-	player.SpawnFollower();
+	//player.SpawnFollower(NULL);
 	//elements.push_back(player.GetFollower());
 	elements.push_back(&player);
 }
