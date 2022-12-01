@@ -61,7 +61,7 @@ void AnimatedEntity::Move(double d) {
 	{
 		currentAnimation = nextAnimation;
 	}
-
+	
 	switch (currentDirection)
 	{
 	case STILL:

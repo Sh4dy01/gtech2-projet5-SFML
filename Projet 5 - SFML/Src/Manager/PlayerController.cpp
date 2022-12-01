@@ -70,6 +70,7 @@ void Player::MoveFollower(double deltaTime)
 {
 	if (follower)
 	{
+		follower->SetDirection(currentDirection);
 		follower->Move(deltaTime);
 	}
 }

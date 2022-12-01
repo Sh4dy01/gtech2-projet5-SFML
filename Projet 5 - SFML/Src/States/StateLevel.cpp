@@ -16,6 +16,8 @@ void StateLevel::enter(sf::Vector2i playerPosition)
 
 	Game::getInstance().getMusicManager().PauseCurrentMusic();
 	player.Initialize(0.8, sf::Vector2i(playerPosition.x, playerPosition.y));
+	/*player.SpawnFollower(52);
+	elements.push_back((sf::Drawable*)player.GetFollower());*/
 
 	for (int i = 0; i < currentMap.getNbrEntity(); i++)
 	{

@@ -9,7 +9,6 @@
 #include "Manager/Resource/MusicManager.h"
 #include "Manager/Resource/SoundManager.h"
 
-
 // Render space is the same as a Gameboy console's.
 // Window resize will cause the rendered frame to stretch.
 #define GAME_SIZE_X 256

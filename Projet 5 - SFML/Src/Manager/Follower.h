@@ -10,7 +10,6 @@ public:
 	Follower(Player*, int pokedexNumber);
 	void ChangeFollower(int pokedexNumber);
 	virtual void Move(double d) override;
-	//virtual void Move(double d) override;
 
 private:
 

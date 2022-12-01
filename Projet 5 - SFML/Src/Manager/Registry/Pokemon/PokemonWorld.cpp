@@ -90,24 +90,24 @@ void PokemonWorld::Move(double d)
 		isMoving = false;
 		break;
 	case LEFT:
-		this->move(-speed, 0.0f);
+		this->move(-speed*d, 0.0f);
 		nextAnimation = WALK_LEFT;
 		this->setScale(sf::Vector2f(1.0f, 1.0f));
 		isMoving = true;
 		break;
 	case UP:
-		this->move(0.0f, -speed);
+		this->move(0.0f, -speed * d);
 		nextAnimation = WALK_UP;
 		isMoving = true;
 		break;
 	case RIGHT:
-		this->move(speed, 0.0f);
+		this->move(speed * d, 0.0f);
 		nextAnimation = WALK_LEFT;
 		isMoving = true;
 		this->setScale(sf::Vector2f(-1.0f, 1.0f));
 		break;
 	case DOWN:
-		this->move(0.0f, speed);
+		this->move(0.0f, speed * d);
 		nextAnimation = WALK_DOWN;
 		isMoving = true;
 		break;

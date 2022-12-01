@@ -30,7 +30,7 @@ void Game::Initialization()
 	stateLevel    = new StateLevel();
 	stateCombat   = new StateCombat();
 
-	State::setDefaultState(stateLevel, sf::Vector2i(14,14));
+	State::setDefaultState(stateLevel, sf::Vector2i(16,7));
 }
 
 void Game::QuitGame()
