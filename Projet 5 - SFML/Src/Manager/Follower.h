@@ -9,6 +9,7 @@ public:
 
 	Follower(Player*, int pokedexNumber);
 	void ChangeFollower(int pokedexNumber);
+	void SetToPlayerPosition();
 	virtual void Move(double d) override;
 
 private:

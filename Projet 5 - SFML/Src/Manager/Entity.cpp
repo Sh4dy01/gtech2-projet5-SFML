@@ -15,6 +15,15 @@ void Entity::Initialize(sf::IntRect region, float scale, sf::Vector2i spawn)
 	this->setScale(sf::Vector2f(scale, scale));
 	this->SetSpawn(sf::Vector2f(spawn));
 	this->setTextureRect(region);
+	State::getCurrentState()->addElement(this);
+}
+
+void Entity::Hide() {
+	this->setColor(sf::Color(255, 255, 255, 0));
+}
+
+void Entity::Show() {
+	this->setColor(sf::Color(255, 255, 255, 255));
 }
 
 void Entity::SetSprite()

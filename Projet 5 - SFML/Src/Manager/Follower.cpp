@@ -25,6 +25,12 @@ void Follower::ChangeFollower(int pokedexNumber)
 	}
 }
 
+void Follower::SetToPlayerPosition()
+{
+	this->setPosition(player->getPosition());
+}
+
+
 void Follower::Move(double d)
 {
 	sf::Vector2i offset;
