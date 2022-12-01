@@ -1,2 +1,3 @@
-currentMap bedRoom
-playerPos 2 3
+currentMap startMap
+playerPos 30 12
+isIntro 1

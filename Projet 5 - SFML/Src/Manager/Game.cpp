@@ -89,7 +89,7 @@ void Game::loadData()
 	int x, y;
 	x = posPlayer.x;
 	y = posPlayer.y;
-	bool isIntro;
+	bool isIntro = false;
 
 	string line, id;
 	while (!f.eof())
