@@ -15,30 +15,33 @@ PokemonWorld::PokemonWorld(int pokedexNumber) : pokemon(PokemonRegistry::getPoke
 
 bool PokemonWorld::IsPlayerDetected(Player* player) {
 
-	bool IsSameX = this->getPosition().x == player->getPosition().x;
-	bool IsSameY = this->getPosition().y == player->getPosition().y;
-	int distX = (player->getPosition().x - this->getPosition().x) / SPRITE_SIZE;
-	int distY = (player->getPosition().y - this->getPosition().y) / SPRITE_SIZE;
+	float distX = (player->getPosition().x - this->getPosition().x) / SPRITE_SIZE;
+	float distY = (player->getPosition().y - this->getPosition().y) / SPRITE_SIZE;
 	
+	if (name == "BULBASAUR")
+	{
+		std::cout << name << " : " << distX << ", " << distY << std::endl;
+	}
+
 	switch (currentDirection)
 	{
 	case LEFT:
-		if (IsSameY && distX <= 0 && abs(distX) <= range)
+		if (distX <= 0 && distY <= 0.5 && distY >= -0.5 && abs(distX) <= range)
 			return true;
 		break;
 
 	case UP:
-		if (IsSameX && distY <= 0 && abs(distY) <= range)
+		if (distY <= 0 && distX <= 0.5 && distX >= -0.5 && abs(distY) <= range)
 			return true;
 		break;
 
 	case RIGHT:
-		if (IsSameY && distX >= 0 && abs(distX) <= range)
+		if (distX >= 0 && distY <= 0.5 && distY >= -0.5 && abs(distX) <= range)
 			return true;
 		break;
 
 	case DOWN:
-		if (IsSameX && distY >= 0 && abs(distY) <= range)
+		if (distY >= 0 && distX <= 0.5 && distX >= -0.5 && abs(distY) <= range)
 			return true;
 		break;
 	}

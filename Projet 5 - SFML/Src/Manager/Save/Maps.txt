@@ -130,7 +130,7 @@ entity 63 19 493 1
 posX 10 16 16 9
 posY 10 15 10 8
 type pokemon pokemon pokemon pokemon
-dir 2 1 4 4
+dir 3 1 4 4
 <
 
 livingRoom
