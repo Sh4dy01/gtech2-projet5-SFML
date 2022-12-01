@@ -31,8 +31,8 @@ void StateLevel::enter(sf::Vector2i playerPosition)
 		if (currentMap.getType()[i] == "pokemon")
 		{
 			PokemonWorld* pokemon = new PokemonWorld(std::stoi(currentMap.getEntityName()[i].c_str()));
-			pokemon->SetCurrentDirection(currentMap.getDir()[i]);
 			pokemon->Initialize(0.75, sf::Vector2i(currentMap.getPosX()[i], currentMap.getPosY()[i]));
+			pokemon->SetCurrentDirection(currentMap.getDir()[i]);
 			pokemon->FindAndSetDetectionRange();
 			pokemons.push_back(pokemon);
 			elements.push_back((sf::Drawable*)pokemon);
@@ -69,12 +69,11 @@ void StateLevel::update(double deltaTime)
 		count += deltaTime;
 	}
 
-	if (player.CanMove())
+	if (player.CanMove()) {
 		player.CheckAllDirections(deltaTime);
-
-	camera.setCenter(player.getPosition());
-	Game::getInstance().setCamera(camera);
-
+		camera.setCenter(player.getPosition());
+		Game::getInstance().setCamera(camera);
+	}
 
 	for (PokemonWorld* p : pokemons) {
 		if (p->IsPlayerDetected(&player))

@@ -6,11 +6,9 @@
 AnimatedEntity::AnimatedEntity(std::vector<std::vector<sf::IntRect>> animations, std::string name, bool isPokemon) : Entity(name, isPokemon)
 {
 	this->currentAnimation = WALK_DOWN;
-	this->nextAnimation = WALK_DOWN;
 	this->canMove = true;
 
 	this->currentDirection = STILL;
-	this->nextDirection = STILL;
 	this->isMoving = false;
 
     this->count = 0;
@@ -27,25 +25,7 @@ void AnimatedEntity::Initialize(float scale, sf::Vector2i spawn)
     this->SetSpawn(sf::Vector2f(spawn));
     this->SetSprite();
 
-	switch (currentDirection)
-	{
-	case LEFT:
-		currentAnimation = WALK_LEFT;
-		this->setScale(-scale, scale);
-		break;
-	case UP:
-		currentAnimation = WALK_UP;
-		break;
-	case RIGHT:
-		currentAnimation = WALK_LEFT;
-		this->setScale(scale, scale);
-		break;
-	case DOWN:
-		currentAnimation = WALK_DOWN;
-		break;
-	default:
-		break;
-	}
+	
 
 	this->setTextureRect(this->animations[currentAnimation][this->pos]);
 	this->setOrigin(this->getLocalBounds().width / 2, this->getLocalBounds().height / 2);
@@ -162,6 +142,35 @@ void AnimatedEntity::StopCurrentAnimation() {
 
 bool AnimatedEntity::IsThereACollision() {
 	return Game::getInstance().getMap().thereIsCollision(getPosition().x / SPRITE_SIZE - 1, getPosition().y / SPRITE_SIZE - 1, currentDirection);
+}
+
+void AnimatedEntity::SetCurrentDirection(direction dir) {
+	this->pos = 0;
+	this->currentDirection = dir;
+	this->nextDirection = currentDirection;
+
+	switch (currentDirection)
+	{
+	case LEFT:
+		currentAnimation = WALK_LEFT;
+		this->setScale(scale, scale);
+		break;
+	case UP:
+		currentAnimation = WALK_UP;
+		break;
+	case RIGHT:
+		currentAnimation = WALK_LEFT;
+		this->setScale(-scale, scale);
+		break;
+	case DOWN:
+		currentAnimation = WALK_DOWN;
+		break;
+	default:
+		break;
+	}
+	this->nextAnimation = currentAnimation;
+
+	this->setTextureRect(animations[this->currentAnimation][this->pos]);
 }
 
 void AnimatedEntity::SetMovementAbility(bool canMove) {

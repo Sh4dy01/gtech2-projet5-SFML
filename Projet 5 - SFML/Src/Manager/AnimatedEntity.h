@@ -39,7 +39,7 @@ public:
     bool CanMove() { return canMove ; }
 
     void SetDirection(direction dir) { nextDirection = dir; };
-    void SetCurrentDirection(direction dir) { currentDirection = dir; };
+    void SetCurrentDirection(direction dir);
     void SetMovementAbility(bool canMove);
 
 protected:

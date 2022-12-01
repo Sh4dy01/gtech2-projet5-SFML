@@ -4,9 +4,6 @@
 #include <fstream>
 #include <iostream>
 
-const int coordsX[3] = {1,0,2};
-const int coordsY[2] = {0,1};
-
 const std::map<std::string, int> pokemons = { 
     {"BULBASAUR", 19},
     {"CHARMANDER", 18},
@@ -14,7 +11,7 @@ const std::map<std::string, int> pokemons = {
     {"RATTATA", 19},
     {"PIKACHU", 18},
     {"SANDSHREW", 18},
-    {"MIAOUSS", 23},
+    {"MEOWTH", 23},
     {"ABRA", 19},
     {"MAGIKARP", 21},
     {"ARCEUS", 40},
@@ -41,7 +38,7 @@ int main() {
 
             for (int numberOfFrames = 0; numberOfFrames < 2; numberOfFrames++)
             {
-                file << "      sf::IntRect(" + std::to_string(coordsX[numberOfAnim] * pokemon.second) + ", " + std::to_string(coordsY[numberOfFrames] * pokemon.second) + ", " + pixels + ", " + pixels + ")";
+                file << "      sf::IntRect(" + std::to_string(numberOfAnim * pokemon.second) + ", " + std::to_string(numberOfFrames * pokemon.second) + ", " + pixels + ", " + pixels + ")";
                 if (numberOfFrames < 1) file << ",";
                 file << "\\" << endl;
             }

@@ -49,7 +49,6 @@ void Map::LoadTiles()
 
 bool Map::thereIsCollision(int x, int y, int dir)
 {
-	cout << x << " : " << y << endl;
 	switch (dir)
 	{
 	case UP:

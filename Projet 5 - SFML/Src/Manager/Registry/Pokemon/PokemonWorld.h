@@ -15,7 +15,6 @@ public:
 	/// </summary>
 	void FindAndSetDetectionRange();
 
-	virtual void Move(double d) override;
 	virtual void StopCurrentAnimation(void) override;
 
 protected:
