@@ -4,6 +4,7 @@
 #include "States/StateMainMenu.h"
 #include "States/StateLevel.h"
 #include "States/StateCombat.h"
+#include "States/StateGameover.h"
 
 #include "Manager/Resource/ResourceManager.h"
 #include "Manager/Resource/MusicManager.h"
@@ -49,6 +50,7 @@ public:
 	StateMainMenu* stateMainMenu;
 	StateLevel*    stateLevel;
 	StateCombat*   stateCombat;
+	StateGameover* stateGameover;
 
 	Map* currentMap;
 	Map test;

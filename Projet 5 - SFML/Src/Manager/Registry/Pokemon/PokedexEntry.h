@@ -11,7 +11,6 @@ class Attack;
 enum Element
 {
 	NORMAL,
-	NATURE,
 	FIRE,
 	WATER,
 	GRASS,
@@ -37,12 +36,14 @@ class PokedexEntry
 {
 public:
 
-	PokedexEntry(int pokedexID, const char* name, Element e, int numAttacks, const Attack** attacks, std::vector<std::vector<sf::IntRect>> animations);
+	PokedexEntry(int pokedexID, const char* name, Element e, int maxHealth, int numAttacks, const Attack** attacks, std::vector<std::vector<sf::IntRect>> animations);
 
 	int getPokedexID() const { return pokedexID; }
 
 	const char* getName() const { return name; }
 	Element getElement() const { return element; }
+	int getMaxHealth() const { return maxHealth; }
+
 	std::vector<std::vector<sf::IntRect>> getAnimations() const { return animations; }
 
 	int getNumAttacks() const { return numAttacks; }
@@ -59,6 +60,8 @@ private:
 
 	const char* name;
 	Element element;
+	int maxHealth;
+
 	std::vector<std::vector<sf::IntRect>> animations;
 
 	int numAttacks;

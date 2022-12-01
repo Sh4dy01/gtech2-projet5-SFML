@@ -10,6 +10,7 @@ class AttackRegistry
 {
 public:
 
+	static const Attack& PUNCH;
 	static const Attack& TACKLE;
 	static const Attack& SCRATCH;
 	static const Attack& GROWL;

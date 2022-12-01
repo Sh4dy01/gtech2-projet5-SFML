@@ -138,6 +138,7 @@
     <ClCompile Include="Src\Manager\Registry\Pokemon\PokedexEntry.cpp" />
     <ClCompile Include="Src\Map\Map.cpp" />
     <ClCompile Include="Src\States\StateCombat.cpp" />
+    <ClCompile Include="Src\States\StateGameover.cpp" />
     <ClCompile Include="Src\States\StateLevel.cpp" />
     <ClCompile Include="Src\States\StateMainMenu.cpp" />
     <ClCompile Include="Src\Tiles\Tile.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Src\Manager\Registry\Pokemon\PokedexEntry.h" />
     <ClInclude Include="Src\Map\Map.h" />
     <ClInclude Include="Src\States\StateCombat.h" />
+    <ClInclude Include="Src\States\StateGameover.h" />
     <ClInclude Include="Src\States\StateLevel.h" />
     <ClInclude Include="Src\States\StateMainMenu.h" />
     <ClInclude Include="Src\Tiles\Tile.h" />
