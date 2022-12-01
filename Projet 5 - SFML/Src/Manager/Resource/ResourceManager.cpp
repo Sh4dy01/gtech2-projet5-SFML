@@ -153,6 +153,7 @@ void ResourceManager::MapLoader(Map& outMap, const std::string& name)
 
 		if (id == name) {
 			mapLoading = true;
+			outMap.setName(name);
 			countLine = -3;
 		}
 
@@ -235,18 +236,18 @@ void ResourceManager::MapLoader(Map& outMap, const std::string& name)
 
 void ResourceManager::EventLoader(Map& outMap)
 {
+	eventCurrentMap.clear();
+	eventNewCurrentMap.clear();
+	eventPosition.clear();
+	eventNewPosition.clear();
+
 	ifstream f(SAVEEVENT_FILE);
 	int nbrEvent = 0;
 	std::vector<int> posX;
 	std::vector<int> posY;
 	std::vector<int> newPosX;
 	std::vector<int> newPosY;
-	std::vector <sf::Vector2i> tempVectPos;
-	std::vector <sf::Vector2i> tempVectNewPos;
-	std::vector<std::string> tempEventCurrentMap;
-	std::vector<std::string> tempEventNewCurrentMap;
-	std::vector<sf::Vector2i> tempEventPosition;
-	std::vector<sf::Vector2i> tempEventNewPosition;
+	std::vector<int> indexList;
 
 
 	// If settings file does not exist yet, return error.
@@ -277,14 +278,19 @@ void ResourceManager::EventLoader(Map& outMap)
 		if (id == "eventCurrentMap") {
 			for (int i = 0; i < nbrEvent; i++) {
 				ss >> id;
-				tempEventCurrentMap.push_back(id);
+				if (id == outMap.getName()) {
+					indexList.push_back(i);
+					eventCurrentMap.push_back(id);
+				}
+
+				
 			}
 		}
 
 		if (id == "eventNewCurrentMap") {
 			for (int i = 0; i < nbrEvent; i++) {
 				ss >> id;
-				tempEventNewCurrentMap.push_back(id);
+				eventNewCurrentMap.push_back(id);
 			}
 		}
 
@@ -321,14 +327,9 @@ void ResourceManager::EventLoader(Map& outMap)
 		}
 	}
 	for (int i = 0; i < nbrEvent; i++) {
-		tempEventPosition.push_back(sf::Vector2i(posX[i], posY[i]));
-		tempEventNewPosition.push_back(sf::Vector2i(posX[i], posY[i]));
+		eventPosition.push_back(sf::Vector2i(posX[i], posY[i]));
+		eventNewPosition.push_back(sf::Vector2i(posX[i], posY[i]));
 	}
-
-	//eventCurrentMap = tempEventCurrentMap;
-	/*eventNewCurrentMap = tempEventNewCurrentMap;
-	eventPosition = tempEventPosition;
-	eventNewPosition = tempEventNewPosition;*/
 
 	f.close();
 }
