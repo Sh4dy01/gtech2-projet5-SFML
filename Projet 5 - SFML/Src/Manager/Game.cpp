@@ -38,6 +38,7 @@ void Game::Initialization()
 	stateGameover = new StateGameover();
 
 	stateLevel->SetIsIntroPlayed(isIntro);
+	stateLevel->SetPokemonsCaughtToPlayer(pokemonsCaught);
 	State::setDefaultState(stateLevel);
 }
 
@@ -67,10 +68,19 @@ void Game::saveData() {
         cout << "error : file Maps.txt does not exist." << endl;
     }
 	sf::Vector2f vect = this->stateLevel->getPlayer().getPosition();
+	auto pokemonsCaught = this->stateLevel->getPlayer().GetPokemonsCaught();
 
     f << "currentMap " << this->getMap().getName() << endl;
     f << "playerPos " << vect.x / SPRITE_SIZE << " " << vect.y / SPRITE_SIZE << endl;
     f << "isIntro " << this->stateLevel->GetIsIntroPlayed() << endl;
+	f << "pokemonsCaught ";
+	f << pokemonsCaught.size() << " ";
+	for (int pokemon : pokemonsCaught)
+	{
+		f << pokemon << " ";
+	}
+	f  << endl;
+
     index += 1;
   
 
@@ -90,6 +100,9 @@ void Game::loadData()
 	x = posPlayer.x;
 	y = posPlayer.y;
 	bool isIntro = false;
+
+	int pokemonsCaughtNumber;
+
 
 	string line, id;
 	while (!f.eof())
@@ -117,6 +130,16 @@ void Game::loadData()
 		}
 		else if (id == "isIntro") {
 			ss >> isIntro;
+		}
+		else if (id == "pokemonsCaught") {
+			ss >> pokemonsCaughtNumber;
+
+			for (int i = 0; i < pokemonsCaughtNumber; i++)
+			{
+				int pokemon;
+				ss >> pokemon;
+				pokemonsCaught.push_back(pokemon);
+			}
 		}
 	}
 	posPlayer = sf::Vector2i(x, y);

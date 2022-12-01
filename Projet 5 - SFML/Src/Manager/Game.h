@@ -60,6 +60,7 @@ public:
 	string mapName;
 	sf::Vector2i posPlayer;
 	bool isIntro;
+	std::vector<int> pokemonsCaught;
 
 
 private:

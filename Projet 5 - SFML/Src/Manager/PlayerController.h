@@ -17,8 +17,12 @@ public:
 	void SpawnFollower(int pokedexNumber);
 
 	Follower* GetFollower() { return follower; };
+	std::vector<int> GetPokemonsCaught() { return pokemonsCaught; };
 	int GetSpeed() { return this->speed; };
+
 	bool IsFollowerSpawned() { return this->isFollowerSpawned; };
+
+	void SetPokemonsCaught(std::vector<int> pokemons) { pokemonsCaught = pokemons; };
 
 private:
 

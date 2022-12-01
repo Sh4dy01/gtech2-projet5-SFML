@@ -13,9 +13,6 @@ Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave", false)
 	currentAnimation = WALK_DOWN;
 	pokemonSelected = 0;
 	isFollowerSpawned = false;
-	pokemonsCaught.push_back(52);
-	pokemonsCaught.push_back(129);
-	pokemonsCaught.push_back(493);
 }
 
 void Player::CheckInputs(double d) {
@@ -41,41 +38,52 @@ void Player::CheckInputs(double d) {
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) && keyPressed >= 1) {//Spawn Follower
-		if (!pokemonsCaught.empty() && !isFollowerSpawned)
+		if (!pokemonsCaught.empty())
 		{
-			SpawnFollower(pokemonsCaught[pokemonSelected]);
-			follower->Show();
-			isFollowerSpawned = true;
+			if (!isFollowerSpawned)
+			{
+				SpawnFollower(pokemonsCaught[pokemonSelected]);
+				follower->Show();
+				isFollowerSpawned = true;
+			}
+			else if (isFollowerSpawned)
+			{
+				follower->Hide();
+				isFollowerSpawned = false;
+			}
 		}
-		else if (!pokemonsCaught.empty() && isFollowerSpawned)
-		{
-			follower->Hide();
-			isFollowerSpawned = false;
-		}
+
 		keyPressed = 0;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && keyPressed >= 0.5) {
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && keyPressed >= 0.5) { //Swap follower
 
-		if (pokemonsCaught.size() - 1 > pokemonSelected) {
-			pokemonSelected++;
-			follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+		if (!pokemonsCaught.empty())
+		{
+			if (pokemonsCaught.size() - 1 > pokemonSelected) {
+				pokemonSelected++;
+				follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+			}
+			else if (pokemonsCaught.size() - 1 == pokemonSelected && pokemonsCaught.size() > 1) {
+				pokemonSelected = 0;
+				follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+			}
 		}
-		else if (pokemonsCaught.size() - 1 == pokemonSelected) {
-			pokemonSelected = 0;
-			follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
-		}
+		
 			
 		keyPressed = 0;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && keyPressed >= 0.5) {
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && keyPressed >= 0.5) { //Swap follower
 
-		if (pokemonSelected > 0) {
-			pokemonSelected--;
-			follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
-		}
-		else if (pokemonSelected == 0) {
-			pokemonSelected = pokemonsCaught.size() - 1;
-			follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+		if (!pokemonsCaught.empty())
+		{
+			if (pokemonSelected > 0) {
+				pokemonSelected--;
+				follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+			}
+			else if (pokemonSelected == 0 && pokemonsCaught.size() > 1) {
+				pokemonSelected = pokemonsCaught.size() - 1;
+				follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+			}
 		}
 
 		keyPressed = 0;

@@ -22,6 +22,8 @@ public:
 	virtual void render(sf::RenderWindow& window) override;
 
 	void SetIsIntroPlayed(bool b) { IsIntroPlayed = b; };
+	void SetPokemonsCaughtToPlayer(std::vector<int> pokemons) { player.SetPokemonsCaught(pokemons); };
+
 	Player& getPlayer();
 	bool GetIsIntroPlayed() { return IsIntroPlayed; };
 
