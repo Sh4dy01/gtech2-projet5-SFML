@@ -114,8 +114,6 @@ Tile ResourceManager::getTile(int index)
 
 void ResourceManager::MapLoader(Map& outMap, const std::string& name)
 {
-	this->EventLoader(outMap);
-
 	ifstream f(SAVEMAP_FILE);
 	bool mapLoading = false;
 	bool tabLoading = false;
@@ -232,6 +230,7 @@ void ResourceManager::MapLoader(Map& outMap, const std::string& name)
 	}
 
 	f.close();
+	this->EventLoader(outMap);
 }
 
 void ResourceManager::EventLoader(Map& outMap)
@@ -290,7 +289,12 @@ void ResourceManager::EventLoader(Map& outMap)
 		if (id == "eventNewCurrentMap") {
 			for (int i = 0; i < nbrEvent; i++) {
 				ss >> id;
-				eventNewCurrentMap.push_back(id);
+				for (int y = 0; y < indexList.size(); y++)
+	            {  
+					if (indexList[y] == i) {
+						eventNewCurrentMap.push_back(id);
+					}
+				}
 			}
 		}
 
@@ -298,7 +302,12 @@ void ResourceManager::EventLoader(Map& outMap)
 			int temp = 0;
 			for (int i = 0; i < nbrEvent; i++) {
 				ss >> temp;
-				posX.push_back(temp);
+				for (int y = 0; y < indexList.size(); y++)
+				{
+					if (indexList[y] == i) {
+						posX.push_back(temp);
+					}
+				}
 			}
 		}
 
@@ -306,7 +315,12 @@ void ResourceManager::EventLoader(Map& outMap)
 			int temp = 0;
 			for (int i = 0; i < nbrEvent; i++) {
 				ss >> temp;
-				posY.push_back(temp);
+				for (int y = 0; y < indexList.size(); y++)
+				{
+					if (indexList[y] == i) {
+						posY.push_back(temp);
+					}
+				}
 			}
 		}
 
@@ -314,7 +328,12 @@ void ResourceManager::EventLoader(Map& outMap)
 			int temp = 0;
 			for (int i = 0; i < nbrEvent; i++) {
 				ss >> temp;
-				newPosX.push_back(temp);
+				for (int y = 0; y < indexList.size(); y++)
+				{
+					if (indexList[y] == i) {
+						newPosX.push_back(temp);
+					}
+				}
 			}
 		}
 
@@ -322,13 +341,18 @@ void ResourceManager::EventLoader(Map& outMap)
 			int temp = 0;
 			for (int i = 0; i < nbrEvent; i++) {
 				ss >> temp;
-				newPosY.push_back(temp);
+				for (int y = 0; y < indexList.size(); y++)
+				{
+					if (indexList[y] == i) {
+						newPosY.push_back(temp);
+					}
+				}
 			}
 		}
 	}
-	for (int i = 0; i < nbrEvent; i++) {
+	for (int i = 0; i < indexList.size(); i++) {
 		eventPosition.push_back(sf::Vector2i(posX[i], posY[i]));
-		eventNewPosition.push_back(sf::Vector2i(posX[i], posY[i]));
+		eventNewPosition.push_back(sf::Vector2i(newPosX[i], newPosY[i]));
 	}
 
 	f.close();
@@ -336,7 +360,6 @@ void ResourceManager::EventLoader(Map& outMap)
 
 Tile* ResourceManager::TileLoader(int index)
 {
-
 	for (int i = 0; i < loadedTilesIndex.size(); i++) {
 		if (loadedTilesIndex[i] == index) {
 			return &loadedTiles[i];
@@ -462,13 +485,14 @@ bool ResourceManager::getCollision(int index)
 sf::Vector2i ResourceManager::eventModifyCurrentMap(int x, int y)
 {
 	for (int i = 0; i < eventCurrentMap.size(); i++) {
-		if (eventCurrentMap[i] == Game::getInstance().getMap().getName()) {
-			if (x == eventPosition[i].x && y == eventPosition[i].y) {
-				Map newMap;
-				Game::getInstance().getResourceManager().MapLoader(newMap , eventNewCurrentMap[i]);
-				Game::getInstance().setMap(newMap);
-				return sf::Vector2i(eventNewPosition[i].x, eventNewPosition[i].y);
-			}
+		if (x == eventPosition[i].x && y == eventPosition[i].y) {
+			Map newMap;
+			int x, y;
+			x = eventNewPosition[i].x;
+			y = eventNewPosition[i].y;
+			Game::getInstance().getResourceManager().MapLoader(newMap , eventNewCurrentMap[i]);
+			Game::getInstance().setMap(newMap);
+			return sf::Vector2i(x, y);
 		}
 	}
 	return sf::Vector2i(-1, -1);

@@ -25,11 +25,13 @@ void Game::Initialization()
 
 	window.setView(sf::View(sf::Vector2f(GAME_SIZE_X / 2, GAME_SIZE_Y / 2), sf::Vector2f(GAME_SIZE_X, GAME_SIZE_Y)));
 
+	Game::getInstance().getResourceManager().MapLoader(map, "bedRoom");
+
 	stateMainMenu = new StateMainMenu();
 	stateLevel    = new StateLevel();
 	stateCombat   = new StateCombat();
 
-	State::setDefaultState(stateLevel, sf::Vector2i(16,7));
+	State::setDefaultState(stateLevel, sf::Vector2i(2,3));
 }
 
 void Game::QuitGame()

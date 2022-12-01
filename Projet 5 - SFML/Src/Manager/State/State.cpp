@@ -15,6 +15,8 @@ void State::switchState(State* s)
 	nextState = s;
 }
 
+
+
 void State::updateNextState()
 {
 	if (nextState) {
