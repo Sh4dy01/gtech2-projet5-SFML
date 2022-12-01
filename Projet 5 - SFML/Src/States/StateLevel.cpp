@@ -56,7 +56,8 @@ void StateLevel::update(double deltaTime)
 	
 	sf::Vector2i event = Game::getInstance().getResourceManager().eventModifyCurrentMap(player.getPosition().x / SPRITE_SIZE, player.getPosition().y / SPRITE_SIZE);
 	if (event.x != -1 || event.y != -1) {
-		this->enter(event);
+		this->switchState(this);
+		this->updateNextState(event);
 	}
 }
 
