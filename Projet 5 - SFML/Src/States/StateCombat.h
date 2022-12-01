@@ -41,9 +41,13 @@ public:
 
 	StateCombat();
 
+		/// Sets default values to start a fight against a wild Pokemon.
+		/// MUST be called BEFORE the state is entered.
+	void initiateCombat(int enemyPokedex);
+
 	void switchView(CombatView v);
 
-	virtual void enter() override;
+	virtual void enter(sf::Vector2i) override;
 	virtual void leave() override;
 
 	virtual void update(double deltaTime) override;

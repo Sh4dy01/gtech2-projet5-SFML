@@ -16,6 +16,11 @@ StateCombat::StateCombat()
 	
 }
 
+void StateCombat::initiateCombat(int enemyPokedex)
+{
+	enemyPokemon.pokedexID = enemyPokedex;
+}
+
 void StateCombat::switchView(CombatView v)
 {
 	view = v;
@@ -55,13 +60,26 @@ void StateCombat::switchView(CombatView v)
 			background.setTexture(*texDialogBackground);
 
 			const PokedexEntry* p = PokemonRegistry::getPokemonByPokedexNumber(playerPokemon.pokedexID);
+			const PokedexEntry* e = PokemonRegistry::getPokemonByPokedexNumber(enemyPokemon.pokedexID);
 
-			std::string s;
-			s += p->getName();
-			s += " used\n";
-			s += p->getAttacks()[attack]->getName();
-			s += '!';
-			dialog.setString(s);
+			std::string actionText;
+
+			switch (action) {
+			case 0:
+				actionText += p->getName();
+				actionText += " used\n";
+				actionText += p->getAttacks()[attack]->getName();
+				actionText += '!';
+				break;
+			case 3:
+				actionText += p->getName();
+				actionText += " tries to flee, but\n";
+				actionText += e->getName();
+				actionText += " is too fast!";
+				break;
+			}
+			
+			dialog.setString(actionText);
 		}
 		break;
 
@@ -83,10 +101,16 @@ void StateCombat::switchView(CombatView v)
 		break;
 
 	case StateCombat::EFFECTIVE:
+		{
+			if (action == 3)
+				dialog.setString("It has no effect.");
+			else
+				dialog.setString("It is not very effective...");
+		}
+		break;
 	case StateCombat::ENEMY_EFFECTIVE:
 		{
-			std::string s = "It is not very\neffective...";
-			dialog.setString(s);
+			dialog.setString("");
 		}
 		break;
 	}
@@ -94,14 +118,13 @@ void StateCombat::switchView(CombatView v)
 
 
 
-void StateCombat::enter()
+void StateCombat::enter(sf::Vector2i)
 {
 	Game::getInstance().getMusicManager().LoadMusicAndPlay("battle-music");
 	Game::getInstance().getSoundManager().LoadSound("select-sound");
 
 	// Default values.
 	playerPokemon.pokedexID = 0;
-	enemyPokemon.pokedexID = 27;
 	const PokedexEntry* playerPokemonType = PokemonRegistry::getPokemonByPokedexNumber(playerPokemon.pokedexID);
 	const PokedexEntry* enemyPokemonType  = PokemonRegistry::getPokemonByPokedexNumber(enemyPokemon.pokedexID);
 
@@ -223,7 +246,13 @@ void StateCombat::keypress(int code)
 		
 		switch (view) {
 		case INTRO:         this->switchView(SELECT_ACTION); break;
-		case SELECT_ACTION: this->switchView(SELECT_ATTACK); break;
+		case SELECT_ACTION:
+			{
+				if (action == 0) this->switchView(SELECT_ATTACK);
+				//else if (action == 2)
+				else if (action == 3) this->switchView(ACTION_USE);
+			}
+			break;
 		case SELECT_ATTACK:
 			if (attack < PokemonRegistry::getPokemonByPokedexNumber(playerPokemon.pokedexID)->getNumAttacks()) {
 				this->switchView(ACTION_USE);
