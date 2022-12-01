@@ -18,8 +18,15 @@ public:
 
 	Follower* GetFollower() { return follower; };
 	int GetSpeed() { return this->speed; };
+	bool IsFollowerSpawned() { return this->isFollowerSpawned; };
 
 private:
 
+	double keyPressed;
 	Follower* follower;
+	bool isFollowerSpawned;
+	int currentFollower;
+
+	std::vector<int> pokemonsCaught;
+
 };

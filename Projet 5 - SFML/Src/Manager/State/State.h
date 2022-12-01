@@ -25,6 +25,8 @@ public:
 		/// Proceed with a state switch, if necessary.
 	static void updateNextState();
 
+	void addElement(sf::Drawable* e) { elements.push_back(e); };
+
 	static State* getCurrentState() { return currentState; }
 
 	static void setDefaultState(State* s);

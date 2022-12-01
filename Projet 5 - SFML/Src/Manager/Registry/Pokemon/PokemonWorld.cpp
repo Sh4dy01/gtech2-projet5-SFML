@@ -57,6 +57,9 @@ void PokemonWorld::FindAndSetDetectionRange()
 	{
 		range++;
 
+		if (range >= 5)
+			break;
+
 		switch (currentDirection)
 		{
 		case LEFT:

@@ -11,6 +11,8 @@ Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave", false)
 	speed = 50.0f;
 	currentDirection = DOWN;
 	currentAnimation = WALK_DOWN;
+	currentFollower = 52;
+	isFollowerSpawned = false;
 }
 
 void Player::CheckAllDirections(double d) {
@@ -34,11 +36,31 @@ void Player::CheckAllDirections(double d) {
 		if (!Game::getInstance().getMap().thereIsCollision(playerPos.x-1, playerPos.y-1, LEFT))
 			dir = LEFT;
 	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {//Spawn Follower
+		if (currentFollower != 0 && !isFollowerSpawned && keyPressed >= 1)
+		{
+			SpawnFollower(currentFollower);
+			follower->Show();
+			isFollowerSpawned = true;
+			keyPressed = 0;
+		}
+		else if (currentFollower != 0 && isFollowerSpawned && keyPressed >= 1) 
+		{
+			follower->Hide();
+			isFollowerSpawned = false;
+			keyPressed = 0;
+		}
+	}
 
 	SetDirection(dir);
 
 	this->Move(d);
 	MoveFollower(d);
+
+	if (keyPressed <= 2)
+	{
+		keyPressed += d;
+	}
 }
 
 void Player::CheckLateralDirections(double d) {
@@ -101,4 +123,5 @@ void Player::SpawnFollower(int pokedexNumber)
 
 	follower = new Follower(this, pokedexNumber);
 	follower->Initialize(FOLLOWER_SCALE, playerPos);
+	State::getCurrentState()->addElement(follower);
 }

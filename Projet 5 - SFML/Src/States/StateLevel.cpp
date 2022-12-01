@@ -1,6 +1,7 @@
 #include "Manager/Game.h"
 #include "Manager/Registry/Pokemon/PokemonWorld.h"
 #include "StateLevel.h"
+#include "Manager/Follower.h"
 #include "Manager/SpriteConfig.h"
 #include <iostream>
 
@@ -18,18 +19,24 @@ void StateLevel::StartIntro() {
 	player.SetMovementAbility(false);
 	meteor.Initialize(sf::IntRect(0,0,1024,1024), 0.5, sf::Vector2i(3, 0));
 	meteor.setColor(sf::Color(255, 255, 255, 230));
-	elements.push_back(&meteor);
 }
 
 void StateLevel::enter()
 {
+	if (Game::getInstance().getMusicManager().GetCurrentMusic()->getStatus() != Game::getInstance().getMusicManager().GetCurrentMusic()->Playing)
+	{
+		Game::getInstance().getMusicManager().LoadMusicAndPlay("chill");
+	}
+
 	currentMap = Game::getInstance().getMap();
 	currentMap.LoadTiles();
 
-	player.Initialize(0.8, sf::Vector2i(this->playerPos.x, this->playerPos.y));
-	/*player.SpawnFollower(52);
-	elements.push_back((sf::Drawable*)player.GetFollower());*/
-
+	
+	player.Initialize(0.8, sf::Vector2i(playerPos.x, playerPos.y));
+	if (player.IsFollowerSpawned())
+	{
+		player.GetFollower()->SetToPlayerPosition();
+	}
 
 	for (int i = 0; i < currentMap.getNbrEntity(); i++)
 	{
