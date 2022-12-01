@@ -59,6 +59,7 @@ public:
 	Map map;
 	string mapName;
 	sf::Vector2i posPlayer;
+	bool isIntro;
 
 
 private:

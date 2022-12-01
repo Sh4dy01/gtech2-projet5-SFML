@@ -12,6 +12,7 @@ StateLevel::StateLevel() : IsIntro(false), meteor("meteor", false)
 StateLevel::StateLevel(sf::Vector2i vect) : IsIntro(false), meteor("meteor", false)
 {
 	this->playerPos = vect;
+	IsIntroPlayed = false;
 }
 
 void StateLevel::StartIntro() {
@@ -54,13 +55,14 @@ void StateLevel::enter()
 	camera = sf::View(player.getPosition(), sf::Vector2f(150, 150));
 	Game::getInstance().setCamera(camera);
 
-	if (currentMap.getName() == "startMap" && !IsIntro)
+	if (currentMap.getName() == "startMap" && !IsIntroPlayed)
 		StartIntro();
 }
 
 void StateLevel::leave()
 {
 	pokemons.clear();
+	elements.clear();
 	levelTiles.clear();
 }
 
@@ -75,6 +77,7 @@ void StateLevel::update(double deltaTime)
 		}
 		else {
 			IsIntro = false;
+			IsIntroPlayed = true;
 			player.SetMovementAbility(true);
 			elements.pop_back();
 		}

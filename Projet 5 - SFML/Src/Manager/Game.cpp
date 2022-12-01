@@ -4,7 +4,6 @@
 #include <fstream>
 #include <sstream>
 #include "Manager/SpriteConfig.h"
-#include "Manager/SpriteConfig.h"
 
 #include "Resource/ResourceManager.h"
 
@@ -38,6 +37,7 @@ void Game::Initialization()
 	stateCombat   = new StateCombat();
 	stateGameover = new StateGameover();
 
+	stateLevel->SetIsIntroPlayed(isIntro);
 	State::setDefaultState(stateLevel);
 }
 
@@ -70,6 +70,7 @@ void Game::saveData() {
 
     f << "currentMap " << this->getMap().getName() << endl;
     f << "playerPos " << vect.x / SPRITE_SIZE << " " << vect.y / SPRITE_SIZE << endl;
+    f << "isIntro " << this->stateLevel->GetIsIntroPlayed() << endl;
     index += 1;
   
 
@@ -88,6 +89,8 @@ void Game::loadData()
 	int x, y;
 	x = posPlayer.x;
 	y = posPlayer.y;
+	bool isIntro;
+
 	string line, id;
 	while (!f.eof())
 	{
@@ -112,7 +115,11 @@ void Game::loadData()
 			ss >> x;
 			ss >> y;
 		}
+		else if (id == "isIntro") {
+			ss >> isIntro;
+		}
 	}
 	posPlayer = sf::Vector2i(x, y);
+	this->isIntro = isIntro;
 	f.close();
 }

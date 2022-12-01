@@ -1,2 +1,3 @@
-currentMap city
-playerPos 15 12
+currentMap startMap
+playerPos 29.7402 12
+isIntro 1

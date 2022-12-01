@@ -21,11 +21,14 @@ public:
 	virtual void update(double deltaTime) override;
 	virtual void render(sf::RenderWindow& window) override;
 
+	void SetIsIntroPlayed(bool b) { IsIntroPlayed = b; };
 	Player& getPlayer();
+	bool GetIsIntroPlayed() { return IsIntroPlayed; };
 
 private:
 
 	bool IsIntro;
+	bool IsIntroPlayed;
 	double count;
 	Entity meteor;
 
