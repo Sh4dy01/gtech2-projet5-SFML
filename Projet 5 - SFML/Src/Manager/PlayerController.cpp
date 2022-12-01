@@ -9,6 +9,8 @@
 Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave", false)
 {
 	speed = 50.0f;
+	currentDirection = DOWN;
+	currentAnimation = WALK_DOWN;
 }
 
 void Player::CheckAllDirections(double d) {

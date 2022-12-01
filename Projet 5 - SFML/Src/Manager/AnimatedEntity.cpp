@@ -20,6 +20,9 @@ AnimatedEntity::AnimatedEntity(std::vector<std::vector<sf::IntRect>> animations,
 
 void AnimatedEntity::Initialize(float scale, sf::Vector2i spawn)
 {
+	this->currentDirection = STILL;
+
+	this->scale = scale;
     this->setScale(sf::Vector2f(scale, scale));
     this->SetSpawn(sf::Vector2f(spawn));
     this->SetSprite();
@@ -28,13 +31,14 @@ void AnimatedEntity::Initialize(float scale, sf::Vector2i spawn)
 	{
 	case LEFT:
 		currentAnimation = WALK_LEFT;
+		this->setScale(-scale, scale);
 		break;
 	case UP:
 		currentAnimation = WALK_UP;
 		break;
 	case RIGHT:
 		currentAnimation = WALK_LEFT;
-		this->setScale(-1.0f, 1.0f);
+		this->setScale(scale, scale);
 		break;
 	case DOWN:
 		currentAnimation = WALK_DOWN;
@@ -53,6 +57,16 @@ void AnimatedEntity::Move(double d) {
 	if (IsSnappedToGrid() && currentDirection != nextDirection)
 	{
 		currentDirection = nextDirection;
+		switch (currentDirection)
+		{
+		case LEFT:
+			this->setScale(scale, scale);
+			break;
+		case RIGHT:
+			this->setScale(-scale, scale);
+			break;
+		}
+
 		int x = int(getPosition().x);
 		int y = int(getPosition().y);
 
@@ -85,7 +99,7 @@ void AnimatedEntity::Move(double d) {
 
 	case RIGHT:
 		this->move(speed * d, 0.0f);
-		nextAnimation = WALK_RIGHT;
+		nextAnimation = WALK_LEFT;
 		isMoving = true;
 		break;
 
@@ -133,21 +147,24 @@ void AnimatedEntity::NextAnimationFrame(void)
 
 void AnimatedEntity::StopCurrentAnimation() {
     this->pos = 0;
-    switch (currentAnimation)
-    {
-    case WALK_DOWN:
-        this->currentAnimation = STAND_DOWN;
-        break; 
-    case WALK_UP:
-        this->currentAnimation = STAND_UP;
-        break;
-    default:
-        break;
-    }
 
+	switch (currentAnimation)
+	{
+	case WALK_UP:
+		this->currentAnimation = STAND_UP;
+		break;
+	case WALK_DOWN:
+		this->currentAnimation = STAND_DOWN;
+		break;
+	}
     this->setTextureRect(animations[this->currentAnimation][this->pos]);
 }
 
 bool AnimatedEntity::IsThereACollision() {
 	return Game::getInstance().getMap().thereIsCollision(getPosition().x / SPRITE_SIZE - 1, getPosition().y / SPRITE_SIZE - 1, currentDirection);
+}
+
+void AnimatedEntity::SetMovementAbility(bool canMove) {
+	StopCurrentAnimation();
+	this->canMove = canMove;
 }

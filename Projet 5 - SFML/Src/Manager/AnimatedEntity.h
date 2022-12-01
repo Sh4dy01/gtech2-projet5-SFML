@@ -4,10 +4,9 @@
 
 enum animationType
 {
-    WALK_DOWN,
     WALK_UP,
+    WALK_DOWN,
     WALK_LEFT,
-    WALK_RIGHT,
     STAND_UP,
     STAND_DOWN
 };
@@ -41,7 +40,8 @@ public:
 
     void SetDirection(direction dir) { nextDirection = dir; };
     void SetCurrentDirection(direction dir) { currentDirection = dir; };
-    void SetMovementAbility(bool canMove) { this->canMove = canMove; }
+    void SetMovementAbility(bool canMove);
+
 protected:
 
     bool isMoving;

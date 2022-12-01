@@ -4,12 +4,12 @@
 #include "Manager/SpriteConfig.h"
 #include <iostream>
 
-StateLevel::StateLevel() : IsIntro(true), meteor("meteor", false)
+StateLevel::StateLevel() : IsIntro(false), meteor("meteor", false)
 {
 }
 
 void StateLevel::StartIntro() {
-	count = 0;
+	IsIntro = true;
 	player.SetMovementAbility(false);
 	meteor.Initialize(sf::IntRect(0,0,1024,1024), 0.5, sf::Vector2i(3, 0));
 	meteor.setColor(sf::Color(255, 255, 255, 230));
@@ -21,7 +21,6 @@ void StateLevel::enter(sf::Vector2i playerPosition)
 	currentMap = Game::getInstance().getMap();
 	currentMap.LoadTiles();
 
-	Game::getInstance().getMusicManager().PauseCurrentMusic();
 	player.Initialize(0.8, sf::Vector2i(playerPosition.x, playerPosition.y));
 	/*player.SpawnFollower(52);
 	elements.push_back((sf::Drawable*)player.GetFollower());*/
@@ -43,10 +42,8 @@ void StateLevel::enter(sf::Vector2i playerPosition)
 	camera = sf::View(player.getPosition(), sf::Vector2f(150, 150));
 	Game::getInstance().setCamera(camera);
 
-	if (IsIntro)
-	{
+	if (currentMap.getName() == "startMap" && !IsIntro)
 		StartIntro();
-	}
 }
 
 void StateLevel::leave()
