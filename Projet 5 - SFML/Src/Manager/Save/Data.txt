@@ -1,0 +1,2 @@
+currentMap city
+playerPos 7 16

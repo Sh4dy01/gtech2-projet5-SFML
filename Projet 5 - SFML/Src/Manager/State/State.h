@@ -24,12 +24,10 @@ public:
 
 		/// Proceed with a state switch, if necessary.
 	static void updateNextState();
-	static void updateNextState(sf::Vector2i);
 
 	static State* getCurrentState() { return currentState; }
 
 	static void setDefaultState(State* s);
-	static void setDefaultState(State* s, sf::Vector2i vect);
 
 
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <string>
 
 #include "States/StateMainMenu.h"
 #include "States/StateLevel.h"
@@ -30,6 +31,9 @@ public:
 	Map getMap();
 	void setMap(Map);
 
+	void saveData();
+	void loadData();
+
 	sf::RenderWindow& getWindow() { return window; }
 
 	ResourceManager& getResourceManager() { return resourceManager; }
@@ -51,6 +55,8 @@ public:
 	StateCombat*   stateCombat;
 
 	Map map;
+	string mapName;
+	sf::Vector2i posPlayer;
 
 
 private:

@@ -207,6 +207,7 @@
   <ItemGroup>
     <Text Include="Src\Manager\Save\Events.txt" />
     <Text Include="Src\Manager\Save\Maps.txt" />
+    <Text Include="Src\Manager\Save\Data.txt" />
     <Text Include="Src\Manager\Save\Tiles.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,11 @@ StateLevel::StateLevel() : IsIntro(false), meteor("meteor", false)
 {
 }
 
+StateLevel::StateLevel(sf::Vector2i vect) : IsIntro(false), meteor("meteor", false)
+{
+	this->playerPos = vect;
+}
+
 void StateLevel::StartIntro() {
 	IsIntro = true;
 	player.SetMovementAbility(false);
@@ -16,12 +21,12 @@ void StateLevel::StartIntro() {
 	elements.push_back(&meteor);
 }
 
-void StateLevel::enter(sf::Vector2i playerPosition)
+void StateLevel::enter()
 {
 	currentMap = Game::getInstance().getMap();
 	currentMap.LoadTiles();
 
-	player.Initialize(0.8, sf::Vector2i(playerPosition.x, playerPosition.y));
+	player.Initialize(0.8, sf::Vector2i(this->playerPos.x, this->playerPos.y));
 	/*player.SpawnFollower(52);
 	elements.push_back((sf::Drawable*)player.GetFollower());*/
 
@@ -85,8 +90,9 @@ void StateLevel::update(double deltaTime)
 	
 	sf::Vector2i event = Game::getInstance().getResourceManager().eventModifyCurrentMap(player.getPosition().x / SPRITE_SIZE, player.getPosition().y / SPRITE_SIZE);
 	if (event.x != -1 || event.y != -1) {
+		this->playerPos = event;
 		this->switchState(this);
-		this->updateNextState(event);
+		this->updateNextState();
 	}
 }
 
@@ -100,4 +106,9 @@ void StateLevel::render(sf::RenderWindow& window)
 	for (sf::Drawable* e : elements) {
 		window.draw(*e);
 	}
+}
+
+Player& StateLevel::getPlayer()
+{
+	return this->player;
 }

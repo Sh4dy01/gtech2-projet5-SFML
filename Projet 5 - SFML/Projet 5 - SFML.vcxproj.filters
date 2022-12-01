@@ -88,6 +88,7 @@
     <Text Include="Src\Manager\Save\Maps.txt" />
     <Text Include="Src\Manager\Save\Tiles.txt" />
     <Text Include="Src\Manager\Save\Events.txt" />
+    <Text Include="Src\Manager\Save\Data.txt" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\Music\main-menu-theme.wav" />
