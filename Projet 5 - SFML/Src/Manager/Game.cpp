@@ -12,7 +12,6 @@ Game* Game::instance = 0;
 Game::Game()
 	: stateMainMenu(0), stateLevel(0), stateCombat(0)
 {
-	Game::getInstance().getResourceManager().MapLoader( map, "startMap");
 
 	if (!instance) {
 		instance = this;
