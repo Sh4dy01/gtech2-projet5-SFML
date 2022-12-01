@@ -29,18 +29,6 @@ void State::updateNextState()
 	}
 }
 
-void State::updateNextState(sf::Vector2i vect)
-{
-	if (nextState) {
-
-		currentState->leave();
-		currentState = nextState;
-		currentState->enter(vect);
-
-		nextState = 0;
-	}
-}
-
 void State::setDefaultState(State* s)
 {
 	if (currentState) {
@@ -49,14 +37,4 @@ void State::setDefaultState(State* s)
 
 	currentState = s;
 	currentState->enter();
-}
-
-void State::setDefaultState(State* s, sf::Vector2i vect)
-{
-	if (currentState) {
-		currentState->leave();
-	}
-
-	currentState = s;
-	currentState->enter(vect);
 }

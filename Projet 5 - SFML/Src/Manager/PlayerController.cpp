@@ -11,9 +11,14 @@ Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave", false)
 	speed = 50.0f;
 	currentDirection = DOWN;
 	currentAnimation = WALK_DOWN;
+	pokemonSelected = 0;
+	isFollowerSpawned = false;
+	pokemonsCaught.push_back(52);
+	pokemonsCaught.push_back(129);
+	pokemonsCaught.push_back(493);
 }
 
-void Player::CheckAllDirections(double d) {
+void Player::CheckInputs(double d) {
 
 	sf::Vector2i playerPos = sf::Vector2i(this->getPosition().x / SPRITE_SIZE, this->getPosition().y / SPRITE_SIZE);
 	direction dir = STILL;
@@ -35,10 +40,56 @@ void Player::CheckAllDirections(double d) {
 			dir = LEFT;
 	}
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) && keyPressed >= 1) {//Spawn Follower
+		if (!pokemonsCaught.empty() && !isFollowerSpawned)
+		{
+			SpawnFollower(pokemonsCaught[pokemonSelected]);
+			follower->Show();
+			isFollowerSpawned = true;
+		}
+		else if (!pokemonsCaught.empty() && isFollowerSpawned)
+		{
+			follower->Hide();
+			isFollowerSpawned = false;
+		}
+		keyPressed = 0;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && keyPressed >= 0.5) {
+
+		if (pokemonsCaught.size() - 1 > pokemonSelected) {
+			pokemonSelected++;
+			follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+		}
+		else if (pokemonsCaught.size() - 1 == pokemonSelected) {
+			pokemonSelected = 0;
+			follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+		}
+			
+		keyPressed = 0;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && keyPressed >= 0.5) {
+
+		if (pokemonSelected > 0) {
+			pokemonSelected--;
+			follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+		}
+		else if (pokemonSelected == 0) {
+			pokemonSelected = pokemonsCaught.size() - 1;
+			follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+		}
+
+		keyPressed = 0;
+	}
+
 	SetDirection(dir);
 
 	this->Move(d);
 	MoveFollower(d);
+
+	if (keyPressed <= 2)
+	{
+		keyPressed += d;
+	}
 }
 
 void Player::CheckLateralDirections(double d) {
@@ -101,4 +152,5 @@ void Player::SpawnFollower(int pokedexNumber)
 
 	follower = new Follower(this, pokedexNumber);
 	follower->Initialize(FOLLOWER_SCALE, playerPos);
+	State::getCurrentState()->addElement(follower);
 }

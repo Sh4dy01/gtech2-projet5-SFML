@@ -17,6 +17,7 @@ void StateMainMenu::enter()
 
 void StateMainMenu::leave()
 {
+	Game::getInstance().getMusicManager().StopMusic();
 	delete uiMainMenu;
 }
 

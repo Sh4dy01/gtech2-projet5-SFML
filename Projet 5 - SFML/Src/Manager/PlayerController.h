@@ -10,7 +10,7 @@ class Player : public AnimatedEntity {
 public:
 
 	Player();
-	void CheckAllDirections(double deltaTime);
+	void CheckInputs(double deltaTime);
 	void CheckLateralDirections(double deltaTime);
 	
 	void MoveFollower(double deltaTime);
@@ -18,8 +18,14 @@ public:
 
 	Follower* GetFollower() { return follower; };
 	int GetSpeed() { return this->speed; };
+	bool IsFollowerSpawned() { return this->isFollowerSpawned; };
 
 private:
 
+	double keyPressed;
 	Follower* follower;
+	bool isFollowerSpawned;
+
+	int pokemonSelected;
+	std::vector<int> pokemonsCaught;
 };

@@ -1,6 +1,7 @@
 #include "Manager/Game.h"
 #include "Manager/Registry/Pokemon/PokemonWorld.h"
 #include "StateLevel.h"
+#include "Manager/Follower.h"
 #include "Manager/SpriteConfig.h"
 #include <iostream>
 
@@ -8,23 +9,34 @@ StateLevel::StateLevel() : IsIntro(false), meteor("meteor", false)
 {
 }
 
+StateLevel::StateLevel(sf::Vector2i vect) : IsIntro(false), meteor("meteor", false)
+{
+	this->playerPos = vect;
+	IsIntroPlayed = false;
+}
+
 void StateLevel::StartIntro() {
 	IsIntro = true;
 	player.SetMovementAbility(false);
 	meteor.Initialize(sf::IntRect(0,0,1024,1024), 0.5, sf::Vector2i(3, 0));
 	meteor.setColor(sf::Color(255, 255, 255, 230));
-	elements.push_back(&meteor);
 }
 
-void StateLevel::enter(sf::Vector2i playerPosition)
+void StateLevel::enter()
 {
+	if (Game::getInstance().getMusicManager().GetCurrentMusic()->getStatus() != Game::getInstance().getMusicManager().GetCurrentMusic()->Playing)
+	{
+		Game::getInstance().getMusicManager().LoadMusicAndPlay("chill");
+	}
+
 	currentMap = Game::getInstance().getMap();
 	currentMap.LoadTiles();
-
-	player.Initialize(0.8, sf::Vector2i(playerPosition.x, playerPosition.y));
-	/*player.SpawnFollower(52);
-	elements.push_back((sf::Drawable*)player.GetFollower());*/
-
+	
+	player.Initialize(0.8, sf::Vector2i(playerPos.x, playerPos.y));
+	if (player.IsFollowerSpawned())
+	{
+		player.GetFollower()->SetToPlayerPosition();
+	}
 
 	for (int i = 0; i < currentMap.getNbrEntity(); i++)
 	{
@@ -42,13 +54,14 @@ void StateLevel::enter(sf::Vector2i playerPosition)
 	camera = sf::View(player.getPosition(), sf::Vector2f(150, 150));
 	Game::getInstance().setCamera(camera);
 
-	if (currentMap.getName() == "startMap" && !IsIntro)
+	if (currentMap.getName() == "startMap" && !IsIntroPlayed)
 		StartIntro();
 }
 
 void StateLevel::leave()
 {
 	pokemons.clear();
+	elements.clear();
 	levelTiles.clear();
 }
 
@@ -63,6 +76,7 @@ void StateLevel::update(double deltaTime)
 		}
 		else {
 			IsIntro = false;
+			IsIntroPlayed = true;
 			player.SetMovementAbility(true);
 			elements.pop_back();
 		}
@@ -70,7 +84,7 @@ void StateLevel::update(double deltaTime)
 	}
 
 	if (player.CanMove()) {
-		player.CheckAllDirections(deltaTime);
+		player.CheckInputs(deltaTime);
 		camera.setCenter(player.getPosition());
 		Game::getInstance().setCamera(camera);
 	}
@@ -85,8 +99,9 @@ void StateLevel::update(double deltaTime)
 	
 	sf::Vector2i event = Game::getInstance().getResourceManager().eventModifyCurrentMap(player.getPosition().x / SPRITE_SIZE, player.getPosition().y / SPRITE_SIZE);
 	if (event.x != -1 || event.y != -1) {
+		this->playerPos = event;
 		this->switchState(this);
-		this->updateNextState(event);
+		this->updateNextState();
 	}
 }
 
@@ -100,4 +115,9 @@ void StateLevel::render(sf::RenderWindow& window)
 	for (sf::Drawable* e : elements) {
 		window.draw(*e);
 	}
+}
+
+Player& StateLevel::getPlayer()
+{
+	return this->player;
 }

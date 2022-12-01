@@ -27,7 +27,10 @@ int main()
 		while (game.getWindow().pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
+			{
+				game.saveData();
 				game.getWindow().close();
+			}
 			else if (event.type == sf::Event::KeyPressed)
 				State::getCurrentState()->keypress(event.key.code);
 		}

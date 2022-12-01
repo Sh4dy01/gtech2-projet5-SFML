@@ -209,11 +209,14 @@
   <ItemGroup>
     <Text Include="Src\Manager\Save\Events.txt" />
     <Text Include="Src\Manager\Save\Maps.txt" />
+    <Text Include="Src\Manager\Save\Data.txt" />
     <Text Include="Src\Manager\Save\Tiles.txt" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\Audio\Music\battle-music.wav" />
+    <Media Include="Assets\Audio\Music\chill.wav" />
     <Media Include="Assets\Audio\Music\main-menu-theme.wav" />
+    <Media Include="Assets\Audio\Music\punch.wav" />
     <Media Include="Assets\Audio\Sound\select-sound.wav">
       <DeploymentContent>true</DeploymentContent>
     </Media>
