@@ -97,6 +97,8 @@
     <Media Include="Assets\Audio\Sound\select-sound.wav" />
     <Media Include="Assets\Audio\Music\battle-music.wav" />
     <Media Include="Assets\Audio\Music\main-menu-theme.wav" />
+    <Media Include="Assets\Audio\Music\chill.wav" />
+    <Media Include="Assets\Audio\Music\punch.wav" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Assets\Fonts\Pokemon-Classic.ttf" />

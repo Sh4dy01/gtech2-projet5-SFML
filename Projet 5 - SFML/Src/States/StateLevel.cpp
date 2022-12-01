@@ -25,14 +25,14 @@ void StateLevel::enter()
 {
 	if (Game::getInstance().getMusicManager().GetCurrentMusic()->getStatus() != Game::getInstance().getMusicManager().GetCurrentMusic()->Playing)
 	{
-		Game::getInstance().getMusicManager().LoadMusicAndPlay("city");
+		Game::getInstance().getMusicManager().LoadMusicAndPlay("chill");
 	}
 
 	currentMap = Game::getInstance().getMap();
 	currentMap.LoadTiles();
 
 	
-	player.Initialize(0.8, sf::Vector2i(playerPosition.x, playerPosition.y));
+	player.Initialize(0.8, sf::Vector2i(playerPos.x, playerPos.y));
 	if (player.IsFollowerSpawned())
 	{
 		player.GetFollower()->SetToPlayerPosition();
