@@ -1,7 +1,7 @@
-nbrEvent 14
-eventCurrentMap     startMap  startMap  city        city        bedRoom     livingRoom  livingRoom  livingRoom  livingRoom  startMap    startMap  startMap  forest    forest
-eventNewCurrentMap  city      city      startMap    startMap    livingRoom  bedRoom     startMap    startMap    startMap    livingRoom  forest    forest    startMap  startMap
-posX                32        32        1           1           1           10          4           5           6           16          1         1         31        31
-posY                12        13        16          17          8           2           10          10          10          6           12        13        25        26
-newPosX             2         2         32          32          9           2           16          16          16          5           31        31        2         2
-newPosY             16        17        12          13          2           8           7           7           7           10          25        26        12        13
+nbrEvent 20
+eventCurrentMap     startMap  startMap  city        city        bedRoom     livingRoom  livingRoom  livingRoom  livingRoom  startMap    startMap  startMap  forest    forest   townHall townHall townHall townHall city     city
+eventNewCurrentMap  city      city      startMap    startMap    livingRoom  bedRoom     startMap    startMap    startMap    livingRoom  forest    forest    startMap  startMap city     city     city     city     townHall townHall
+posX                32        32        1           1           1           10          4           5           6           16          1         1         31        31       7        8        9        10       15       16
+posY                12        13        16          17          8           2           10          10          10          6           12        13        25        26       14       14       14       14       6        6
+newPosX             2         2         32          32          9           2           16          16          16          5           31        31        2         2        15       15       16       16       8        9
+newPosY             16        17        12          13          2           8           7           7           7           10          25        26        12        13       7        7        7        7        13       13
