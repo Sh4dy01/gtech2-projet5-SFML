@@ -50,7 +50,7 @@ file exterior.png
 7
 posX 112
 posY 0
-collision true
+collision false
 file exterior.png
 <
 
@@ -176,7 +176,7 @@ file exterior.png
 25
 posX 144
 posY 16
-collision true
+collision false
 file exterior.png
 <
 
@@ -316,7 +316,7 @@ file exterior.png
 45
 posX 208
 posY 32
-collision true
+collision false
 file exterior.png
 <
 
@@ -624,7 +624,7 @@ file exterior.png
 89
 posX 144
 posY 80
-collision true
+collision false
 file exterior.png
 <
 
@@ -764,7 +764,7 @@ file exterior.png
 109
 posX 208
 posY 96
-collision true
+collision false
 file exterior.png
 <
 
@@ -932,7 +932,7 @@ file interior.png
 133
 posX 112
 posY 16
-collision true
+collision false
 file interior.png
 <
 
@@ -974,7 +974,7 @@ file interior.png
 139
 posX 208
 posY 16
-collision true
+collision false
 file interior.png
 <
 
@@ -1030,21 +1030,21 @@ file interior.png
 147
 posX 112
 posY 32
-collision true
+collision false
 file interior.png
 <
 
 148
 posX 128
 posY 32
-collision true
+collision false
 file interior.png
 <
 
 149
 posX 144
 posY 32
-collision true
+collision false
 file interior.png
 <
 
@@ -1072,7 +1072,7 @@ file interior.png
 153
 posX 208
 posY 32
-collision true
+collision false
 file interior.png
 <
 
@@ -1170,7 +1170,7 @@ file interior.png
 167
 posX 208
 posY 48
-collision true
+collision false
 file interior.png
 <
 
@@ -1296,14 +1296,14 @@ file interior.png
 185
 posX 48
 posY 80
-collision true
+collision false
 file interior.png
 <
 
 186
 posX 64
 posY 80
-collision true
+collision false
 file interior.png
 <
 
@@ -1317,35 +1317,35 @@ file interior.png
 188
 posX 96
 posY 80
-collision true
+collision false
 file interior.png
 <
 
 189
 posX 112
 posY 80
-collision true
+collision false
 file interior.png
 <
 
 190
 posX 128
 posY 80
-collision true
+collision false
 file interior.png
 <
 
 191
 posX 144
 posY 80
-collision true
+collision false
 file interior.png
 <
 
 192
 posX 160
 posY 80
-collision true
+collision false
 file interior.png
 <
 
@@ -1569,7 +1569,7 @@ file interior.png
 224
 posX 0
 posY 128
-collision true
+collision false
 file interior.png
 <
 

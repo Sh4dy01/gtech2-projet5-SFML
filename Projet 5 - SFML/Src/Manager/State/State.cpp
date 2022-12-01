@@ -15,6 +15,8 @@ void State::switchState(State* s)
 	nextState = s;
 }
 
+
+
 void State::updateNextState()
 {
 	if (nextState) {
@@ -22,6 +24,18 @@ void State::updateNextState()
 		currentState->leave();
 		currentState = nextState;
 		currentState->enter();
+
+		nextState = 0;
+	}
+}
+
+void State::updateNextState(sf::Vector2i vect)
+{
+	if (nextState) {
+
+		currentState->leave();
+		currentState = nextState;
+		currentState->enter(vect);
 
 		nextState = 0;
 	}
@@ -35,4 +49,14 @@ void State::setDefaultState(State* s)
 
 	currentState = s;
 	currentState->enter();
+}
+
+void State::setDefaultState(State* s, sf::Vector2i vect)
+{
+	if (currentState) {
+		currentState->leave();
+	}
+
+	currentState = s;
+	currentState->enter(vect);
 }

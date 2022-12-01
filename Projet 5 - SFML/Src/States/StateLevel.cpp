@@ -1,43 +1,79 @@
 #include "Manager/Game.h"
 #include "Manager/Registry/Pokemon/PokemonWorld.h"
 #include "StateLevel.h"
+#include "Manager/SpriteConfig.h"
 #include <iostream>
 
-StateLevel::StateLevel()
+StateLevel::StateLevel() : IsIntro(false), meteor("meteor", false)
 {
-
 }
 
-void StateLevel::enter()
+void StateLevel::StartIntro() {
+	IsIntro = true;
+	player.SetMovementAbility(false);
+	meteor.Initialize(sf::IntRect(0,0,1024,1024), 0.5, sf::Vector2i(3, 0));
+	meteor.setColor(sf::Color(255, 255, 255, 230));
+	elements.push_back(&meteor);
+}
+
+void StateLevel::enter(sf::Vector2i playerPosition)
 {
-	Map map = Game::getInstance().getCurrentMap();
+	currentMap = Game::getInstance().getMap();
+	currentMap.LoadTiles();
 
-	Game::getInstance().getMusicManager().PauseCurrentMusic();
-	player.Initialize(0.8, sf::Vector2i(14, 14));
+	player.Initialize(0.8, sf::Vector2i(playerPosition.x, playerPosition.y));
+	/*player.SpawnFollower(52);
+	elements.push_back((sf::Drawable*)player.GetFollower());*/
 
-	for (int i = 0; i < map.getNbrEntity(); i++)
+
+	for (int i = 0; i < currentMap.getNbrEntity(); i++)
 	{
-		if (map.getType()[i] == "pokemon")
+		if (currentMap.getType()[i] == "pokemon")
 		{
-			std::cout << "creating " << map.getEntityName()[i] << " pokemon" << std::endl;
-			PokemonWorld* pokemon = new PokemonWorld(std::stoi(map.getEntityName()[i].c_str()));
-			pokemon->SetCurrentDirection(map.getDir()[i]);
-			pokemon->Initialize(1, sf::Vector2i(map.getPosX()[i], map.getPosY()[i]));
+			PokemonWorld* pokemon = new PokemonWorld(std::stoi(currentMap.getEntityName()[i].c_str()));
+			pokemon->Initialize(0.75, sf::Vector2i(currentMap.getPosX()[i], currentMap.getPosY()[i]));
+			pokemon->SetCurrentDirection(currentMap.getDir()[i]);
+			pokemon->FindAndSetDetectionRange();
 			pokemons.push_back(pokemon);
 			elements.push_back((sf::Drawable*)pokemon);
 		}
 	}
 	elements.push_back(&player);
-
 	camera = sf::View(player.getPosition(), sf::Vector2f(150, 150));
 	Game::getInstance().setCamera(camera);
+
+	if (currentMap.getName() == "startMap" && !IsIntro)
+		StartIntro();
+}
+
+void StateLevel::leave()
+{
+	pokemons.clear();
+	levelTiles.clear();
 }
 
 void StateLevel::update(double deltaTime)
 {
-	player.CheckAllDirections(deltaTime);
-	camera.setCenter(player.getPosition());
-	Game::getInstance().setCamera(camera);
+	if (IsIntro)
+	{
+		if (count <= 3)
+		{
+			meteor.move(1, 1);
+			camera.move(1,0);
+		}
+		else {
+			IsIntro = false;
+			player.SetMovementAbility(true);
+			elements.pop_back();
+		}
+		count += deltaTime;
+	}
+
+	if (player.CanMove()) {
+		player.CheckAllDirections(deltaTime);
+		camera.setCenter(player.getPosition());
+		Game::getInstance().setCamera(camera);
+	}
 
 	for (PokemonWorld* p : pokemons) {
 		if (p->IsPlayerDetected(&player))
@@ -46,11 +82,20 @@ void StateLevel::update(double deltaTime)
 			std::cout << "COMBAT STATE" << std::endl;
 		}
 	}
+	
+	sf::Vector2i event = Game::getInstance().getResourceManager().eventModifyCurrentMap(player.getPosition().x / SPRITE_SIZE, player.getPosition().y / SPRITE_SIZE);
+	if (event.x != -1 || event.y != -1) {
+		this->switchState(this);
+		this->updateNextState(event);
+	}
 }
 
 void StateLevel::render(sf::RenderWindow& window)
 {
-	Game::getInstance().getCurrentMap().render();
+	for (Tile t : currentMap.getTiles())
+	{
+		window.draw(t);
+	}
 
 	for (sf::Drawable* e : elements) {
 		window.draw(*e);

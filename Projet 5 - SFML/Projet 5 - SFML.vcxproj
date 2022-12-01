@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="Src\Common\Point2.h" />
     <ClInclude Include="Src\Manager\AnimatedEntity.h" />
+    <ClInclude Include="Src\Manager\Registry\MapRegistry.h" />
     <ClInclude Include="Src\Manager\Registry\Pokemon\PokemonAnimationsRegistry.h" />
     <ClInclude Include="Src\Manager\Resource\MusicManager.h" />
     <ClInclude Include="Src\Manager\Resource\SoundManager.h">
@@ -206,6 +207,7 @@
     <Image Include="Assets\Sprites\pokemon\squirtle.png" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Src\Manager\Save\Events.txt" />
     <Text Include="Src\Manager\Save\Maps.txt" />
     <Text Include="Src\Manager\Save\Tiles.txt" />
   </ItemGroup>

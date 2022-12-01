@@ -61,6 +61,7 @@
     <ClInclude Include="Src\Map\Map.h" />
     <ClInclude Include="Src\Manager\Resource\MusicManager.h" />
     <ClInclude Include="Src\States\StateGameover.h" />
+    <ClInclude Include="Src\Manager\Registry\MapRegistry.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Sprites\Dave.png" />
@@ -88,6 +89,7 @@
   <ItemGroup>
     <Text Include="Src\Manager\Save\Maps.txt" />
     <Text Include="Src\Manager\Save\Tiles.txt" />
+    <Text Include="Src\Manager\Save\Events.txt" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\Music\main-menu-theme.wav" />

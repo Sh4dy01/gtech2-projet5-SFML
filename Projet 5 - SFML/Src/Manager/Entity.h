@@ -3,13 +3,13 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Vector2.hpp>
-#include <SFML/System/String.hpp>
+#include <string>
 
 class Entity : public sf::Sprite {
 
 public:
 
-	Entity(sf::String, bool isPokemon);
+	Entity(std::string, bool isPokemon);
 		/// <summary>
 		/// Set the sprite, scale and spawn position of an entity
 		/// </summary>
@@ -27,7 +27,7 @@ protected:
 
 	bool isPokemon;
 
-	sf::String name;
+	std::string name;
 	sf::Texture _texture;
 	float scale;
 	float speed;

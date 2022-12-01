@@ -21,6 +21,7 @@
 using namespace std;
 static const char* const SAVEMAP_FILE = "Src/Manager/Save/Maps.txt";
 static const char* const SAVETILE_FILE = "Src/Manager/Save/Tiles.txt";
+static const char* const SAVEEVENT_FILE = "Src/Manager/Save/Events.txt";
 
 
 ResourceManager::ResourceManager()
@@ -150,6 +151,7 @@ void ResourceManager::MapLoader(Map& outMap, const std::string& name)
 
 		if (id == name) {
 			mapLoading = true;
+			outMap.setName(name);
 			countLine = -3;
 		}
 
@@ -228,11 +230,136 @@ void ResourceManager::MapLoader(Map& outMap, const std::string& name)
 	}
 
 	f.close();
+	this->EventLoader(outMap);
+}
+
+void ResourceManager::EventLoader(Map& outMap)
+{
+	eventCurrentMap.clear();
+	eventNewCurrentMap.clear();
+	eventPosition.clear();
+	eventNewPosition.clear();
+
+	ifstream f(SAVEEVENT_FILE);
+	int nbrEvent = 0;
+	std::vector<int> posX;
+	std::vector<int> posY;
+	std::vector<int> newPosX;
+	std::vector<int> newPosY;
+	std::vector<int> indexList;
+
+
+	// If settings file does not exist yet, return error.
+	if (!f) {
+		cout << "error : file Maps.txt does not exist." << endl;
+	}
+
+	string line, id;
+	while (!f.eof())
+	{
+		// Get line.
+		getline(f, line);
+		int countChar = 0;
+
+		// Ignore empty line.
+		if (line.empty()) {
+			continue;
+		}
+
+		// Formatted reading.
+		stringstream ss(line);
+		ss >> id;
+		
+		if (id == "nbrEvent") {
+			ss >> nbrEvent;
+		}
+
+		if (id == "eventCurrentMap") {
+			for (int i = 0; i < nbrEvent; i++) {
+				ss >> id;
+				if (id == outMap.getName()) {
+					indexList.push_back(i);
+					eventCurrentMap.push_back(id);
+				}
+
+				
+			}
+		}
+
+		if (id == "eventNewCurrentMap") {
+			for (int i = 0; i < nbrEvent; i++) {
+				ss >> id;
+				for (int y = 0; y < indexList.size(); y++)
+	            {  
+					if (indexList[y] == i) {
+						eventNewCurrentMap.push_back(id);
+					}
+				}
+			}
+		}
+
+		if (id == "posX") {
+			int temp = 0;
+			for (int i = 0; i < nbrEvent; i++) {
+				ss >> temp;
+				for (int y = 0; y < indexList.size(); y++)
+				{
+					if (indexList[y] == i) {
+						posX.push_back(temp);
+					}
+				}
+			}
+		}
+
+		if (id == "posY") {
+			int temp = 0;
+			for (int i = 0; i < nbrEvent; i++) {
+				ss >> temp;
+				for (int y = 0; y < indexList.size(); y++)
+				{
+					if (indexList[y] == i) {
+						posY.push_back(temp);
+					}
+				}
+			}
+		}
+
+		if (id == "newPosX") {
+			int temp = 0;
+			for (int i = 0; i < nbrEvent; i++) {
+				ss >> temp;
+				for (int y = 0; y < indexList.size(); y++)
+				{
+					if (indexList[y] == i) {
+						newPosX.push_back(temp);
+					}
+				}
+			}
+		}
+
+		if (id == "newPosY") {
+			int temp = 0;
+			for (int i = 0; i < nbrEvent; i++) {
+				ss >> temp;
+				for (int y = 0; y < indexList.size(); y++)
+				{
+					if (indexList[y] == i) {
+						newPosY.push_back(temp);
+					}
+				}
+			}
+		}
+	}
+	for (int i = 0; i < indexList.size(); i++) {
+		eventPosition.push_back(sf::Vector2i(posX[i], posY[i]));
+		eventNewPosition.push_back(sf::Vector2i(newPosX[i], newPosY[i]));
+	}
+
+	f.close();
 }
 
 Tile* ResourceManager::TileLoader(int index)
 {
-
 	for (int i = 0; i < loadedTilesIndex.size(); i++) {
 		if (loadedTilesIndex[i] == index) {
 			return &loadedTiles[i];
@@ -353,4 +480,20 @@ bool ResourceManager::getCollision(int index)
 			return true;
 	}
 	return false;
+}
+
+sf::Vector2i ResourceManager::eventModifyCurrentMap(int x, int y)
+{
+	for (int i = 0; i < eventCurrentMap.size(); i++) {
+		if (x == eventPosition[i].x && y == eventPosition[i].y) {
+			Map newMap;
+			int x, y;
+			x = eventNewPosition[i].x;
+			y = eventNewPosition[i].y;
+			Game::getInstance().getResourceManager().MapLoader(newMap , eventNewCurrentMap[i]);
+			Game::getInstance().setMap(newMap);
+			return sf::Vector2i(x, y);
+		}
+	}
+	return sf::Vector2i(-1, -1);
 }

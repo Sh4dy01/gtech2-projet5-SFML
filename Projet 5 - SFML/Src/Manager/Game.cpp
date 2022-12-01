@@ -12,10 +12,7 @@ Game* Game::instance = 0;
 Game::Game()
 	: stateMainMenu(0), stateLevel(0), stateCombat(0)
 {
-	Game::getInstance().getResourceManager().MapLoader( test, "city");
-	Game::getInstance().getResourceManager().MapLoader( test2, "livingRoom");
 
-	currentMap = &test;
 	if (!instance) {
 		instance = this;
 	}
@@ -28,12 +25,14 @@ void Game::Initialization()
 
 	window.setView(sf::View(sf::Vector2f(GAME_SIZE_X / 2, GAME_SIZE_Y / 2), sf::Vector2f(GAME_SIZE_X, GAME_SIZE_Y)));
 
+	Game::getInstance().getResourceManager().MapLoader(map, "bedRoom");
+
 	stateMainMenu = new StateMainMenu();
 	stateLevel    = new StateLevel();
 	stateCombat   = new StateCombat();
 	stateGameover = new StateGameover();
 
-	State::setDefaultState(stateLevel);
+	State::setDefaultState(stateLevel, sf::Vector2i(2,3));
 }
 
 void Game::QuitGame()
@@ -41,7 +40,12 @@ void Game::QuitGame()
 	window.close();
 }
 
-Map Game::getCurrentMap()
+Map Game::getMap()
 {
-	return *currentMap;
+	return this->map;
+}
+
+void Game::setMap(Map map)
+{
+	this->map = map;
 }

@@ -10,7 +10,6 @@
 #include "Manager/Resource/MusicManager.h"
 #include "Manager/Resource/SoundManager.h"
 
-
 // Render space is the same as a Gameboy console's.
 // Window resize will cause the rendered frame to stretch.
 #define GAME_SIZE_X 256
@@ -29,7 +28,8 @@ public:
 	void QuitGame();
 
 public:
-	Map getCurrentMap();
+	Map getMap();
+	void setMap(Map);
 
 	sf::RenderWindow& getWindow() { return window; }
 
@@ -52,9 +52,8 @@ public:
 	StateCombat*   stateCombat;
 	StateGameover* stateGameover;
 
-	Map* currentMap;
-	Map test;
-	Map test2;
+	Map map;
+
 
 private:
 

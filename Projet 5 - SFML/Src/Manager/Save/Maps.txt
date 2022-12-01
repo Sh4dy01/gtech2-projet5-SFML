@@ -119,12 +119,12 @@ width 27
 - 38 38 38 38 38 38 38 38 38 39 38 38 38 23 64 64 21 22 22 38 38 38 38 38 38 38 38
 - 38 38 38 38 38 38 38 38 38 22 23 38 38 39 64 64 37 38 38 38 38 38 38 38 38 38 38
 
-nbrEntity 1
-entity 63
-posX 2
-posY 2
-type pokemon
-dir 3
+nbrEntity 4
+entity 63 19 493 1
+posX 10 16 16 9
+posY 10 15 10 8
+type pokemon pokemon pokemon pokemon
+dir 2 1 4 4
 <
 
 livingRoom

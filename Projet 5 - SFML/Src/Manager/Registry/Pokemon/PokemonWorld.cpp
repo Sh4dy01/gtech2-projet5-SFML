@@ -1,4 +1,5 @@
 #include "PokemonWorld.h"
+#include "Manager/Game.h"
 #include <iostream>
 
 PokemonWorld::PokemonWorld(int pokedexNumber) : pokemon(PokemonRegistry::getPokemonByPokedexNumber(pokedexNumber)), AnimatedEntity(animations, name, true)
@@ -7,7 +8,6 @@ PokemonWorld::PokemonWorld(int pokedexNumber) : pokemon(PokemonRegistry::getPoke
 	{
 		this->name = pokemon->getName();
 		this->animations = pokemon->getAnimations();
-		range = GetDetectionRange();
 	}
 
 	speed = 0.5f;
@@ -17,94 +17,68 @@ bool PokemonWorld::IsPlayerDetected(Player* player) {
 
 	bool IsSameX = this->getPosition().x == player->getPosition().x;
 	bool IsSameY = this->getPosition().y == player->getPosition().y;
-	int distX = (this->getPosition().x - player->getPosition().x) / SPRITE_SIZE;
-	int distY = (this->getPosition().y - player->getPosition().y) / SPRITE_SIZE;
-
+	int distX = (player->getPosition().x - this->getPosition().x) / SPRITE_SIZE;
+	int distY = (player->getPosition().y - this->getPosition().y) / SPRITE_SIZE;
+	
 	switch (currentDirection)
 	{
 	case LEFT:
-		if (IsSameY && distX <= range)
-		{
+		if (IsSameY && distX <= 0 && abs(distX) <= range)
 			return true;
-		}
 		break;
+
 	case UP:
-		if (IsSameX && distY <= range)
-		{
+		if (IsSameX && distY <= 0 && abs(distY) <= range)
 			return true;
-		}
 		break;
+
 	case RIGHT:
-		if (IsSameY && -distX <= range)
-		{
+		if (IsSameY && distX >= 0 && abs(distX) <= range)
 			return true;
-		}
 		break;
+
 	case DOWN:
-		if (IsSameX && distY <= range)
-		{
+		if (IsSameX && distY >= 0 && abs(distY) <= range)
 			return true;
-		}
 		break;
 	}
 	
 	return false;
 }
 
-int PokemonWorld::GetDetectionRange()
+void PokemonWorld::FindAndSetDetectionRange()
 {
-	return 5;
-}
+	int range = 0;
+	int x = getPosition().x / SPRITE_SIZE;
+	int y = getPosition().y / SPRITE_SIZE;
 
-void PokemonWorld::Move(double d)
-{
-	switch (currentDirection)
+
+	while (!Game::getInstance().getMap().thereIsCollision(x-1, y-1, currentDirection))
 	{
-	case STILL:
-		StopCurrentAnimation();
-		isMoving = false;
-		break;
-	case LEFT:
-		this->move(-speed, 0.0f);
-		nextAnimation = WALK_LEFT;
-		this->setScale(sf::Vector2f(1.0f, 1.0f));
-		isMoving = true;
-		break;
-	case UP:
-		this->move(0.0f, -speed);
-		nextAnimation = WALK_UP;
-		isMoving = true;
-		break;
-	case RIGHT:
-		this->move(speed, 0.0f);
-		nextAnimation = WALK_LEFT;
-		isMoving = true;
-		this->setScale(sf::Vector2f(-1.0f, 1.0f));
-		break;
-	case DOWN:
-		this->move(0.0f, speed);
-		nextAnimation = WALK_DOWN;
-		isMoving = true;
-		break;
+		range++;
+
+		switch (currentDirection)
+		{
+		case LEFT:
+			x--;
+			break;
+		case UP:
+			y--;
+			break;
+		case RIGHT:
+			x++;
+			break;
+		case DOWN:
+			y++;
+			break;
+		default:
+			break;
+		}
 	}
 
-	if (IsSnappedToGrid() && currentDirection != nextDirection)
-	{
-		currentDirection = nextDirection;
-	}
+	std::cout << name << " has " << range << " range" << std::endl << std::endl;
 
-	if (currentAnimation != nextAnimation)
-	{
-		currentAnimation = nextAnimation;
-	}
-
-	if (count >= 0.2)
-	{
-		NextAnimationFrame();
-		count = 0;
-	}
-
-	count += d;
+	this->range = range;
 }
 
 void PokemonWorld::StopCurrentAnimation(void)

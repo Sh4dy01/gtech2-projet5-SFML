@@ -34,14 +34,15 @@ void Map::setValue(int value, int x, int y)
 	tab[x][y] = value;
 }
 
-void Map::render()
+void Map::LoadTiles()
 {
 	Tile temptile;
+
 	for (int y = 0; y < this->width; y++) {
 		for (int x = 0; x < this->height; x++) {
 			temptile = *Game::getInstance().getResourceManager().TileLoader( this->tab[x][y] );
 			temptile.setPosition( y * SPRITE_SIZE + 8, x * SPRITE_SIZE + 8);
-			Game::getInstance().getWindow().draw(temptile);
+			tiles.push_back(temptile);
 		}
 	}
 }
