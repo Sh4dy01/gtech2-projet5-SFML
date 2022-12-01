@@ -29,7 +29,11 @@ public:
 	{
 		INTRO,
 		SELECT_ACTION,
-		SELECT_ATTACK
+		SELECT_ATTACK,
+		ACTION_USE,
+		EFFECTIVE,
+		ENEMY_ATTACK,
+		ENEMY_EFFECTIVE
 	};
 
 
@@ -54,7 +58,10 @@ private:
 
 	void updateArrowPosition();
 
-	void triggerAttack();
+	void triggerAttack(bool player);
+	void resizeHealthBars();
+
+	const std::vector<sf::Drawable*>& getCurrentSpriteSet() const;
 
 
 private:
@@ -68,11 +75,15 @@ private:
 	int action;
 	int attack;
 
+	int enemyAttack;
+
 	CombatView view;
 
 		/// Resources.
 	sf::Texture* texBattleBackground;
+	sf::Texture* texDialogBackground;
 	sf::Texture* texActionBackground;
+	sf::Texture* texActionPlayerBackground;
 	sf::Texture* texFightBackground;
 
 	sf::Texture* texPlayerPokemonSprite;
@@ -83,6 +94,9 @@ private:
 
 	sf::Sprite playerSprite;
 	sf::Sprite enemySprite;
+
+	sf::RectangleShape playerHP;
+	sf::RectangleShape enemyHP;
 	sf::Sprite arrowSprite;
 
 	sf::Text playerName;
@@ -91,5 +105,10 @@ private:
 	sf::Text attacks[4];
 	sf::Text attackType;
 
+	sf::Text dialog;
+
 	std::vector<sf::Drawable*> sprites;
+	std::vector<sf::Drawable*> dialogSprites;
+	std::vector<sf::Drawable*> actionSprites;
+	std::vector<sf::Drawable*> attacksSprites;
 };

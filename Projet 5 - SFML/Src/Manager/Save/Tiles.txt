@@ -267,7 +267,7 @@ file exterior.png
 38
 posX 96
 posY 32
-collision true
+collision false
 file exterior.png
 <
 

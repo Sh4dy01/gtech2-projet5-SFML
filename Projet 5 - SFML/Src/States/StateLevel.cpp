@@ -9,6 +9,11 @@ StateLevel::StateLevel() : IsIntro(false), meteor("meteor", false)
 {
 }
 
+StateLevel::StateLevel(sf::Vector2i vect) : IsIntro(false), meteor("meteor", false)
+{
+	this->playerPos = vect;
+}
+
 void StateLevel::StartIntro() {
 	IsIntro = true;
 	player.SetMovementAbility(false);
@@ -16,7 +21,7 @@ void StateLevel::StartIntro() {
 	meteor.setColor(sf::Color(255, 255, 255, 230));
 }
 
-void StateLevel::enter(sf::Vector2i playerPosition)
+void StateLevel::enter()
 {
 	if (Game::getInstance().getMusicManager().GetCurrentMusic()->getStatus() != Game::getInstance().getMusicManager().GetCurrentMusic()->Playing)
 	{
@@ -92,8 +97,9 @@ void StateLevel::update(double deltaTime)
 	
 	sf::Vector2i event = Game::getInstance().getResourceManager().eventModifyCurrentMap(player.getPosition().x / SPRITE_SIZE, player.getPosition().y / SPRITE_SIZE);
 	if (event.x != -1 || event.y != -1) {
+		this->playerPos = event;
 		this->switchState(this);
-		this->updateNextState(event);
+		this->updateNextState();
 	}
 }
 
@@ -107,4 +113,9 @@ void StateLevel::render(sf::RenderWindow& window)
 	for (sf::Drawable* e : elements) {
 		window.draw(*e);
 	}
+}
+
+Player& StateLevel::getPlayer()
+{
+	return this->player;
 }
