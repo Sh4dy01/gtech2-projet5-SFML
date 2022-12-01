@@ -3,7 +3,7 @@
 #include "Manager/SpriteConfig.h"
 #include <iostream>s
 
-Entity::Entity(sf::String name, bool isPokemon) : name(name), isPokemon(isPokemon)
+Entity::Entity(std::string name, bool isPokemon) : name(name), isPokemon(isPokemon)
 {
 }
 
@@ -19,7 +19,7 @@ void Entity::Initialize(sf::IntRect region, float scale, sf::Vector2i spawn)
 
 void Entity::SetSprite()
 {
-	_texture = Game::getInstance().getResourceManager().loadSprite(name.toAnsiString().c_str(), isPokemon);
+	_texture = Game::getInstance().getResourceManager().loadSprite(name.c_str(), isPokemon);
 	this->setTexture(_texture);
 }
 
@@ -29,9 +29,9 @@ void Entity::SetSpawn(sf::Vector2f spawn)
 	spawn.y *= SPRITE_SIZE;
 
 	this->setPosition(spawn);
-	std::cout << "Spawned " << this->name.toAnsiString() << " at " << this->getPosition().x/SPRITE_SIZE << ":" << this->getPosition().y/ SPRITE_SIZE << std::endl;
+	std::cout << "Spawned " << this->name << " at " << this->getPosition().x/SPRITE_SIZE << ":" << this->getPosition().y/ SPRITE_SIZE << std::endl;
 }
 
 void Entity::PrintCoords() {
-	std::cout << name.toAnsiString() << " : " << this->getPosition().x << ", " << this->getPosition().y << std::endl;
+	std::cout << name << " : " << this->getPosition().x << ", " << this->getPosition().y << std::endl;
 }

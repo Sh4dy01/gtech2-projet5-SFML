@@ -26,7 +26,7 @@ class AnimatedEntity : public Entity
 
 public:
 
-    AnimatedEntity(std::vector<std::vector<sf::IntRect>>, sf::String, bool isPokemon);
+    AnimatedEntity(std::vector<std::vector<sf::IntRect>>, std::string, bool isPokemon);
     virtual void Initialize(float scale, sf::Vector2i spawn);
 
     virtual void Move(double d);
@@ -37,13 +37,15 @@ public:
     virtual void StopCurrentAnimation(void);
 
     direction GetCurrentDirection() { return currentDirection; };
+    bool CanMove() { return canMove ; }
 
     void SetDirection(direction dir) { nextDirection = dir; };
     void SetCurrentDirection(direction dir) { currentDirection = dir; };
-
+    void SetMovementAbility(bool canMove) { this->canMove = canMove; }
 protected:
 
     bool isMoving;
+    bool canMove;
     
     double count;
     int pos;

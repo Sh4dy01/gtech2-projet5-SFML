@@ -3,10 +3,11 @@
 #include "Manager/SpriteConfig.h"
 #include <iostream>
 
-AnimatedEntity::AnimatedEntity(std::vector<std::vector<sf::IntRect>> animations, sf::String name, bool isPokemon) : Entity(name, isPokemon)
+AnimatedEntity::AnimatedEntity(std::vector<std::vector<sf::IntRect>> animations, std::string name, bool isPokemon) : Entity(name, isPokemon)
 {
 	this->currentAnimation = WALK_DOWN;
 	this->nextAnimation = WALK_DOWN;
+	this->canMove = true;
 
 	this->currentDirection = STILL;
 	this->nextDirection = STILL;

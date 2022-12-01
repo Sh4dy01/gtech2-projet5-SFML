@@ -76,7 +76,7 @@ void PokemonWorld::FindAndSetDetectionRange()
 		}
 	}
 
-	std::cout << name.toAnsiString() << " has " << range << " range" << std::endl << std::endl;
+	std::cout << name << " has " << range << " range" << std::endl << std::endl;
 
 	this->range = range;
 }
