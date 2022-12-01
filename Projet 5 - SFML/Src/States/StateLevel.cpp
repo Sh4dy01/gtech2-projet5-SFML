@@ -4,9 +4,16 @@
 #include "Manager/SpriteConfig.h"
 #include <iostream>
 
-StateLevel::StateLevel()
+StateLevel::StateLevel() : IsIntro(true), meteor("meteor", false)
 {
+}
 
+void StateLevel::StartIntro() {
+	count = 0;
+	player.SetMovementAbility(false);
+	meteor.Initialize(sf::IntRect(0,0,1024,1024), 0.5, sf::Vector2i(3, 0));
+	meteor.setColor(sf::Color(255, 255, 255, 230));
+	elements.push_back(&meteor);
 }
 
 void StateLevel::enter(sf::Vector2i playerPosition)
@@ -18,6 +25,7 @@ void StateLevel::enter(sf::Vector2i playerPosition)
 	player.Initialize(0.8, sf::Vector2i(playerPosition.x, playerPosition.y));
 	/*player.SpawnFollower(52);
 	elements.push_back((sf::Drawable*)player.GetFollower());*/
+
 
 	for (int i = 0; i < currentMap.getNbrEntity(); i++)
 	{
@@ -34,6 +42,11 @@ void StateLevel::enter(sf::Vector2i playerPosition)
 	elements.push_back(&player);
 	camera = sf::View(player.getPosition(), sf::Vector2f(150, 150));
 	Game::getInstance().setCamera(camera);
+
+	if (IsIntro)
+	{
+		StartIntro();
+	}
 }
 
 void StateLevel::leave()
@@ -44,9 +57,27 @@ void StateLevel::leave()
 
 void StateLevel::update(double deltaTime)
 {
-	player.CheckAllDirections(deltaTime);
+	if (IsIntro)
+	{
+		if (count <= 3)
+		{
+			meteor.move(1, 1);
+			camera.move(1,0);
+		}
+		else {
+			IsIntro = false;
+			player.SetMovementAbility(true);
+			elements.pop_back();
+		}
+		count += deltaTime;
+	}
+
+	if (player.CanMove())
+		player.CheckAllDirections(deltaTime);
+
 	camera.setCenter(player.getPosition());
 	Game::getInstance().setCamera(camera);
+
 
 	for (PokemonWorld* p : pokemons) {
 		if (p->IsPlayerDetected(&player))
