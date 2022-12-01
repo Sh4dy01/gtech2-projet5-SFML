@@ -31,7 +31,6 @@ void StateLevel::enter()
 
 	currentMap = Game::getInstance().getMap();
 	currentMap.LoadTiles();
-
 	
 	player.Initialize(0.8, sf::Vector2i(playerPos.x, playerPos.y));
 	if (player.IsFollowerSpawned())
@@ -85,7 +84,7 @@ void StateLevel::update(double deltaTime)
 	}
 
 	if (player.CanMove()) {
-		player.CheckAllDirections(deltaTime);
+		player.CheckInputs(deltaTime);
 		camera.setCenter(player.getPosition());
 		Game::getInstance().setCamera(camera);
 	}

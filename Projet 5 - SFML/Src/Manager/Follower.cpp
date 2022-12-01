@@ -90,7 +90,7 @@ void Follower::Move(double d)
 		count = 0;
 	}
 
-	if (isMoving && !IsThereACollision())
+	if (isMoving)
 	{
 		const float dir = atan((player->getPosition().x + offset.x - this->getPosition().x) / (player->getPosition().y + offset.y - this->getPosition().y));
 		this->move(speed * d * sin(dir), speed * d * cos(dir));

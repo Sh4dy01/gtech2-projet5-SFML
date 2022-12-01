@@ -11,11 +11,14 @@ Player::Player() : AnimatedEntity(PLAYER_ANIMATION, "Dave", false)
 	speed = 50.0f;
 	currentDirection = DOWN;
 	currentAnimation = WALK_DOWN;
-	currentFollower = 52;
+	pokemonSelected = 0;
 	isFollowerSpawned = false;
+	pokemonsCaught.push_back(52);
+	pokemonsCaught.push_back(129);
+	pokemonsCaught.push_back(493);
 }
 
-void Player::CheckAllDirections(double d) {
+void Player::CheckInputs(double d) {
 
 	sf::Vector2i playerPos = sf::Vector2i(this->getPosition().x / SPRITE_SIZE, this->getPosition().y / SPRITE_SIZE);
 	direction dir = STILL;
@@ -36,20 +39,46 @@ void Player::CheckAllDirections(double d) {
 		if (!Game::getInstance().getMap().thereIsCollision(playerPos.x-1, playerPos.y-1, LEFT))
 			dir = LEFT;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {//Spawn Follower
-		if (currentFollower != 0 && !isFollowerSpawned && keyPressed >= 1)
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) && keyPressed >= 1) {//Spawn Follower
+		if (!pokemonsCaught.empty() && !isFollowerSpawned)
 		{
-			SpawnFollower(currentFollower);
+			SpawnFollower(pokemonsCaught[pokemonSelected]);
 			follower->Show();
 			isFollowerSpawned = true;
-			keyPressed = 0;
 		}
-		else if (currentFollower != 0 && isFollowerSpawned && keyPressed >= 1) 
+		else if (!pokemonsCaught.empty() && isFollowerSpawned)
 		{
 			follower->Hide();
 			isFollowerSpawned = false;
-			keyPressed = 0;
 		}
+		keyPressed = 0;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && keyPressed >= 0.5) {
+
+		if (pokemonsCaught.size() - 1 > pokemonSelected) {
+			pokemonSelected++;
+			follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+		}
+		else if (pokemonsCaught.size() - 1 == pokemonSelected) {
+			pokemonSelected = 0;
+			follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+		}
+			
+		keyPressed = 0;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && keyPressed >= 0.5) {
+
+		if (pokemonSelected > 0) {
+			pokemonSelected--;
+			follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+		}
+		else if (pokemonSelected == 0) {
+			pokemonSelected = pokemonsCaught.size() - 1;
+			follower->ChangeFollower(pokemonsCaught[pokemonSelected]);
+		}
+
+		keyPressed = 0;
 	}
 
 	SetDirection(dir);
