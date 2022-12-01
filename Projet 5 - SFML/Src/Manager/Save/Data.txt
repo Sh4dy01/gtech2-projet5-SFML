@@ -1,2 +1,2 @@
-currentMap city
-playerPos 7 16
+currentMap bedRoom
+playerPos 2 3
