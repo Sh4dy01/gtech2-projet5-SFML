@@ -11,8 +11,8 @@ StateLevel::StateLevel()
 
 void StateLevel::enter(sf::Vector2i playerPosition)
 {
-	Map map = Game::getInstance().getMap();
-	map.LoadTiles();
+	currentMap = Game::getInstance().getMap();
+	currentMap.LoadTiles();
 
 	Game::getInstance().getMusicManager().PauseCurrentMusic();
 	player.Initialize(0.8, sf::Vector2i(playerPosition.x, playerPosition.y));

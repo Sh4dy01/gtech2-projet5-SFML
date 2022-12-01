@@ -53,7 +53,7 @@ void PokemonWorld::FindAndSetDetectionRange()
 	int y = getPosition().y / SPRITE_SIZE;
 
 
-	while (!Game::getInstance().currentMap->thereIsCollision(x-1, y-1, currentDirection))
+	while (!Game::getInstance().getMap().thereIsCollision(x-1, y-1, currentDirection))
 	{
 		range++;
 

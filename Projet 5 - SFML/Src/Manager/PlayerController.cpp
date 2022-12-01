@@ -45,13 +45,13 @@ void Player::CheckLateralDirections(double d) {
 	direction dir = STILL;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x - 1, playerPos.y - 1, RIGHT))
+		if (!Game::getInstance().getMap().thereIsCollision(playerPos.x - 1, playerPos.y - 1, RIGHT))
 			dir = RIGHT;
 	}
 		
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-		if (!Game::getInstance().currentMap->thereIsCollision(playerPos.x - 1, playerPos.y - 1, LEFT))
+		if (!Game::getInstance().getMap().thereIsCollision(playerPos.x - 1, playerPos.y - 1, LEFT))
 			dir = LEFT;
 	} 
 
