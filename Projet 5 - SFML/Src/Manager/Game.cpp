@@ -36,6 +36,7 @@ void Game::Initialization()
 	stateMainMenu = new StateMainMenu();
 	stateLevel    = new StateLevel(posPlayer);
 	stateCombat   = new StateCombat();
+	stateGameover = new StateGameover();
 
 	State::setDefaultState(stateLevel);
 }

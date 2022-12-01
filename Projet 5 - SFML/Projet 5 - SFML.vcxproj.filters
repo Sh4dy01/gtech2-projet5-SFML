@@ -29,6 +29,7 @@
     <ClCompile Include="Src\Manager\Registry\Pokemon\PokemonWorld.cpp" />
     <ClCompile Include="Src\Map\Map.cpp" />
     <ClCompile Include="Src\Manager\Resource\MusicManager.cpp" />
+    <ClCompile Include="Src\States\StateGameover.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Common\Point2.h" />
@@ -59,6 +60,7 @@
     <ClInclude Include="Src\Manager\Registry\Pokemon\PokemonWorld.h" />
     <ClInclude Include="Src\Map\Map.h" />
     <ClInclude Include="Src\Manager\Resource\MusicManager.h" />
+    <ClInclude Include="Src\States\StateGameover.h" />
     <ClInclude Include="Src\Manager\Registry\MapRegistry.h" />
   </ItemGroup>
   <ItemGroup>
