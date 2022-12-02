@@ -159,12 +159,16 @@ void StateCombat::switchView(CombatView v)
 
 void StateCombat::enter()
 {
+	Game::getInstance().getWindow().setView(sf::View(sf::Vector2f(GAME_SIZE_X / 2, GAME_SIZE_Y / 2), sf::Vector2f(GAME_SIZE_X, GAME_SIZE_Y)));
+
 	Game::getInstance().getMusicManager().LoadMusicAndPlay("battle-music");
 	Game::getInstance().getSoundManager().LoadSound("select-sound");
 
 	// Default values.
-	enemyPokemon.pokedexID = 25;
-	playerPokemon.pokedexID = 0;
+	int pokeID = Game::getInstance().stateLevel->getPlayer().getSelectedPokemon();
+	if (pokeID == -1) pokeID = 0; // Make Dave fight if no pokemon.
+	playerPokemon.pokedexID = pokeID;
+
 	const PokedexEntry* playerPokemonType = PokemonRegistry::getPokemonByPokedexNumber(playerPokemon.pokedexID);
 	const PokedexEntry* enemyPokemonType  = PokemonRegistry::getPokemonByPokedexNumber(enemyPokemon.pokedexID);
 

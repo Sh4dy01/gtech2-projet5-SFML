@@ -17,6 +17,8 @@ public:
 
 	virtual void StopCurrentAnimation(void) override;
 
+	const PokedexEntry* getPokemonType() const { return pokemon; }
+
 protected:
 	
 	const PokedexEntry* pokemon;

@@ -57,13 +57,11 @@ void Follower::Move(double d)
 
 		if (pathY > FOLLOWING_OFFSET) {
 			currentDirection = DOWN;
-			if (speed < 0) speed = -speed;
 			offset.y = -FOLLOWING_OFFSET;
 			nextAnimation = WALK_DOWN;
 		}
 		else if (pathY < -FOLLOWING_OFFSET) {
 			currentDirection = UP;
-			if (speed > 0) speed = -speed;
 			offset.y = FOLLOWING_OFFSET;
 			nextAnimation = WALK_UP;
 		}

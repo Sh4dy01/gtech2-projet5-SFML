@@ -18,6 +18,7 @@ public:
 
 	Follower* GetFollower() { return follower; };
 	std::vector<int>& GetPokemonsCaught() { return pokemonsCaught; };
+	int getSelectedPokemon() const { return pokemonsCaught.empty() ? -1 : pokemonsCaught[pokemonSelected]; }
 	int GetSpeed() { return this->speed; };
 
 	bool IsFollowerSpawned() { return this->isFollowerSpawned; };

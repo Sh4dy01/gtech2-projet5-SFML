@@ -92,8 +92,8 @@ void StateLevel::update(double deltaTime)
 	for (PokemonWorld* p : pokemons) {
 		if (p->IsPlayerDetected(&player))
 		{
-			//State::getCurrentState()->switchState(Game::getInstance().stateCombat);
-			std::cout << "COMBAT STATE" << std::endl;
+			Game::getInstance().stateCombat->initiateCombat(p->getPokemonType()->getPokedexID());
+			State::getCurrentState()->switchState(Game::getInstance().stateCombat);
 		}
 	}
 	
