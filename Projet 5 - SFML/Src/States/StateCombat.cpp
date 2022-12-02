@@ -19,6 +19,8 @@ StateCombat::StateCombat()
 void StateCombat::initiateCombat(int enemyPokedex)
 {
 	enemyPokemon.pokedexID = enemyPokedex;
+
+	enemyCalmedDown = false;
 }
 
 void StateCombat::switchView(CombatView v)
@@ -83,6 +85,37 @@ void StateCombat::switchView(CombatView v)
 		}
 		break;
 
+	case StateCombat::ACTION_PET:
+		{
+			background.setTexture(*texDialogBackground);
+
+			// 30% chance to catch.
+			bool success = (rand() % 100) < 30;
+			
+			const PokedexEntry* p = PokemonRegistry::getPokemonByPokedexNumber(playerPokemon.pokedexID);
+			const PokedexEntry* e = PokemonRegistry::getPokemonByPokedexNumber(enemyPokemon.pokedexID);
+
+			std::string text;
+			text += p->getName();
+			text += " tried petting\n";
+			text += e->getName();
+			text += "...";
+
+			if (success) {
+				text += "It looks\nlike it calmed it down!";
+				enemyCalmedDown = true;
+				Game::getInstance().stateLevel->getPlayer().GetPokemonsCaught().push_back(enemyPokemon.pokedexID);
+				Game::getInstance().saveData();
+			}
+			else {
+				text += "\nBut it did not like it!";
+			}
+
+			dialog.setString(text);
+			break;
+		}
+		break;
+
 	case StateCombat::ENEMY_ATTACK:
 		{
 			background.setTexture(*texDialogBackground);
@@ -105,7 +138,7 @@ void StateCombat::switchView(CombatView v)
 			if (action == 3)
 				dialog.setString("It has no effect.");
 			else
-				dialog.setString("It is not very effective...");
+				dialog.setString("It is not very\neffective...");
 		}
 		break;
 	case StateCombat::ENEMY_EFFECTIVE:
@@ -113,17 +146,24 @@ void StateCombat::switchView(CombatView v)
 			dialog.setString("");
 		}
 		break;
+
+	case StateCombat::END_COMBAT:
+		{
+			State::switchState(Game::getInstance().stateLevel);
+		}
+		break;
 	}
 }
 
 
 
-void StateCombat::enter(sf::Vector2i)
+void StateCombat::enter()
 {
 	Game::getInstance().getMusicManager().LoadMusicAndPlay("battle-music");
 	Game::getInstance().getSoundManager().LoadSound("select-sound");
 
 	// Default values.
+	enemyPokemon.pokedexID = 25;
 	playerPokemon.pokedexID = 0;
 	const PokedexEntry* playerPokemonType = PokemonRegistry::getPokemonByPokedexNumber(playerPokemon.pokedexID);
 	const PokedexEntry* enemyPokemonType  = PokemonRegistry::getPokemonByPokedexNumber(enemyPokemon.pokedexID);
@@ -248,8 +288,8 @@ void StateCombat::keypress(int code)
 		case INTRO:         this->switchView(SELECT_ACTION); break;
 		case SELECT_ACTION:
 			{
-				if (action == 0) this->switchView(SELECT_ATTACK);
-				//else if (action == 2)
+				if      (action == 0) this->switchView(SELECT_ATTACK);
+				else if (action == 2) this->switchView(ACTION_PET);
 				else if (action == 3) this->switchView(ACTION_USE);
 			}
 			break;
@@ -257,6 +297,9 @@ void StateCombat::keypress(int code)
 			if (attack < PokemonRegistry::getPokemonByPokedexNumber(playerPokemon.pokedexID)->getNumAttacks()) {
 				this->switchView(ACTION_USE);
 			}
+			break;
+		case ACTION_PET:
+			this->switchView(enemyCalmedDown ? END_COMBAT : ENEMY_ATTACK);
 			break;
 		case ACTION_USE:
 			this->triggerAttack(true);
@@ -384,6 +427,7 @@ const std::vector<sf::Drawable*>& StateCombat::getCurrentSpriteSet() const
 	switch (view) {
 	case INTRO:
 	case ACTION_USE:
+	case ACTION_PET:
 	case ENEMY_ATTACK:
 	case EFFECTIVE:
 	case ENEMY_EFFECTIVE:

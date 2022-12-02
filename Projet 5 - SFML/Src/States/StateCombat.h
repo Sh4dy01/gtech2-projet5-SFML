@@ -31,9 +31,11 @@ public:
 		SELECT_ACTION,
 		SELECT_ATTACK,
 		ACTION_USE,
+		ACTION_PET,
 		EFFECTIVE,
 		ENEMY_ATTACK,
-		ENEMY_EFFECTIVE
+		ENEMY_EFFECTIVE,
+		END_COMBAT
 	};
 
 
@@ -47,7 +49,7 @@ public:
 
 	void switchView(CombatView v);
 
-	virtual void enter(sf::Vector2i) override;
+	virtual void enter() override;
 	virtual void leave() override;
 
 	virtual void update(double deltaTime) override;
@@ -74,6 +76,7 @@ private:
 	Pokemon enemyPokemon;
 
 	bool turn;
+	bool enemyCalmedDown; // Petting.
 
 		/// Selected action / attack.
 	int action;

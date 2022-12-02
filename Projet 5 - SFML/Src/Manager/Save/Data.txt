@@ -1,4 +1,4 @@
 currentMap city
 playerPos 5 16
-isIntro 1
+isIntro 0
 pokemonsCaught 1 52 

@@ -39,7 +39,7 @@ void Game::Initialization()
 
 	stateLevel->SetIsIntroPlayed(isIntro);
 	stateLevel->SetPokemonsCaughtToPlayer(pokemonsCaught);
-	State::setDefaultState(stateLevel);
+	State::setDefaultState(stateMainMenu);
 }
 
 void Game::QuitGame()
