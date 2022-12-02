@@ -51,7 +51,7 @@ void StateLevel::enter()
 		}
 	}
 	elements.push_back(&player);
-	camera = sf::View(player.getPosition(), sf::Vector2f(150, 150));
+	camera = sf::View(player.getPosition(), sf::Vector2f(160, 160));
 	Game::getInstance().setCamera(camera);
 
 	if (currentMap.getName() == "startMap" && !IsIntroPlayed)
